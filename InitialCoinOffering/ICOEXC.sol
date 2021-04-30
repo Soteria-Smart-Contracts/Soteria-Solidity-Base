@@ -31,7 +31,7 @@ contract ICOEXCTest {
     
     function Buy(uint256 _AmountWEXP) public payable returns(bool success){
         //Requirements to Call
-        require (_AmountWEXP > 100);
+        require (_AmountWEXP > 100000000);
 
         
         //Transfers WEXP to Contract and sets amount variables
@@ -51,6 +51,15 @@ contract ICOEXCTest {
         return success;
         
     }
+    
+    //View Current Conversion
+    
+    function ViewConversionAmount(uint256 _amountEXP)public view returns(uint256){
+        return (((_amountEXP/100000000) * EXPcurrentPrice) / 3);
+        
+        
+    }
+    
     //Owner Functions
     function changePrice(uint256 _NewPrice)public payable returns(bool success){
         require (msg.sender == Owner);
@@ -89,11 +98,16 @@ contract ICOEXCTest {
         return success;
     }
     
-    
+    function ChangeEXCAddress(address payable NewAddy) public returns(bool success){
+        require (msg.sender == Owner);
+        EXC = NewAddy;
+        return success;
+        
+    }
     
 }
 
-//0xFaF3dDcB8d17dB02e08e45F02aFb8D427669d592
+
 
 interface ERC20 {
   function balanceOf(address owner) external view returns (uint256);
