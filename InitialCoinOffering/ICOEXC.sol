@@ -1,7 +1,7 @@
 pragma solidity ^0.8.4;
 
 
-contract ICOEXCTest {
+contract ICOEXC {
     address public EXC = payable(0x41c62a91FDe9f192403bF8DBf50aA5f6Ac9aB96d);
     address wEXP = payable(0x331631B4bb93b9B8962faE15860BD538a389395A);
     uint256 public Goal;
@@ -106,7 +106,6 @@ contract ICOEXCTest {
     }
     
 }
-
 
 
 interface ERC20 {
