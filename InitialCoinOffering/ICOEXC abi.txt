@@ -3,6 +3,82 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "_AmountWEXP",
+				"type": "uint256"
+			}
+		],
+		"name": "Buy",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address payable",
+				"name": "NewAddy",
+				"type": "address"
+			}
+		],
+		"name": "ChangeEXCAddress",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_NewPrice",
+				"type": "uint256"
+			}
+		],
+		"name": "changePrice",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "OneOnZeroOff",
+				"type": "uint256"
+			}
+		],
+		"name": "OnOff",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_Goal",
 				"type": "uint256"
 			},
@@ -66,14 +142,8 @@
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_AmountWEXP",
-				"type": "uint256"
-			}
-		],
-		"name": "Buy",
+		"inputs": [],
+		"name": "WithdrawCharity",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -85,14 +155,8 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address payable",
-				"name": "NewAddy",
-				"type": "address"
-			}
-		],
-		"name": "ChangeEXCAddress",
+		"inputs": [],
+		"name": "WithdrawDevPool",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -100,7 +164,20 @@
 				"type": "bool"
 			}
 		],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "WithdrawLPpool",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -183,6 +260,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "OpenClosed",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "Owner",
 		"outputs": [
 			{
@@ -211,64 +301,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "WithdrawCharity",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "WithdrawDevPool",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "WithdrawLPpool",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_NewPrice",
-				"type": "uint256"
-			}
-		],
-		"name": "changePrice",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "success",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "payable",
 		"type": "function"
 	}
 ]
