@@ -11,6 +11,7 @@ contract ICOEXC {
     uint256 public CharityPool;
     uint256 EXPcurrentPrice;
     uint256 EXCtoMintAndSend;
+    uint public OpenClosed;
     address public Owner;
     string removalT;
     //Variable Declarations
@@ -31,6 +32,7 @@ contract ICOEXC {
     
     function Buy(uint256 _AmountWEXP) public payable returns(bool success){
         //Requirements to Call
+        require (OpenClosed == 1);
         require (_AmountWEXP > 100000000);
 
         
@@ -104,6 +106,14 @@ contract ICOEXC {
         return success;
         
     }
+    
+    function OnOff(uint OneOnZeroOff) public returns(bool success){
+        require (msg.sender == Owner);
+        OpenClosed = OneOnZeroOff;
+        return success;
+    }
+    
+    
     
 }
 
