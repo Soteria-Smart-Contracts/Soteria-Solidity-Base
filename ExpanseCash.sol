@@ -1,7 +1,7 @@
-pragma solidity ^0.7.5;
+pragma solidity ^0.8.4;
 
 
-contract ExpanseCash {
+contract ExpanseCashTest2 {
     uint256 public TokenCap;
     uint256 public TotalSupply;
     uint256 public burntSupply;
@@ -18,8 +18,6 @@ contract ExpanseCash {
     event BurnEvent(address indexed burner, uint256 indexed buramount);
     event ManageMinterEvent(address indexed newminter);
     //Event Declarations 
-    
-    using SafeMath for uint256;
     
     mapping(address => uint256) balances;
 
@@ -45,40 +43,40 @@ contract ExpanseCash {
 
     }
 
-    function approve(address delegate, uint numTokens) public returns (bool) {
-        allowed[msg.sender][delegate] = numTokens;
-        emit Approval(msg.sender, delegate, numTokens);
+    function approve(address delegate, uint _amount) public returns (bool) {
+        allowed[msg.sender][delegate] = _amount;
+        emit Approval(msg.sender, delegate, _amount);
         return true;
     }
     //Approves an address to spend your coins
 
-    function transferFrom(address owner, address buyer, uint numTokens) public returns (bool) {
-        require(numTokens <= balances[owner]);    
-        require(numTokens <= allowed[owner][msg.sender]);
+    function transferFrom(address _from, address _to, uint256 _amount) public returns (bool) {
+        require(_amount <= balances[_from]);    
+        require(_amount <= allowed[_from][msg.sender]);
     
-        balances[owner] = balances[owner].sub(numTokens);
-        allowed[owner][msg.sender] = allowed[owner][msg.sender].sub(numTokens);
-        balances[buyer] = balances[buyer].add(numTokens);
-        emit Transfer(owner, buyer, numTokens);
+        balances[_from] = balances[_from]-(_amount);
+        allowed[_from][msg.sender] = allowed[_from][msg.sender]-(_amount);
+        balances[_to] = balances[_to]+(_amount);
+        emit Transfer(_from, _to, _amount);
         return true;
     }
     //Transfer From an other address
 
 
-    function transfer(address receiver, uint numTokens) public returns (bool) {
-        require(numTokens <= balances[msg.sender]);
-        balances[msg.sender] = balances[msg.sender].sub(numTokens);
-        balances[receiver] = balances[receiver].add(numTokens);
-        emit Transfer(msg.sender, receiver, numTokens);
+    function transfer(address _to, uint256 _amount) public returns (bool) {
+        require(_amount <= balances[msg.sender]);
+        balances[msg.sender] = balances[msg.sender]-(_amount);
+        balances[_to] = balances[_to]+(_amount);
+        emit Transfer(msg.sender, _to, _amount);
         return true;
     }
 
 
     function Mint(address _MintTo, uint256 _MintAmount) public {
         require (minter[msg.sender] == 1);
-        require (TotalSupply.add(_MintAmount) <= TokenCap);
-        balances[_MintTo] = balances[_MintTo].add(_MintAmount);
-        TotalSupply = TotalSupply.add(_MintAmount);
+        require (TotalSupply+(_MintAmount) <= TokenCap);
+        balances[_MintTo] = balances[_MintTo]+(_MintAmount);
+        TotalSupply = TotalSupply+(_MintAmount);
         ZeroAddress = 0x0000000000000000000000000000000000000000;
         emit Transfer(ZeroAddress ,_MintTo, _MintAmount);
     }
@@ -87,8 +85,8 @@ contract ExpanseCash {
 
     function Burn(uint256 _BurnAmount) public {
         require (balances[msg.sender] >= _BurnAmount);
-        balances[msg.sender] = balances[msg.sender].sub(_BurnAmount);
-        TotalSupply = TotalSupply.sub(_BurnAmount);
+        balances[msg.sender] = balances[msg.sender]-(_BurnAmount);
+        TotalSupply = TotalSupply-(_BurnAmount);
         ZeroAddress = 0x0000000000000000000000000000000000000000;
         emit Transfer(msg.sender, ZeroAddress, _BurnAmount);
         emit BurnEvent(msg.sender, _BurnAmount);
@@ -116,16 +114,3 @@ contract ExpanseCash {
 
 }
 
-library SafeMath { 
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-      assert(b <= a);
-      return a - b;
-    }
-    
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-      uint256 c = a + b;
-      assert(c >= a);
-      return c;
-    }
-
-}
