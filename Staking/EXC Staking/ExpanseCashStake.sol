@@ -1,15 +1,13 @@
-pragma solidity ^0.7.5;
+pragma solidity ^0.8.4;
 
 
 contract EXCstakefarm{
-    address payable EXC = 0xB43882F3DcF8ced02701C62d3310580049e93AE8;
+    address EXC = payable(0x41c62a91FDe9f192403bF8DBf50aA5f6Ac9aB96d);
     uint256 ContractEXCBalance;
     
     event Deposit(address indexed sender, uint indexed amount);
     event Withdraw(address indexed sender, uint256 indexed amount);
     //event declarations
-    
-    using SafeMath for uint256;
     
     mapping(address => uint256) Staked;
     mapping(address => uint256) ClaimableEXC;
@@ -22,9 +20,9 @@ contract EXCstakefarm{
         ERC20(EXC).transferFrom(msg.sender, (address(this)), _amount);
         
         if (Staked[msg.sender] > 0){
-            ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender].add((Staked[msg.sender]*(200*(block.number.sub(BlockDeposit[msg.sender]))))/100000);
+            ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(1*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         }
-        Staked[msg.sender] = Staked[msg.sender].add(_amount);
+        Staked[msg.sender] = Staked[msg.sender]+(_amount);
         BlockDeposit[msg.sender] = block.number;
         
         emit Deposit (msg.sender, _amount);
@@ -36,7 +34,7 @@ contract EXCstakefarm{
     function ClaimEXC() public payable returns(bool success){
         require (Staked[msg.sender] > 0);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender].add((Staked[msg.sender]*(200*(block.number.sub(BlockDeposit[msg.sender]))))/100000);
+        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         
         ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
         
@@ -51,12 +49,12 @@ contract EXCstakefarm{
         require (Staked[msg.sender] > 0);
         require (Staked[msg.sender] >= _amount);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender].add((Staked[msg.sender]*(200*(block.number.sub(BlockDeposit[msg.sender]))))/100000);
+        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         
         ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
         ERC20(EXC).transfer(msg.sender, _amount);
         
-        Staked[msg.sender] = Staked[msg.sender].sub(_amount);
+        Staked[msg.sender] = Staked[msg.sender]-(_amount);
         BlockDeposit[msg.sender] = block.number;
         ClaimableEXC[msg.sender] = 0;
         
@@ -66,11 +64,11 @@ contract EXCstakefarm{
     function ReInvest() public returns(bool success){
         require (Staked[msg.sender] > 0);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender].add((Staked[msg.sender]*(200*(block.number.sub(BlockDeposit[msg.sender]))))/100000);
+        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         
         ERC20(EXC).Mint(address(this),ClaimableEXC[msg.sender]);
         
-        Staked[msg.sender] = Staked[msg.sender].add(ClaimableEXC[msg.sender]);
+        Staked[msg.sender] = Staked[msg.sender]+(ClaimableEXC[msg.sender]);
         BlockDeposit[msg.sender] = block.number;
         ClaimableEXC[msg.sender] = 0;
         
@@ -85,7 +83,7 @@ contract EXCstakefarm{
     }
     
     function UnclaimedEXC(address Staker) public view returns(uint256){
-        return ClaimableEXC[Staker].add((Staked[Staker]*(200*(block.number.sub(BlockDeposit[Staker]))))/100000);
+        return ClaimableEXC[Staker]+((Staked[Staker]*(12594*(block.number-(BlockDeposit[Staker]))))/10000000000);
     }
     
     function TotalStaked()public view returns(uint256){
@@ -96,26 +94,6 @@ contract EXCstakefarm{
     
 }
 
-
-
-
-
-
-
-
-library SafeMath { 
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-      assert(b <= a);
-      return a - b;
-    }
-    
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-      uint256 c = a + b;
-      assert(c >= a);
-      return c;
-    }
-
-}
 
 
 
