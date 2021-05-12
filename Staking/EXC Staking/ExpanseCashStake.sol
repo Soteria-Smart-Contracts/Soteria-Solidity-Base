@@ -2,8 +2,10 @@ pragma solidity ^0.8.4;
 
 
 contract EXCstakefarm{
-    address EXC = payable(0x41c62a91FDe9f192403bF8DBf50aA5f6Ac9aB96d);
+    address EXC;
+    address Creator;
     uint256 ContractEXCBalance;
+    uint OnOff;
     
     event Deposit(address indexed sender, uint indexed amount);
     event Withdraw(address indexed sender, uint256 indexed amount);
@@ -13,14 +15,20 @@ contract EXCstakefarm{
     mapping(address => uint256) ClaimableEXC;
     mapping(address => uint256) BlockDeposit;
     
+    constructor(address payable _EXC){
+        Creator = msg.sender;
+        EXC = _EXC;
+    }
+    
     function Stake(uint256 _amount) public payable returns(bool success){
         require (ERC20(EXC).balanceOf(msg.sender) >= _amount);
         require (ERC20(EXC).allowance(msg.sender,(address(this))) >= _amount);
+        require (OnOff == 1);
         
         ERC20(EXC).transferFrom(msg.sender, (address(this)), _amount);
         
         if (Staked[msg.sender] > 0){
-            ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(1*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
+            ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         }
         Staked[msg.sender] = Staked[msg.sender]+(_amount);
         BlockDeposit[msg.sender] = block.number;
@@ -33,6 +41,7 @@ contract EXCstakefarm{
     
     function ClaimEXC() public payable returns(bool success){
         require (Staked[msg.sender] > 0);
+        require (OnOff == 1);
         
         ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         
@@ -48,6 +57,7 @@ contract EXCstakefarm{
     function Unstake(uint256 _amount) public payable returns(bool success){
         require (Staked[msg.sender] > 0);
         require (Staked[msg.sender] >= _amount);
+        require (OnOff == 1);
         
         ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         
@@ -63,6 +73,7 @@ contract EXCstakefarm{
     
     function ReInvest() public returns(bool success){
         require (Staked[msg.sender] > 0);
+        require (OnOff == 1);
         
         ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
         
@@ -90,7 +101,20 @@ contract EXCstakefarm{
         return ERC20(EXC).balanceOf(address(this));
     }
     
+    //Creator functions
     
+    function Toggle(uint OneOnTwoClosed) private returns(bool success){
+        require (msg.sender == Creator);
+        if (OneOnTwoClosed == 1){
+            OnOff = 1;
+            } else if(OneOnTwoClosed == 2){
+                OnOff = 2;
+            } else {
+                OnOff = 2;
+            }
+            
+            return success;
+    }
     
 }
 
