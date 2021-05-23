@@ -32,7 +32,7 @@ contract EXCPairStakingTest2{
         ERC20(PairContract).transferFrom(msg.sender, (address(this)), _amount);
         
         if (Staked[msg.sender] > 0){
-            ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((CalculateEXCequivalent(Staked[msg.sender])*(12594*(block.number-(BlockDeposit[msg.sender]))))/100000000000);
+            ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
         }
         Staked[msg.sender] = Staked[msg.sender]+(_amount);
         BlockDeposit[msg.sender] = block.number;
@@ -48,7 +48,7 @@ contract EXCPairStakingTest2{
         require (Staked[msg.sender] > 0);
         require (OnOff == 1);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((CalculateEXCequivalent(Staked[msg.sender])*(12594*(block.number-(BlockDeposit[msg.sender]))))/100000000000);
+        ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
         
         ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
         
@@ -63,9 +63,8 @@ contract EXCPairStakingTest2{
     function Unstake(uint256 _amount) public payable returns(bool success){
         require (Staked[msg.sender] > 0);
         require (Staked[msg.sender] >= _amount);
-        require (OnOff == 1);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((CalculateEXCequivalent(Staked[msg.sender])*(12594*(block.number-(BlockDeposit[msg.sender]))))/100000000000);
+        ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
         
         ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
         ERC20(PairContract).transfer(msg.sender, _amount);
@@ -99,6 +98,8 @@ contract EXCPairStakingTest2{
         
     }
     
+    //Creator functions
+    
     function Toggle(uint OneOnTwoClosed) private returns(bool success){
         require (msg.sender == Creator);
         if (OneOnTwoClosed == 1){
@@ -110,6 +111,14 @@ contract EXCPairStakingTest2{
             }
             
             return success;
+    }
+    
+    function ChangeMultiplier(uint256 NewMultiplier) private returns(bool success){
+        require (msg.sender == Creator);
+        require (NewMultiplier >= 1 && NewMultiplier <= 1000);
+        
+        Multiplier = NewMultiplier;
+        return success;
     }
 
 }
