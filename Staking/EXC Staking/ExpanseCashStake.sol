@@ -6,6 +6,7 @@ contract EXCstakefarm{
     address Creator;
     uint256 ContractEXCBalance;
     uint OnOff;
+    uint256 Multiplier;
     
     event Deposit(address indexed sender, uint indexed amount);
     event Withdraw(address indexed sender, uint256 indexed amount);
@@ -15,9 +16,10 @@ contract EXCstakefarm{
     mapping(address => uint256) ClaimableEXC;
     mapping(address => uint256) BlockDeposit;
     
-    constructor(address payable _EXC){
+    constructor(address payable _EXC, uint256 _Multiplier){
         Creator = msg.sender;
         EXC = _EXC;
+        Multiplier = _Multiplier;
     }
     
     function Stake(uint256 _amount) public payable returns(bool success){
@@ -28,7 +30,7 @@ contract EXCstakefarm{
         ERC20(EXC).transferFrom(msg.sender, (address(this)), _amount);
         
         if (Staked[msg.sender] > 0){
-            ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
+            ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+UnclaimedEXC(msg.sender);
         }
         Staked[msg.sender] = Staked[msg.sender]+(_amount);
         BlockDeposit[msg.sender] = block.number;
@@ -43,7 +45,7 @@ contract EXCstakefarm{
         require (Staked[msg.sender] > 0);
         require (OnOff == 1);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
+        ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
         
         ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
         
@@ -57,9 +59,8 @@ contract EXCstakefarm{
     function Unstake(uint256 _amount) public payable returns(bool success){
         require (Staked[msg.sender] > 0);
         require (Staked[msg.sender] >= _amount);
-        require (OnOff == 1);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
+        ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
         
         ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
         ERC20(EXC).transfer(msg.sender, _amount);
@@ -75,7 +76,7 @@ contract EXCstakefarm{
         require (Staked[msg.sender] > 0);
         require (OnOff == 1);
         
-        ClaimableEXC[msg.sender] = ClaimableEXC[msg.sender]+((Staked[msg.sender]*(12594*(block.number-(BlockDeposit[msg.sender]))))/10000000000);
+        ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
         
         ERC20(EXC).Mint(address(this),ClaimableEXC[msg.sender]);
         
@@ -94,7 +95,7 @@ contract EXCstakefarm{
     }
     
     function UnclaimedEXC(address Staker) public view returns(uint256){
-        return ClaimableEXC[Staker]+((Staked[Staker]*(12594*(block.number-(BlockDeposit[Staker]))))/10000000000);
+        return ClaimableEXC[Staker]+((((Staked[Staker]*(12594*(block.number-(BlockDeposit[Staker]))))/10000000000)/1000)*Multiplier);
     }
     
     function TotalStaked()public view returns(uint256){
@@ -103,7 +104,15 @@ contract EXCstakefarm{
     
     //Creator functions
     
-    function Toggle(uint OneOnTwoClosed) private returns(bool success){
+    function ChangeMultiplier(uint256 NewMultiplier) public returns(bool success){
+        require (msg.sender == Creator);
+        require (NewMultiplier >= 100 && NewMultiplier <= 10000);
+        
+        Multiplier = NewMultiplier;
+        return success;
+    }
+    
+    function Toggle(uint OneOnTwoClosed) public returns(bool success){
         require (msg.sender == Creator);
         if (OneOnTwoClosed == 1){
             OnOff = 1;
