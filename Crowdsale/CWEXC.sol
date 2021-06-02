@@ -2,10 +2,10 @@ pragma solidity ^0.8.4;
 
 
 contract ICOEXC {
-    address public EXC = payable(0x41c62a91FDe9f192403bF8DBf50aA5f6Ac9aB96d);
+    address public EXC = payable(0x71c6a1ae78259f9E74cD4FaA3F96CFD06d9E1616);
     address wEXP = payable(0x331631B4bb93b9B8962faE15860BD538a389395A);
-    uint256 public Goal;
-    uint256 public EXPRaised;
+    uint256 public EXCGoal;
+    uint256 public EXCMinted;
     uint256 public LiquidityPool;
     uint256 public DevelopmentPool;
     uint256 public CharityPool;
@@ -24,7 +24,7 @@ contract ICOEXC {
 
     //contructor arguments
     constructor(uint256 _Goal, uint256 _EXPcurrentPrice){
-        Goal = _Goal;
+        EXCGoal = _Goal;
         EXPcurrentPrice = _EXPcurrentPrice;
         Owner = msg.sender;
     }
@@ -32,10 +32,11 @@ contract ICOEXC {
     
     function Buy(uint256 _AmountWEXP) public payable returns(bool success){
         //Requirements to Call
+        EXCtoMintAndSend = (((_AmountWEXP/100000000) * EXPcurrentPrice) / 25);
         require (OpenClosed == 1);
         require (_AmountWEXP > 100000000);
+        require ((EXCMinted + EXCtoMintAndSend) <= EXCGoal);
 
-        
         //Transfers WEXP to Contract and sets amount variables
         ERC20(wEXP).transferFrom(msg.sender, address(this), _AmountWEXP);
         LiquidityPool = LiquidityPool+((_AmountWEXP / 100) * 85);
@@ -43,13 +44,12 @@ contract ICOEXC {
         CharityPool = CharityPool+((_AmountWEXP / 100) * 5);
         
         //Mints and Sends EXC to Buyer
-        EXCtoMintAndSend = (((_AmountWEXP/100000000) * EXPcurrentPrice) / 3);
         ERC20(EXC).Mint(msg.sender, EXCtoMintAndSend);
         
         //Function Events and Clearings
         emit EXCBought(msg.sender, _AmountWEXP, EXCtoMintAndSend);
+        EXCMinted = EXCMinted + EXCtoMintAndSend;
         EXCtoMintAndSend = 0;
-        EXPRaised = EXPRaised + _AmountWEXP;
         return success;
         
     }
@@ -57,7 +57,7 @@ contract ICOEXC {
     //View Current Conversion
     
     function ViewConversionAmount(uint256 _amountEXP)public view returns(uint256){
-        return (((_amountEXP/100000000) * EXPcurrentPrice) / 3);
+        return (((_amountEXP/100000000) * EXPcurrentPrice) / 25);
         
         
     }
