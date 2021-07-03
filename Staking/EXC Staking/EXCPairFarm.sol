@@ -1,6 +1,6 @@
 pragma solidity ^0.8.4;
 
-contract EXCPairStakingTest2{
+contract EXCPairStaking{
     address Creator;
     address PairContract;
     address EXC;
@@ -100,7 +100,7 @@ contract EXCPairStakingTest2{
     
     //Creator functions
     
-    function Toggle(uint OneOnTwoClosed) private returns(bool success){
+    function Toggle(uint OneOnTwoClosed) public returns(bool success){
         require (msg.sender == Creator);
         if (OneOnTwoClosed == 1){
             OnOff = 1;
@@ -113,7 +113,7 @@ contract EXCPairStakingTest2{
             return success;
     }
     
-    function ChangeMultiplier(uint256 NewMultiplier) private returns(bool success){
+    function ChangeMultiplier(uint256 NewMultiplier) public returns(bool success){
         require (msg.sender == Creator);
         require (NewMultiplier >= 1 && NewMultiplier <= 1000);
         
