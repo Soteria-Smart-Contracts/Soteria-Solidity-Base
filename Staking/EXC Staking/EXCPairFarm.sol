@@ -81,7 +81,7 @@ contract EXCPairStaking{
     }
     
     function UnclaimedEXC(address Staker) public view returns(uint256){
-        return ClaimableEXC[Staker]+((CalculateEXCequivalent(Staked[Staker])*(12594*(block.number-(BlockDeposit[Staker]))))/100000000000);
+        return ClaimableEXC[Staker]+((((CalculateEXCequivalent(Staked[Staker])*(12594*(block.number-(BlockDeposit[Staker]))))/10000000000)/1000)*Multiplier);
     }
     
     function TotalStaked()public view returns(uint256){
@@ -115,7 +115,7 @@ contract EXCPairStaking{
     
     function ChangeMultiplier(uint256 NewMultiplier) public returns(bool success){
         require (msg.sender == Creator);
-        require (NewMultiplier >= 1 && NewMultiplier <= 1000);
+        require (NewMultiplier >= 100 && NewMultiplier <= 10000);
         
         Multiplier = NewMultiplier;
         return success;
