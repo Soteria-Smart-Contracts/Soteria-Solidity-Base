@@ -1,10 +1,9 @@
 pragma solidity ^0.8.4;
 
 
-contract ExpanseCashTest2 {
+contract ExpanseCash {
     uint256 public TokenCap;
     uint256 public TotalSupply;
-    uint256 public burntSupply;
     string public name;
     string public symbol;
     uint8 public decimals;
@@ -25,12 +24,12 @@ contract ExpanseCashTest2 {
     
     mapping(address => uint)minter;
     
-    constructor(uint256 _TokenCap, string memory _name, string memory _symbol, uint8 _decimals){
+    constructor(uint256 _TokenCap, string memory _name, string memory _symbol){
     TokenCap = _TokenCap;
     TotalSupply = 0;
     name = _name;
     symbol = _symbol;
-    decimals = _decimals;
+    decimals = 10;
     ownerAddy = msg.sender;
     //Deployment Constructors
     }
@@ -113,4 +112,3 @@ contract ExpanseCashTest2 {
 
 
 }
-
