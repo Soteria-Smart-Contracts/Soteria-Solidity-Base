@@ -6,7 +6,7 @@ contract CLS_Crowdsale {
     address payable CLS;
     address payable wETC;
     uint256 public CLS_Sale_Allocation;
-    uint256 public Total_wETC_Deposited;
+    uint256 public Total_wETC_Deposited; 
     uint256 public Allocation_Exchange_Rate = 0;
     uint256 public Total_CLS_Distributed;
     address public CrowdSale_Operator;
@@ -36,6 +36,12 @@ contract CLS_Crowdsale {
     }
     
     //Event Declarations
+    event CrowdsaleStarted(address Operator, uint256 Crowdsale_Allocation, uint256 Unix_End);
+    event CrowdsaleEnded(address Operator, uint256 wETCraised, uint256 BlockTimestamp);
+    event wETCdeposited(address Depositor, uint256 Amount);
+    event wETCwithdrawn(address Withdrawee, uint256 Amount);
+    event CLSwithdrawn(address Withdrawee, uint256 Amount);
+    event VariableChange(string Change);
     
     
     //Deposit Tracker
@@ -46,7 +52,31 @@ contract CLS_Crowdsale {
     
     function DepositETC(uint256 amount) public returns(bool success){
         require (Crowdsale_Mode.Sale_Mode == 2);
+        require (block.timestamp < Crowdsale_End_Unix);
         
+        ERC20(wETC).transferFrom(msg.sender, address(this), amount);
+        
+        wETC_Deposited[msg.sender] = (wETC_Deposited[msg.sender] + amount);
+        
+        Total_wETC_Deposited = (Total_wETC_Deposited + amount);
+        emit wETCdeposited(msg.sender, amount);
+        return(success);
+    }
+    
+    //There is a 5% fee for withdrawing deposited wETC
+    function WithdrawETC(uint256 amount) public returns(bool success){
+        require (amount < wETC_Deposited[msg.sender]);
+        require(Crowdsale_Mode.Sale_Mode != 3 && Crowdsale_Mode.Sale_Mode != 1);
+        uint256 amount_wFee;
+        amount_wFee = (amount * 95 / 100);
+        
+        wETC_Deposited[msg.sender] = (wETC_Deposited[msg.sender] - amount);
+        
+        ERC20(wETC).transfer(msg.sender, amount_wFee);
+        //CHECK WITH DEVS FOR FEE TO COME RIGHT OUT OR NOT
+        Total_wETC_Deposited = (Total_wETC_Deposited - amount);
+        emit wETCwithdrawn(msg.sender, amount);
+        return(success);
     }
     
     
@@ -55,17 +85,37 @@ contract CLS_Crowdsale {
     function StartCrowdsale() public returns(bool success){
         require(msg.sender == CrowdSale_Operator);
         require(ERC20(CLS).CheckMinter(address(this)) == true);
+        require(Crowdsale_Mode.Sale_Mode == 1);
         
         Crowdsale_End_Unix = (block.timestamp + 1209600);
         Crowdsale_Mode.Sale_Mode_Text = ("Sale is Open to buy CLS");
+        Crowdsale_Mode.Sale_Mode = 2;
+        
+        emit CrowdsaleStarted(msg.sender, CLS_Sale_Allocation, Crowdsale_End_Unix);
         return success;
         
     }
+    
+    function EndCrowdsale() public returns(bool success){
+        require(msg.sender == CrowdSale_Operator);
+        require(ERC20(CLS).CheckMinter(address(this)) == true);
+        require(Crowdsale_Mode.Sale_Mode == 2);
+        require (block.timestamp > Crowdsale_End_Unix);
+        
+        Crowdsale_Mode.Sale_Mode_Text = ("Sale is over, Time to withdraw CLS!");
+        Crowdsale_Mode.Sale_Mode = 3;
+        
+        emit CrowdsaleEnded(msg.sender, Total_wETC_Deposited, block.timestamp);
+        return(success);
+        
+    }
+    
       //Redundancy
     function ChangeCLSaddy(address payable NewAddy)public returns(bool success, address CLSaddy){
         require(msg.sender == CrowdSale_Operator);
         require(Crowdsale_Mode.Sale_Mode != 3);
         CLS = NewAddy;
+        emit VariableChange("Changed CLS Address");
         return(true, CLS);
     }
       //Redundancy
@@ -73,6 +123,7 @@ contract CLS_Crowdsale {
         require(msg.sender == CrowdSale_Operator);
         require(Crowdsale_Mode.Sale_Mode == 1);
         wETC = NewAddy;
+        emit VariableChange("Changed wETC Address");
         return(true, CLS);
     }
     
