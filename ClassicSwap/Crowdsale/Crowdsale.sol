@@ -14,9 +14,11 @@ contract CLS_Crowdsale {
     
     //DEV WALLETS
     
-    address Dev_1 = 0x19b2a627Dd49587E021290b3eEF38ea8DE541eE5; //Personal Wallet of one of the developers (Wedergarten)
+    address LiquidityAddress = 0xC61A70Fb5F8A967C71c1E9A42374FbE460D0a341; //This address will be used to add the 80% of crowdsale funds as liquidity for wETC-CLS
+    
+    address Dev_1 = 0x19b2a627Dd49587E021290b3eEF38ea8DE541eE5; //Personal Wallet of one of the developers (Wedergarten) 66%
     address Dev_2 = 0xb24f9473Fee391c8FE0ED3fF423E135AaEC8023E; //Personal Wallet of one of the developers (Kosimoto)
-    address Dev_3 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
+    address Dev_3 = 0xF24f578ea9dFed642Cd41016F863a8cc839e4766; //Personal Wallet of one of the developers (Rephyx)
     address Dev_4 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
     address Dev_5 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
     address Dev_6 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
@@ -153,9 +155,23 @@ contract CLS_Crowdsale {
         uint256 Contract_wETC_Balance;
         Contract_wETC_Balance = ERC20(wETC).balanceOf(address(this));
         
-        if (Multisig == true)
-        ERC20(wETC).transfer(Dev_1, Contract_wETC_Balance);
+        uint256 LiquidityFunds;
+        LiquidityFunds = ((Contract_wETC_Balance * 80) / 100);
         
+        uint256 DevFunds;
+        DevFunds = ((Contract_wETC_Balance * 20) / 100);
+        
+        if (Multisig == true){
+            ERC20(wETC).transfer(LiquidityAddress, LiquidityFunds);
+            ERC20(wETC).transfer(Dev_1, ((DevFunds * 665) / 1000));
+            ERC20(wETC).transfer(Dev_2, ((DevFunds * 45) / 1000));
+            ERC20(wETC).transfer(Dev_3, ((DevFunds * 20) / 1000));
+            ERC20(wETC).transfer(Dev_4, ((DevFunds * 0) / 1000));
+            ERC20(wETC).transfer(Dev_5, ((DevFunds * 0) / 1000));
+            ERC20(wETC).transfer(Dev_6, ((DevFunds * 0) / 1000));
+            ERC20(wETC).transfer(Dev_7, ((DevFunds * 0) / 1000));
+        }
+
         
     }
     
