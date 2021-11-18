@@ -44,6 +44,7 @@ contract CLS_Crowdsale {
     event VariableChange(string Change);
     
     
+    
     //Deposit Tracker
     mapping(address => uint256) wETC_Deposited;
     
@@ -51,8 +52,9 @@ contract CLS_Crowdsale {
     //Buyer Functions
     
     function DepositETC(uint256 amount) public returns(bool success){
-        require (Crowdsale_Mode.Sale_Mode == 2);
-        require (block.timestamp < Crowdsale_End_Unix);
+        require(Crowdsale_Mode.Sale_Mode == 2);
+        require(block.timestamp < Crowdsale_End_Unix);
+        require(amount >= 1000000000000000);
         
         ERC20(wETC).transferFrom(msg.sender, address(this), amount);
         
@@ -65,18 +67,35 @@ contract CLS_Crowdsale {
     
     //There is a 5% fee for withdrawing deposited wETC
     function WithdrawETC(uint256 amount) public returns(bool success){
-        require (amount < wETC_Deposited[msg.sender]);
+        require(amount <= wETC_Deposited[msg.sender]);
         require(Crowdsale_Mode.Sale_Mode != 3 && Crowdsale_Mode.Sale_Mode != 1);
+        require(amount >= 1000000000000000);
         uint256 amount_wFee;
         amount_wFee = (amount * 95 / 100);
         
         wETC_Deposited[msg.sender] = (wETC_Deposited[msg.sender] - amount);
         
         ERC20(wETC).transfer(msg.sender, amount_wFee);
-        //CHECK WITH DEVS FOR FEE TO COME RIGHT OUT OR NOT
-        Total_wETC_Deposited = (Total_wETC_Deposited - amount);
+        
+        Total_wETC_Deposited = (Total_wETC_Deposited - amount_wFee);
         emit wETCwithdrawn(msg.sender, amount);
         return(success);
+    }
+    
+    function WithdrawCLS() public returns(uint256 _CLSwithdrawn){
+        require(Crowdsale_Mode.Sale_Mode == 3);
+        require(block.timestamp > Crowdsale_End_Unix);
+        require(wETC_Deposited[msg.sender] >= 1000000000000000);
+        
+        uint256 CLStoMintandSend;
+        CLStoMintandSend = (((wETC_Deposited[msg.sender] / 100000000) * Allocation_Exchange_Rate) / 100000000);
+        
+        wETC_Deposited[msg.sender] = 0;
+        
+        ERC20(CLS).Mint(msg.sender, CLStoMintandSend);
+        
+        emit CLSwithdrawn(msg.sender, CLStoMintandSend);
+        return(CLStoMintandSend);
     }
     
     
@@ -100,10 +119,13 @@ contract CLS_Crowdsale {
         require(msg.sender == CrowdSale_Operator);
         require(ERC20(CLS).CheckMinter(address(this)) == true);
         require(Crowdsale_Mode.Sale_Mode == 2);
-        require (block.timestamp > Crowdsale_End_Unix);
+        require(block.timestamp > Crowdsale_End_Unix);
         
         Crowdsale_Mode.Sale_Mode_Text = ("Sale is over, Time to withdraw CLS!");
         Crowdsale_Mode.Sale_Mode = 3;
+        
+        
+        Allocation_Exchange_Rate = (((CLS_Sale_Allocation * 100000000) / (Total_wETC_Deposited / 100000000))); 
         
         emit CrowdsaleEnded(msg.sender, Total_wETC_Deposited, block.timestamp);
         return(success);
@@ -136,9 +158,98 @@ contract CLS_Crowdsale {
     function GetwETCdeposited(address _address) public view returns(uint256){
         return (wETC_Deposited[_address]);
     }
+    //_______________________________________________________________________________________________________________________________________________________________            
+    //_______________________________________________________________________________________________________________________________________________________________
+    
+    
+    //Multi-Sig Requirement for Fund Extraction post crowsale by Dev Team to reduce attack likelyness aswell as remove central point of authority
+    uint8 public Signatures;
+    address public SigAddress1;
+    address public SigAddress2;
+    address public SigAddress3;
+    uint8 Setup;
+    bool public Verified;
+    
+    mapping(address => uint8) Signed;
+    
+    event MultiSigSet(bool Success);
+    event MultiSigVerified(bool Success);
+    
+    //0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
+    //0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2
+    //0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c
+    
+    function MultiSigSetup(address _1, address _2, address _3) public returns(bool success){
+        require(Setup == 0);
+        require(msg.sender == CrowdSale_Operator);
+        require(Crowdsale_Mode.Sale_Mode == 1);
+        
+        SigAddress1 = _1;
+        SigAddress2 = _2;
+        SigAddress3 = _3;
+        
+        Setup = 1;
+        
+        emit MultiSigSet(true);
+        return(success);
+    }
+    
+    function MultiSignature() internal returns(bool AllowTransaction){
+        require(msg.sender == SigAddress1 || msg.sender == SigAddress2 || msg.sender == SigAddress3);
+        require(Signed[msg.sender] == 0);
+        require(Setup == 1);
+        Signed[msg.sender] = 1;
+        
+        if (Signatures == 1){
+            Signatures = 0;
+            Signed[SigAddress1] = 0;
+            Signed[SigAddress2] = 0;
+            Signed[SigAddress3] = 0;
+            return(true);
+        }
+        
+        if (Signatures == 0){
+            Signatures = (Signatures + 1);
+            return(false);
+        }
+
+    }
+    
+    function SweepSignatures() public returns(bool success){
+        require(msg.sender == CrowdSale_Operator);
+        require(Setup == 1);
+        
+        Signed[SigAddress1] = 0;
+        Signed[SigAddress2] = 0;
+        Signed[SigAddress3] = 0;
+        
+        Signatures = 0;
+        
+        return(success);
+        
+    }
+    
+    
+    function MultiSigVerification() public returns(bool test){
+        require(Verified == false);
+        bool Verify;
+        Verify = MultiSignature();
+        
+        if (Verify == true){
+            Verified = true;
+            emit MultiSigVerified(true);
+        }
+        
+        return(Verify);
+    }
     
     
     
+    
+    
+    
+
+
 
     
     
