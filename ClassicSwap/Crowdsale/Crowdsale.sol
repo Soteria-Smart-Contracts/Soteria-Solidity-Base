@@ -12,6 +12,16 @@ contract CLS_Crowdsale {
     address public CrowdSale_Operator;
     uint256 public Crowdsale_End_Unix;
     
+    //DEV WALLETS
+    
+    address Dev_1 = 0x19b2a627Dd49587E021290b3eEF38ea8DE541eE5; //Personal Wallet of one of the developers (Wedergarten)
+    address Dev_2 = 0xb24f9473Fee391c8FE0ED3fF423E135AaEC8023E; //Personal Wallet of one of the developers (Kosimoto)
+    address Dev_3 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
+    address Dev_4 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
+    address Dev_5 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
+    address Dev_6 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
+    address Dev_7 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
+    
     //Crowdsale Mode struct 
     struct Mode {
         string Sale_Mode_Text;
@@ -131,6 +141,24 @@ contract CLS_Crowdsale {
         return(success);
         
     }
+    //This function only works when the crowdsale is in the post-sale mode(3), or in the Emergency mode(99)
+    function PullwETC() public returns(bool success){
+        require(Crowdsale_Mode.Sale_Mode == 3 || Crowdsale_Mode.Sale_Mode == 99);
+        require(block.timestamp > Crowdsale_End_Unix);
+        
+        bool Multisig;
+        Multisig = MultiSignature();
+        
+        
+        uint256 Contract_wETC_Balance;
+        Contract_wETC_Balance = ERC20(wETC).balanceOf(address(this));
+        
+        if (Multisig == true)
+        ERC20(wETC).transfer(Dev_1, Contract_wETC_Balance);
+        
+        
+    }
+    
     
       //Redundancy
     function ChangeCLSaddy(address payable NewAddy)public returns(bool success, address CLSaddy){
