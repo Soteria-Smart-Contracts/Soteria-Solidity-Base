@@ -99,13 +99,16 @@ contract CLS_Crowdsale {
         require(block.timestamp > Crowdsale_End_Unix);
         require(wETC_Deposited[msg.sender] >= 1000000000000000);
         
+        
         uint256 CLStoMintandSend;
         CLStoMintandSend = (((wETC_Deposited[msg.sender] / 100000000) * Allocation_Exchange_Rate) / 100000000);
+        require((Total_CLS_Distributed + CLStoMintandSend) <= CLS_Sale_Allocation);
         
         wETC_Deposited[msg.sender] = 0;
         
         ERC20(CLS).Mint(msg.sender, CLStoMintandSend);
         
+        Total_CLS_Distributed = (Total_CLS_Distributed + CLStoMintandSend);
         emit CLSwithdrawn(msg.sender, CLStoMintandSend);
         return(CLStoMintandSend);
     }
@@ -115,7 +118,7 @@ contract CLS_Crowdsale {
     //Operator Functions
     function StartCrowdsale() public returns(bool success){
         require(msg.sender == CrowdSale_Operator);
-        require(ERC20(CLS).CheckMinter(address(this)) == true);
+        require(ERC20(CLS).CheckMinter(address(this)) == 1);
         require(Crowdsale_Mode.Sale_Mode == 1);
         
         Crowdsale_End_Unix = (block.timestamp + 1200);
@@ -129,7 +132,7 @@ contract CLS_Crowdsale {
     
     function EndCrowdsale() public returns(bool success){
         require(msg.sender == CrowdSale_Operator);
-        require(ERC20(CLS).CheckMinter(address(this)) == true);
+        require(ERC20(CLS).CheckMinter(address(this)) == 1);
         require(Crowdsale_Mode.Sale_Mode == 2);
         require(block.timestamp > Crowdsale_End_Unix);
         
@@ -322,7 +325,7 @@ interface ERC20 {
   function transfer(address to, uint value) external returns (bool);
   function transferFrom(address from, address to, uint256 value) external returns (bool); 
   function totalSupply() external view returns (uint);
-  function CheckMinter(address AddytoCheck) external view returns(bool);
+  function CheckMinter(address AddytoCheck) external view returns(uint);
 }
 
 //      $$$$$$                     /$$                                /$$           /$$                      /$$      /$$               /$$                                               /$$                      
