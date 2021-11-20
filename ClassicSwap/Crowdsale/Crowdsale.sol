@@ -16,13 +16,13 @@ contract CLS_Crowdsale {
     
     address LiquidityAddress = 0xC61A70Fb5F8A967C71c1E9A42374FbE460D0a341; //This address will be used to add the 80% of crowdsale funds as liquidity for wETC-CLS
     
-    address Dev_1 = 0x19b2a627Dd49587E021290b3eEF38ea8DE541eE5; //Personal Wallet of one of the developers (Wedergarten) 66%
-    address Dev_2 = 0xb24f9473Fee391c8FE0ED3fF423E135AaEC8023E; //Personal Wallet of one of the developers (Kosimoto)
-    address Dev_3 = 0xF24f578ea9dFed642Cd41016F863a8cc839e4766; //Personal Wallet of one of the developers (Rephyx)
-    address Dev_4 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
-    address Dev_5 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
-    address Dev_6 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
-    address Dev_7 = 0x19c128C3ca3E853f3a093D946ba1c9De4Ac7b04F; //Personal Wallet of one of the developers (FILLER)
+    address Dev_1 = 0x19b2a627Dd49587E021290b3eEF38ea8DE541eE5; //Personal Wallet of one of the developers (Wedergarten) 66.5%
+    address Dev_2 = 0xb24f9473Fee391c8FE0ED3fF423E135AaEC8023E; //Personal Wallet of one of the developers (Kosimoto) 4.5%
+    address Dev_3 = 0xF24f578ea9dFed642Cd41016F863a8cc839e4766; //Personal Wallet of one of the developers (Rephyx) 2%
+    address Dev_4 = 0xe7B4365c0b4d942592544aDab391a5ceAC1eA9E2; //Personal Wallet of one of the developers (TheDoc) 3.5%
+    address Dev_5 = 0x0000000000000000000000000000000000000000; //Personal Wallet of one of the developers (Arrow)
+    address Dev_6 = 0xD73F080b9D12A51292fc22aBb27FE78A502de494; //Personal Wallet of one of the developers (Spicy) 4.5%
+    address Dev_7 = 0x258206BFa2FeD7D8786cE182B7fBe3c3c4976c7B; //Personal Wallet of one of the developers (Decentra) 4%
     
     //Crowdsale Mode struct 
     struct Mode {
@@ -118,7 +118,7 @@ contract CLS_Crowdsale {
         require(ERC20(CLS).CheckMinter(address(this)) == true);
         require(Crowdsale_Mode.Sale_Mode == 1);
         
-        Crowdsale_End_Unix = (block.timestamp + 1209600);
+        Crowdsale_End_Unix = (block.timestamp + 1200);
         Crowdsale_Mode.Sale_Mode_Text = ("Sale is Open to buy CLS");
         Crowdsale_Mode.Sale_Mode = 2;
         
@@ -166,15 +166,28 @@ contract CLS_Crowdsale {
             ERC20(wETC).transfer(Dev_1, ((DevFunds * 665) / 1000));
             ERC20(wETC).transfer(Dev_2, ((DevFunds * 45) / 1000));
             ERC20(wETC).transfer(Dev_3, ((DevFunds * 20) / 1000));
-            ERC20(wETC).transfer(Dev_4, ((DevFunds * 0) / 1000));
+            ERC20(wETC).transfer(Dev_4, ((DevFunds * 35) / 1000));
             ERC20(wETC).transfer(Dev_5, ((DevFunds * 0) / 1000));
-            ERC20(wETC).transfer(Dev_6, ((DevFunds * 0) / 1000));
-            ERC20(wETC).transfer(Dev_7, ((DevFunds * 0) / 1000));
+            ERC20(wETC).transfer(Dev_6, ((DevFunds * 45) / 1000));
+            ERC20(wETC).transfer(Dev_7, ((DevFunds * 40) / 1000));
         }
 
-        
+        return success;
     }
     
+    function Emergency_Mode_Activate() public returns(bool success){
+        bool Multisig;
+        Multisig = MultiSignature();
+        
+        if (Multisig == true){
+            
+        Crowdsale_Mode.Sale_Mode_Text = ("The Developers have multisigned to activate emergencymode on this smart contract");
+        Crowdsale_Mode.Sale_Mode = 99;
+        
+        return(success);
+        }
+        
+    }
     
       //Redundancy
     function ChangeCLSaddy(address payable NewAddy)public returns(bool success, address CLSaddy){
