@@ -20,7 +20,7 @@ contract CLS_Crowdsale {
     address Dev_2 = 0xb24f9473Fee391c8FE0ED3fF423E135AaEC8023E; //Personal Wallet of one of the developers (Kosimoto) 4.5%
     address Dev_3 = 0xF24f578ea9dFed642Cd41016F863a8cc839e4766; //Personal Wallet of one of the developers (Rephyx) 2%
     address Dev_4 = 0xe7B4365c0b4d942592544aDab391a5ceAC1eA9E2; //Personal Wallet of one of the developers (TheDoc) 3.5%
-    address Dev_5 = 0x0000000000000000000000000000000000000000; //Personal Wallet of one of the developers (Arrow)
+    address Dev_5 = 0x0000000000000000000000000000000000000000; //Personal Wallet of one of the developers (Arrow) 15%
     address Dev_6 = 0xD73F080b9D12A51292fc22aBb27FE78A502de494; //Personal Wallet of one of the developers (Spicy) 4.5%
     address Dev_7 = 0x258206BFa2FeD7D8786cE182B7fBe3c3c4976c7B; //Personal Wallet of one of the developers (Decentra) 4%
     
@@ -170,7 +170,7 @@ contract CLS_Crowdsale {
             ERC20(wETC).transfer(Dev_2, ((DevFunds * 45) / 1000));
             ERC20(wETC).transfer(Dev_3, ((DevFunds * 20) / 1000));
             ERC20(wETC).transfer(Dev_4, ((DevFunds * 35) / 1000));
-            ERC20(wETC).transfer(Dev_5, ((DevFunds * 0) / 1000));
+            ERC20(wETC).transfer(Dev_5, ((DevFunds * 150) / 1000));
             ERC20(wETC).transfer(Dev_6, ((DevFunds * 45) / 1000));
             ERC20(wETC).transfer(Dev_7, ((DevFunds * 40) / 1000));
         }
@@ -290,7 +290,7 @@ contract CLS_Crowdsale {
     }
     
     
-    function MultiSigVerification() public returns(bool test){
+    function MultiSigVerification() public returns(bool success){
         require(Verified == false);
         bool Verify;
         Verify = MultiSignature();
