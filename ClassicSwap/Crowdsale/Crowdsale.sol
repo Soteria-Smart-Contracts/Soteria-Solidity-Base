@@ -16,13 +16,13 @@ contract CLS_Crowdsale {
     
     address LiquidityAddress = 0xC61A70Fb5F8A967C71c1E9A42374FbE460D0a341; //This address will be used to add the 80% of crowdsale funds as liquidity for wETC-CLS
     
-    address Dev_1 = 0x19b2a627Dd49587E021290b3eEF38ea8DE541eE5; //Personal Wallet of one of the developers (Wedergarten) 66.5%
+    address Dev_1 = 0x19b2a627Dd49587E021290b3eEF38ea8DE541eE5; //Personal Wallet of one of the developers (Wedergarten) 62%
     address Dev_2 = 0xb24f9473Fee391c8FE0ED3fF423E135AaEC8023E; //Personal Wallet of one of the developers (Kosimoto) 4.5%
-    address Dev_3 = 0xF24f578ea9dFed642Cd41016F863a8cc839e4766; //Personal Wallet of one of the developers (Rephyx) 2%
-    address Dev_4 = 0xe7B4365c0b4d942592544aDab391a5ceAC1eA9E2; //Personal Wallet of one of the developers (TheDoc) 3.5%
-    address Dev_5 = 0x0000000000000000000000000000000000000000; //Personal Wallet of one of the developers (Arrow) 15%
+    address Dev_3 = 0xF24f578ea9dFed642Cd41016F863a8cc839e4766; //Personal Wallet of one of the developers (Rephyx) 3%
+    address Dev_4 = 0x0000000000000000000000000000000000000000; //Personal Wallet of one of the developers (Autorotate) 6.5%
+    address Dev_5 = 0xCe02AC65DFAFAe00b7dB3a1410848aD6e621d3fB; //Personal Wallet of one of the developers (Arrow) 15%
     address Dev_6 = 0xD73F080b9D12A51292fc22aBb27FE78A502de494; //Personal Wallet of one of the developers (Spicy) 4.5%
-    address Dev_7 = 0x258206BFa2FeD7D8786cE182B7fBe3c3c4976c7B; //Personal Wallet of one of the developers (Decentra) 4%
+    address Dev_7 = 0x258206BFa2FeD7D8786cE182B7fBe3c3c4976c7B; //Personal Wallet of one of the developers (Decentra) 4.5%
     
     //Crowdsale Mode struct 
     struct Mode {
@@ -120,8 +120,9 @@ contract CLS_Crowdsale {
         require(msg.sender == CrowdSale_Operator);
         require(ERC20(CLS).CheckMinter(address(this)) == 1);
         require(Crowdsale_Mode.Sale_Mode == 1);
+        require(Setup == 1);
         
-        Crowdsale_End_Unix = (block.timestamp + 1200);
+        Crowdsale_End_Unix = (block.timestamp + 86400);
         Crowdsale_Mode.Sale_Mode_Text = ("Sale is Open to buy CLS");
         Crowdsale_Mode.Sale_Mode = 2;
         
@@ -166,13 +167,13 @@ contract CLS_Crowdsale {
         
         if (Multisig == true){
             ERC20(wETC).transfer(LiquidityAddress, LiquidityFunds);
-            ERC20(wETC).transfer(Dev_1, ((DevFunds * 665) / 1000));
+            ERC20(wETC).transfer(Dev_1, ((DevFunds * 620) / 1000));
             ERC20(wETC).transfer(Dev_2, ((DevFunds * 45) / 1000));
-            ERC20(wETC).transfer(Dev_3, ((DevFunds * 20) / 1000));
-            ERC20(wETC).transfer(Dev_4, ((DevFunds * 35) / 1000));
+            ERC20(wETC).transfer(Dev_3, ((DevFunds * 30) / 1000));
+            ERC20(wETC).transfer(Dev_4, ((DevFunds * 65) / 1000));
             ERC20(wETC).transfer(Dev_5, ((DevFunds * 150) / 1000));
             ERC20(wETC).transfer(Dev_6, ((DevFunds * 45) / 1000));
-            ERC20(wETC).transfer(Dev_7, ((DevFunds * 40) / 1000));
+            ERC20(wETC).transfer(Dev_7, ((DevFunds * 45) / 1000));
         }
 
         return success;
@@ -189,8 +190,24 @@ contract CLS_Crowdsale {
         
         return(success);
         }
-        
     }
+
+    function Resume_Sale() public returns(bool success){
+        bool Multisig;
+        Multisig = MultiSignature();
+        require(Crowdsale_Mode.Sale_Mode == 99);
+        require(block.timestamp < Crowdsale_End_Unix);
+        
+        if (Multisig == true){
+            
+        Crowdsale_Mode.Sale_Mode_Text = ("Sale is Open to buy CLS");
+        Crowdsale_Mode.Sale_Mode = 2;
+        
+        return(success);
+        }
+    }
+    
+    //Add Resume Crowdsale
     
       //Redundancy
     function ChangeCLSaddy(address payable NewAddy)public returns(bool success, address CLSaddy){
@@ -227,7 +244,7 @@ contract CLS_Crowdsale {
     address public SigAddress1;
     address public SigAddress2;
     address public SigAddress3;
-    uint8 Setup;
+    uint8 public Setup;
     bool public Verified;
     
     mapping(address => uint8) Signed;
@@ -235,9 +252,7 @@ contract CLS_Crowdsale {
     event MultiSigSet(bool Success);
     event MultiSigVerified(bool Success);
     
-    //0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
-    //0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2
-    //0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c
+
     
     function MultiSigSetup(address _1, address _2, address _3) public returns(bool success){
         require(Setup == 0);
