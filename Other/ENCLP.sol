@@ -38,6 +38,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
 
 // User, NFT, Loan Mappings
     mapping (uint256 => NFT) UIDmapping;
+    mapping (uint256 => Loan) LoanMapping;
     mapping (address => uint256) UserLoanCount;
 
 
@@ -72,6 +73,14 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
 
         LastUID = LastUID + 1;
 
+        return(NewUID);
+    }
+
+    function InitializeLoan(uint256 Term, uint256 Interest, uint256 UID, address Loanee) internal returns(uint256 LoanID){
+        require(UIDmapping[UID].Active = true);
+        require(Interest >= 5);
+        require(Term >= 1);
+        
     }
 
 
