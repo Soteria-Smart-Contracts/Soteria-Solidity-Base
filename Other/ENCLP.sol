@@ -9,6 +9,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
     uint256 TotalUnpaidEthLoaned;
     uint256 LastUID;
     uint256 LastLID;
+    address Operator;
 
 
 //Struct Type Declarations
@@ -28,6 +29,8 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         uint256 LoanTerm; //In Days
         uint256 LoanExpiryUnix; //In UnixTime
         uint256 InterestRate; //In tenths of 1 (10 = 1%)
+        uint256 ETHinitial; //Amount of ETH transfered/to be transfered on opening of the loan
+        uint256 ETHfinal; //Amount of ETH needed to be repayed in order to close the loan before expiry
         uint256 NFT_UID; //Using Unique Identifier
         address Loanee; //User collateralizing their NFT
         address Loaner; //User providing the loan funds
@@ -39,20 +42,35 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
 // User, NFT, Loan Mappings
     mapping (uint256 => NFT) UIDmapping;
     mapping (uint256 => Loan) LoanMapping;
-    mapping (address => uint256) UserLoanCount;
+    mapping (address => uint256[]) UserLoaneeArray;
+    mapping (address => uint256[]) UserLoanerArray;
+
+
+// ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
 
 
 
 
 
 
+// ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
+//Read Only Functions
+
+    function ReturnUID(uint256 UID) public view returns(NFT memory) {
+        return(UIDmapping[UID]);
+    }
+
+
+    function ReturnLoan(uint256 LoanID) public view returns(Loan memory){
+        return(LoanMapping[LoanID]);
+    }
 
     
 
 // ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
 //Internal Functions 
 
-    function CreateUID(address CollectionAddress, uint256 ID) internal returns(uint256 UID){
+    function CreateUID(address CollectionAddress, uint256 ID) public returns(uint256 UID){ //MAKE INTERNAL
         require(ApprovedNFTContract[CollectionAddress] == true, "Collection is not approved for loans");
         require(ERC721(CollectionAddress).ownerOf(ID) == msg.sender, "User is not owner of NFT");
         require(ERC721(CollectionAddress).isApprovedForAll(msg.sender, address(this)), "Contract is Not approved to handle this addresses NFTs");
@@ -76,23 +94,70 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         return(NewUID);
     }
 
-    function InitializeLoan(uint256 Term, uint256 Interest, uint256 UID, address Loanee) internal returns(uint256 LoanID){
-        require(UIDmapping[UID].Active = true);
-        require(Interest >= 5);
-        require(Term >= 1);
-        
+    function InitializeLoan(uint256 ETH, uint256 Term, uint256 Interest, uint256 UID) public returns(uint256 LoanID){ //SET INTERNAL
+        require(UIDmapping[UID].Active == true);
+        require(Interest >= 5); //Minimum 0.5% interest on a loan
+        require(Term >= 1); //Minimum Loan length is 1 day
+        require(ETH >= 100000000 gwei); //0.1 ETH/ETC
+
+        uint256 NewLoanID = LastLID + 1;
+
+        LoanMapping[NewLoanID].LoanID = NewLoanID;
+        LoanMapping[NewLoanID].LoanActive = false;
+        LoanMapping[NewLoanID].LoanRepayed = false;
+        LoanMapping[NewLoanID].LoanTerm = Term;
+        LoanMapping[NewLoanID].LoanExpiryUnix = 0; //Determined when loan is activated
+        LoanMapping[NewLoanID].InterestRate = Interest;
+        LoanMapping[NewLoanID].ETHinitial = ETH;
+        LoanMapping[NewLoanID].ETHfinal = 0; //Determined when loan is activated
+        LoanMapping[NewLoanID].NFT_UID = UID;
+        LoanMapping[NewLoanID].Loanee = msg.sender;
+        LoanMapping[NewLoanID].Loaner = address(0); //Set when Loan is accepted
+
+        return(NewLoanID);
+
+    }
+
+    function SendETH(address payable to, uint256 amount) internal{
+        (to).transfer(amount);
+    }
+
+// ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
+// Operator Only Functions
+
+    function ApproveCollection(address CollectionAddress) public OperatorF returns(bool success){
+        ApprovedNFTContract[CollectionAddress] = true;
+
+        return(success);
+    }
+
+    function DisapproveCollection(address CollectionAddress) public OperatorF returns(bool success){
+        ApprovedNFTContract[CollectionAddress] = false;
+
+        return(success);
+    } //Only for emergencies, could potentially cause issues if used while loans are open
+
+    function TransferOperator(address NewOperator) public OperatorF returns(bool success){
+        Operator = NewOperator;
+
+        return(success);
     }
 
 
-
-
 // ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
-// Interface Dependancies (Basically just ERC721Reciever)
+// Interface Dependancies and other
 
     function onERC721Received(address operator, address, uint256, bytes calldata) view external returns(bytes4) {
         require(operator == address(this), "");
         return bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
     }
+
+    modifier OperatorF{
+        require(msg.sender == Operator);
+        _;
+    }
+
+
 
     
 
