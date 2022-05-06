@@ -3,13 +3,14 @@ pragma solidity 0.8.7;
 
 contract EVM_NFT_Collateralized_Lending_Protocol {
 //Variable Declarations
-    uint256 TotalLoanCount;
-    uint256 TotalActiveLoanCount;
-    uint256 TotalETHloaned;
-    uint256 TotalUnpaidEthLoaned;
+    uint256 public TotalLoanCount; 
+    uint256 public TotalActiveLoanCount;
+    uint256 public TotalOfferCount;
+    uint256 public TotalETHloaned;       //SEE BEFORE FINAL
+    uint256 public TotalUnpaidEthLoaned; //SEE BEFORE FINAL
     uint256 LastUID;
     uint256 LastLID;
-    address Operator;
+    address public Operator;
 
 
 //Struct Type Declarations
@@ -19,11 +20,13 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         uint256 Collection_ID;
         address OriginalOwner;
         bool Active;
+        bool InLoan;
     } //Once a UID has been used once in a loan, if the same NFT is collateralized again, the UID will be different
 
 
     struct Loan{
         uint256 LoanID;
+        bool LoanIsOffer;
         bool LoanActive; //Default False
         bool LoanRepayed; //Default False
         uint256 LoanTerm; //In Days
@@ -42,11 +45,25 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
 // User, NFT, Loan Mappings
     mapping (uint256 => NFT) UIDmapping;
     mapping (uint256 => Loan) LoanMapping;
-    mapping (address => uint256[]) UserLoaneeArray;
-    mapping (address => uint256[]) UserLoanerArray;
+    mapping (address => uint256) public OfferCount;
+    mapping (address => uint256) public LoaneeCount;
+    mapping (address => uint256) public LoanerCount;
+
 
 
 // ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
+
+
+   function CreateLoanOffer(uint256 ID, address CollectionAddress, uint256 Amount, uint256 Term, uint256 InterestR) public returns(bool success){
+
+      uint256 UID = CreateUID(CollectionAddress, ID);
+
+      InitializeLoan(Amount, Term, InterestR, UID);
+
+      OfferCount[msg.sender] = OfferCount[msg.sender] + 1;
+
+      return(success);
+    }
 
 
 
@@ -65,18 +82,53 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         return(LoanMapping[LoanID]);
     }
 
+    function GetOffers() public view returns(uint256[] memory OfferList){
+        uint256 index = 1;
+        uint256 currentpush = 0;
+        uint256[] memory Offerlist = new uint256[](TotalOfferCount);
+        while(index <= LastLID){
+            if(LoanMapping[index].LoanIsOffer == true){
+                Offerlist[currentpush] = index;
+                currentpush = currentpush + 1;
+            }
+            index = index + 1;
+        }
+
+        return(Offerlist);
+    }
+
+    function GetMyOffers(address user) public view returns(uint256[] memory MyOffersList){
+        uint256 index = 1;
+        uint256 currentpush = 0;
+        uint256[] memory Offerlist = new uint256[](OfferCount[user]);
+        while(index <= LastLID){
+            if(LoanMapping[index].LoanIsOffer == true && LoanMapping[index].Loanee == user){
+                Offerlist[currentpush] = index;
+                currentpush = currentpush + 1;
+            }
+            index = index + 1;
+        }
+
+        return(Offerlist);
+    }
+
+//    function GetMyLoansLoaner
+
+//    function GetMyLoansLoanee
+
     
+
 
 // ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
 //Internal Functions 
 
     function CreateUID(address CollectionAddress, uint256 ID) public returns(uint256 UID){ //MAKE INTERNAL
-        require(ApprovedNFTContract[CollectionAddress] == true, "Collection is not approved for loans");
-        require(ERC721(CollectionAddress).ownerOf(ID) == msg.sender, "User is not owner of NFT");
-        require(ERC721(CollectionAddress).isApprovedForAll(msg.sender, address(this)), "Contract is Not approved to handle this addresses NFTs");
+//        require(ApprovedNFTContract[CollectionAddress] == true, "Collection is not approved for loans");
+//        require(ERC721(CollectionAddress).ownerOf(ID) == msg.sender, "User is not owner of NFT");
+//        require(ERC721(CollectionAddress).isApprovedForAll(msg.sender, address(this)), "Contract is Not approved to handle this addresses NFTs");
 
         //Transfer NFT
-        ERC721(CollectionAddress).safeTransferFrom(msg.sender, address(this), ID);
+//        ERC721(CollectionAddress).safeTransferFrom(msg.sender, address(this), ID);
 
         //Set UID
         uint256 NewUID = LastUID + 1;
@@ -87,6 +139,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         UIDmapping[NewUID].Collection_ID = ID;
         UIDmapping[NewUID].OriginalOwner = msg.sender;
         UIDmapping[NewUID].Active = true;
+        UIDmapping[NewUID].InLoan = false;
 
 
         LastUID = LastUID + 1;
@@ -96,6 +149,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
 
     function InitializeLoan(uint256 ETH, uint256 Term, uint256 Interest, uint256 UID) public returns(uint256 LoanID){ //SET INTERNAL
         require(UIDmapping[UID].Active == true);
+        require(UIDmapping[UID].InLoan == false);
         require(Interest >= 5); //Minimum 0.5% interest on a loan
         require(Term >= 1); //Minimum Loan length is 1 day
         require(ETH >= 100000000 gwei); //0.1 ETH/ETC
@@ -103,16 +157,23 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         uint256 NewLoanID = LastLID + 1;
 
         LoanMapping[NewLoanID].LoanID = NewLoanID;
+        LoanMapping[NewLoanID].LoanIsOffer = true;
         LoanMapping[NewLoanID].LoanActive = false;
         LoanMapping[NewLoanID].LoanRepayed = false;
         LoanMapping[NewLoanID].LoanTerm = Term;
         LoanMapping[NewLoanID].LoanExpiryUnix = 0; //Determined when loan is activated
         LoanMapping[NewLoanID].InterestRate = Interest;
         LoanMapping[NewLoanID].ETHinitial = ETH;
-        LoanMapping[NewLoanID].ETHfinal = 0; //Determined when loan is activated
+        LoanMapping[NewLoanID].ETHfinal = (ETH + ((ETH * 1000) / (Interest * 10000))); //ETH needed to repay the loan (Assuming no counter offer is made)
         LoanMapping[NewLoanID].NFT_UID = UID;
         LoanMapping[NewLoanID].Loanee = msg.sender;
         LoanMapping[NewLoanID].Loaner = address(0); //Set when Loan is accepted
+
+        UIDmapping[UID].InLoan = true;
+
+        LastLID = NewLoanID;
+        TotalLoanCount = TotalLoanCount + 1;
+        TotalOfferCount = TotalOfferCount + 1;
 
         return(NewLoanID);
 
