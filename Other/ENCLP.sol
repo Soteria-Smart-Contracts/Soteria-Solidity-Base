@@ -13,6 +13,13 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
     address public Operator;
 
 
+//
+
+    constructor(address _Operator){
+        Operator = _Operator;
+    }
+
+
 //Struct Type Declarations
     struct NFT{
         uint256 UniqueIdentifier;
