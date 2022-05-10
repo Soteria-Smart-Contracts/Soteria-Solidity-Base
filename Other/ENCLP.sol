@@ -12,9 +12,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
     uint256 LastLID;
     address public Operator;
 
-
-//
-
+// Operator Declaration
     constructor(address _Operator){
         Operator = _Operator;
     }
@@ -44,6 +42,14 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         uint256 NFT_UID; //Using Unique Identifier
         address Loanee; //User collateralizing their NFT
         address Loaner; //User providing the loan funds
+        CounterOffer[] CounterOffers;
+    }
+
+    struct CounterOffer{
+        address COuser;
+        uint256 COterm;
+        uint256 COInterestRate;
+        uint256 COETHinitial;
     }
 
 // Functionality Mappings
@@ -70,7 +76,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
       OfferCount[msg.sender] = OfferCount[msg.sender] + 1;
 
       return(success);
-    }
+    } //UNTESTED
 
 
 
@@ -89,7 +95,11 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         return(LoanMapping[LoanID]);
     }
 
-    function GetOffers() public view returns(uint256[] memory OfferList){
+    function ReturnCounterOffer(uint256 LoanID, uint256 CounterOfferID) public view returns(CounterOffer memory) {
+        return(LoanMapping[LoanID].CounterOffers[CounterOfferID]);
+    }
+
+    function GetAllOffers() public view returns(uint256[] memory OfferList){
         uint256 index = 1;
         uint256 currentpush = 0;
         uint256[] memory Offerlist = new uint256[](TotalOfferCount);
@@ -116,15 +126,53 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
             index = index + 1;
         }
 
-        return(Offerlist);
+        return(Offerlist); 
     }
 
-//    function GetMyLoansLoaner
+    function GetMyLoansLoaner(address user) public view returns(uint256[] memory MyLoanerList){
+        uint256 index = 1;
+        uint256 currentpush = 0;
+        uint256[] memory Offerlist = new uint256[](LoaneeCount[user]);
+        while(index <= LastLID){
+            if(LoanMapping[index].LoanActive == true && LoanMapping[index].Loaner == user){
+                Offerlist[currentpush] = index;
+                currentpush = currentpush + 1;
+            }
+            index = index + 1;
+        }
 
-//    function GetMyLoansLoanee
+        return(Offerlist); //UNTESTED
+    }
 
-    
+    function GetMyLoansLoanee(address user) public view returns(uint256[] memory MyLoaneeList){
+        uint256 index = 1;
+        uint256 currentpush = 0;
+        uint256[] memory Offerlist = new uint256[](LoaneeCount[user]);
+        while(index <= LastLID){
+            if(LoanMapping[index].LoanActive == true && LoanMapping[index].Loanee == user){
+                Offerlist[currentpush] = index;
+                currentpush = currentpush + 1;
+            }
+            index = index + 1;
+        }
 
+        return(Offerlist); //UNTESTED
+    }
+
+    function GetCounterOffers(uint256 LoanID) public view returns(uint256[] memory LoanCounterOffersList){
+        uint256 index = 1;
+        uint256 TotalCounterOffers = LoanMapping[LoanID].CounterOffers.length;
+        uint256 currentpush = 0;
+        uint256[] memory Offerlist = new uint256[](TotalCounterOffers);
+        while(index <= TotalCounterOffers){
+                Offerlist[currentpush] = index;
+                currentpush = currentpush + 1;
+            
+            index = index + 1;
+        }
+
+        return(Offerlist); //UNTESTED
+    }
 
 // ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
 //Internal Functions 
@@ -157,6 +205,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
     function InitializeLoan(uint256 ETH, uint256 Term, uint256 Interest, uint256 UID) public returns(uint256 LoanID){ //SET INTERNAL
         require(UIDmapping[UID].Active == true);
         require(UIDmapping[UID].InLoan == false);
+        require(UIDmapping[UID].OriginalOwner == msg.sender);
         require(Interest >= 5); //Minimum 0.5% interest on a loan
         require(Term >= 1); //Minimum Loan length is 1 day
         require(ETH >= 100000000 gwei); //0.1 ETH/ETC
@@ -185,6 +234,8 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         return(NewLoanID);
 
     }
+
+    
 
     function SendETH(address payable to, uint256 amount) internal{
         (to).transfer(amount);
