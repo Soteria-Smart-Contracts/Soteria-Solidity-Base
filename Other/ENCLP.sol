@@ -62,14 +62,14 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
     mapping (address => uint256) public LoaneeCount;
     mapping (address => uint256) public LoanerCount;
 
-
+//Reminder: When Counter offer is created, check to ensure Loaner has given contract access to its funds + enough funds, and if accepted but funds are missing Close the Offer and return (Not enough funds on loanee sun)
 
 // ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
-
+//User Acccesed State-Modifing functions
 
    function CreateLoanOffer(uint256 ID, address CollectionAddress, uint256 Amount, uint256 Term, uint256 InterestR) public returns(bool success){
 
-      uint256 UID = CreateUID(CollectionAddress, ID);
+      uint256 UID = InitializeUID(CollectionAddress, ID);
 
       InitializeLoan(Amount, Term, InterestR, UID);
 
@@ -78,8 +78,19 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
       return(success);
     } //UNTESTED
 
+//    function ChangeLoanOffer()
+    
+//    function MakeCounterOffer()
 
+//    function AcceptLoanCounterOffer() //For Loanee
 
+//    function AcceptLoanOffer() //Any user to become Loaner
+
+//    function RepayLoan()//
+
+//    function RepayAllLoans()//
+    
+//    function ClaimExpiredNFT()
 
 
 
@@ -89,7 +100,6 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
     function ReturnUID(uint256 UID) public view returns(NFT memory) {
         return(UIDmapping[UID]);
     }
-
 
     function ReturnLoan(uint256 LoanID) public view returns(Loan memory){
         return(LoanMapping[LoanID]);
@@ -174,10 +184,12 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         return(Offerlist); //UNTESTED
     }
 
+//    function GetMyCounterOffer(uint256 LoanID)
+
 // ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
 //Internal Functions 
 
-    function CreateUID(address CollectionAddress, uint256 ID) public returns(uint256 UID){ //MAKE INTERNAL
+    function InitializeUID(address CollectionAddress, uint256 ID) public returns(uint256 UID){ //MAKE INTERNAL
 //        require(ApprovedNFTContract[CollectionAddress] == true, "Collection is not approved for loans");
 //        require(ERC721(CollectionAddress).ownerOf(ID) == msg.sender, "User is not owner of NFT");
 //        require(ERC721(CollectionAddress).isApprovedForAll(msg.sender, address(this)), "Contract is Not approved to handle this addresses NFTs");
@@ -235,7 +247,9 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
 
     }
 
-    
+    function InitializeCounterOffer(uint256 LoanID, bool ChangeTerm, uint256 COterm, bool ChangeInterest, uint256 COir, bool ChangeETH, uint256 COeth) returns(uint256 COID){
+
+    }
 
     function SendETH(address payable to, uint256 amount) internal{
         (to).transfer(amount);
