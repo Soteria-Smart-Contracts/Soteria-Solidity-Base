@@ -1,3 +1,5 @@
+const ABI = window.abi;
+const contractAddress = '0x9Ad9fd0b94d47D342e92AB5998197Ae89B802B9A';
 loginWithEth();
 
 async function loginWithEth(){
@@ -10,5 +12,10 @@ async function loginWithEth(){
     } else {
         alert("No ETHER Wallet available")
     }
+}
+
+async function checknum(){ 
+    
+
 }
 
