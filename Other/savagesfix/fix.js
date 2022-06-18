@@ -18,7 +18,8 @@ async function loginWithEth(){
 
 async function checknum(){ 
     let i = document.getElementById("input").value;
-    let num = await contract.methods.structmapping(i).call();
+    let struct = await contract.methods.structmapping(i).call();
+    num = struct[];
     console.log(num);
     document.getElementById("info").innerText = num;
     return num;
