@@ -11,7 +11,7 @@ contract arrayloopinjs {
 
     uint8 public lastnum;
 
-    uint8 structids;
+    uint8 public structids;
 
     mapping(uint256 => teststruct) public structmapping;
 
