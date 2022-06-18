@@ -97,11 +97,11 @@
 	},
 	"sources": {
 		"Other/SavagesFix.sol": {
-			"keccak256": "0x43ef7a24c6c5e5a4fb2416d46bc26d3c02566d25d9cc232cb0dcd115965f79cd",
+			"keccak256": "0xe984c74503eb914543ca1d99c8fb46b335466e738bed0074c99755d5c3e359e0",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://1472d12ed568c843a8adda63e573a9f650890984e714119e58b90e5f1d5372f6",
-				"dweb:/ipfs/QmQzC2Qhp8nX6cWnHtK1LFoDM4vqUuQLHDqcu9zcSeUaA2"
+				"bzz-raw://0f54ffd2b58f2e115ccb76ef6791044a1c8a4c83a3a35acada549d248aa93739",
+				"dweb:/ipfs/QmfZLB9CCCT69DPYsXd7g24xNFeh425UdBQjQyWQYtgdPx"
 			]
 		}
 	},
