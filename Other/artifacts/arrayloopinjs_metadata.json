@@ -1,0 +1,96 @@
+{
+	"compiler": {
+		"version": "0.8.6+commit.11564f7e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "howmany",
+						"type": "uint256"
+					}
+				],
+				"name": "createsomestructs",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastnum",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "structmapping",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "information1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "information2",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Other/SavagesFix.sol": "arrayloopinjs"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Other/SavagesFix.sol": {
+			"keccak256": "0x715cfda83f09291b5fbfda8c73b3cb8832c5f5913f41f55140dc7b96d95b451a",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://fdbf81a1213c5dfb4e415fba636609841ab7fcd5f4254ca2cdf7e4f6fd3c6f59",
+				"dweb:/ipfs/QmbwpWjYyLr6xMHsCiNjgr3t8pZ9hVARqL2L4259hjrZfb"
+			]
+		}
+	},
+	"version": 1
+}
