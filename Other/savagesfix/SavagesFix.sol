@@ -133,6 +133,7 @@ contract ClassicArt is ERC721, IERC721Receiver, Ownable, ReentrancyGuard, ERC721
       uint256 price
     ) public nonReentrant {
       require(price > 0, "Price must be greater than 0");
+      MarketItems[itemId].owner = payable(msg.sender);
 
       MarketItems[itemId].timeListed = block.timestamp;
       MarketItems[itemId].listed = true;
