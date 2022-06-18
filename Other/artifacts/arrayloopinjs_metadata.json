@@ -32,6 +32,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "structids",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -84,11 +97,11 @@
 	},
 	"sources": {
 		"Other/SavagesFix.sol": {
-			"keccak256": "0x715cfda83f09291b5fbfda8c73b3cb8832c5f5913f41f55140dc7b96d95b451a",
+			"keccak256": "0x43ef7a24c6c5e5a4fb2416d46bc26d3c02566d25d9cc232cb0dcd115965f79cd",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://fdbf81a1213c5dfb4e415fba636609841ab7fcd5f4254ca2cdf7e4f6fd3c6f59",
-				"dweb:/ipfs/QmbwpWjYyLr6xMHsCiNjgr3t8pZ9hVARqL2L4259hjrZfb"
+				"bzz-raw://1472d12ed568c843a8adda63e573a9f650890984e714119e58b90e5f1d5372f6",
+				"dweb:/ipfs/QmQzC2Qhp8nX6cWnHtK1LFoDM4vqUuQLHDqcu9zcSeUaA2"
 			]
 		}
 	},
