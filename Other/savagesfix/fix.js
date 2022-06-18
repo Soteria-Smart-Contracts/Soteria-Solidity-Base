@@ -11,3 +11,4 @@ async function loginWithEth(){
         alert("No ETHER Wallet available")
     }
 }
+
