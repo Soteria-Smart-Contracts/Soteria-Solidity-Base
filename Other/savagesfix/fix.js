@@ -22,8 +22,8 @@ async function checknum(){
     num1 = struct[0];
     num2 = struct[1];
     console.log(num);
-    document.getElementById("info").innerText = num;
+    document.getElementById("info").innerText = num1;
     document.getElementById("info2").innerText = num2;
-    return num;
+    return num1;
 }
 
