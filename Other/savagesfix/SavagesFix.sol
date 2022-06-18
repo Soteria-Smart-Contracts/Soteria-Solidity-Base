@@ -196,7 +196,7 @@ contract ClassicArt is ERC721, IERC721Receiver, Ownable, ReentrancyGuard, ERC721
       bids[itemId] = Bid(false, itemId, address(0), 0);
 
       // transfer token back to user
-      IERC721(MarketItems[itemId].nftContract).safeTransferFrom(address(this), msg.sender, MarketItems[itemId].tokenId);
+      IERC721(MarketItems[itemId].nftContract).safeTransferFrom(address(this), MarketItems[itemId].owner, MarketItems[itemId].tokenId);
     }
 
   /* Creates the sale of a marketplace item */
