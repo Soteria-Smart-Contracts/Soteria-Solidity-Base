@@ -9,6 +9,8 @@ contract arrayloopinjs {
         uint256 information2;
     }
 
+    uint8 public lastnum;
+
     uint8 structids;
 
     mapping(uint256 => teststruct) public structmapping;
