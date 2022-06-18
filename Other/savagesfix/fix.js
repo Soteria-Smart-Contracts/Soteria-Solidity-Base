@@ -21,7 +21,6 @@ async function checknum(){
     let struct = await contract.methods.structmapping(i).call();
     num1 = struct[0];
     num2 = struct[1];
-    console.log(num);
     document.getElementById("info").innerText = num1;
     document.getElementById("info2").innerText = num2;
     return num1;
