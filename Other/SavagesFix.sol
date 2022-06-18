@@ -22,7 +22,7 @@ contract arrayloopinjs {
             newstruct.information1 = lastnum;
             lastnum = lastnum + 1;
             newstruct.information2 = lastnum;
-            structmapping[i] = newstruct;
+            structmapping[structids] = newstruct;
         }
     }
 }
