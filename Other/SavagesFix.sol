@@ -19,6 +19,7 @@ contract arrayloopinjs {
         for(uint8 i = 0; i < howmany; i++){
             structids = structids + 1;
             teststruct memory newstruct;
+            lastnum = lastnum + 1;
             newstruct.information1 = lastnum;
             lastnum = lastnum + 1;
             newstruct.information2 = lastnum;
