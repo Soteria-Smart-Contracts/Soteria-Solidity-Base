@@ -20,6 +20,7 @@ async function checknum(){
     let i = document.getElementById("input").value;
     let struct = await contract.methods.structmapping(i).call();
     num1 = struct[0];
+    num2 = struct[1];
     console.log(num);
     document.getElementById("info").innerText = num;
     return num;
