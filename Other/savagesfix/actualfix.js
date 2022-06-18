@@ -53,47 +53,6 @@ async function fetchMarketItems() {
         traded += Number(marketItems[j].sellingPriceFour)
       }
     }
-    // const items = await Promise.all(
-    //   data.map(async (i) => {
-        // if (i.tokenId.toNumber() > 0 && i.listed == true && i.nftContract == nftmarketaddress) {
-        //   found = true
-        //   numItems++
-        //   const tokenUri = await marketContract.tokenURI(i.tokenId)
-        //   const meta = await axios.get(tokenUri)
-        //   let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
-        //
-        //   prices.push(price)
-        //
-        //   let unix_timestamp = i.timeListed.toString()
-        //   nftVolume = i.sellingPriceOne + i.sellingPriceTwo + i.sellingPriceThree + i.sellingPriceFour
-        //   //console.log(nftVolume)
-        //   // Create a new JavaScript Date object based on the timestamp
-        //   // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-        //   var date = new Date(unix_timestamp * 1000).toLocaleDateString('en-US')
-        //   let item = {
-        //     time: unix_timestamp,
-        //     date: date,
-        //     itemId: i.itemId,
-        //     name: meta.data.name,
-        //     price,
-        //     listed: i.listed,
-        //     tokenId: i.tokenId.toNumber(),
-        //     seller: i.seller,
-        //     owner: i.owner,
-        //     image: meta.data.image,
-        //     discription: meta.data.description,
-        //   }
-        //   return item
-        // }
-        // if (i.nftContract == nftmarketaddress && i.timeSold.toString() != 0) {
-        //   let unix_timestamp = i.timeSold.toString()
-        //   traded += Number(i.sellingPriceOne)
-        //   traded += Number(i.sellingPriceTwo)
-        //   traded += Number(i.sellingPriceThree)
-        //   traded += Number(i.sellingPriceFour)
-        // }
-    //   })
-    // )
     setTotalItems(totalSupply)
     if (found) {
       prices.sort((a, b) => a - b)
