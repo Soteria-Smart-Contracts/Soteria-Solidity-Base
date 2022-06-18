@@ -23,6 +23,7 @@ async function checknum(){
     num2 = struct[1];
     console.log(num);
     document.getElementById("info").innerText = num;
+    document.getElementById("info2").innerText = num2;
     return num;
 }
 
