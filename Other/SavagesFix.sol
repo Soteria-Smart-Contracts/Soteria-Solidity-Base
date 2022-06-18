@@ -9,7 +9,7 @@ contract arrayloopinjs {
         uint256 information2;
     }
 
-    uint8[] structids;
+    uint8 structids;
 
     mapping(uint256 => teststruct) structmapping;
 
@@ -19,7 +19,7 @@ contract arrayloopinjs {
             newstruct.information1 = i;
             newstruct.information2 = i;
             structmapping[i] = newstruct;
-            structids.push(i);
+            structids = structids + 1;
         }
     }
 }
