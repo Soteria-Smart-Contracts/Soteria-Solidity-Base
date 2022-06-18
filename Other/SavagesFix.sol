@@ -11,7 +11,7 @@ contract arrayloopinjs {
 
     uint8 structids;
 
-    mapping(uint256 => teststruct) structmapping;
+    mapping(uint256 => teststruct) public structmapping;
 
     function createsomestructs(uint256 howmany) public {
         for(uint8 i = 0; i < howmany; i++){
