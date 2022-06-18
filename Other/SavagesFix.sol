@@ -18,7 +18,8 @@ contract arrayloopinjs {
     function createsomestructs(uint256 howmany) public {
         for(uint8 i = 0; i < howmany; i++){
             teststruct memory newstruct;
-            newstruct.information1 = i;
+            newstruct.information1 = lastnum;
+            lastnum + 1;
             newstruct.information2 = i;
             structmapping[i] = newstruct;
             structids = structids + 1;
