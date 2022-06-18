@@ -11,8 +11,8 @@ import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
 contract ClassicArt is ERC721, IERC721Receiver, Ownable, ReentrancyGuard, ERC721URIStorage, ERC721Enumerable  {
 
-    constructor(address payable _commissionFunds) ERC721("ClassicArt", "CLA") {
-      commissionFunds = _commissionFunds;
+    constructor() ERC721("ClassicArt", "CLA") {
+      commissionFunds = payable(0xDAba19446a60f747B56b5ae80305754171bb20E7);
     }
 
     address payable internal commissionFunds;
@@ -129,8 +129,6 @@ contract ClassicArt is ERC721, IERC721Receiver, Ownable, ReentrancyGuard, ERC721
     }
 
     function relistMarketItem( //CHECK
-      address nftContract,
-      uint256 tokenId,
       uint256 itemId,
       uint256 price
     ) public nonReentrant {
@@ -140,7 +138,7 @@ contract ClassicArt is ERC721, IERC721Receiver, Ownable, ReentrancyGuard, ERC721
       MarketItems[itemId].listed = true;
       MarketItems[itemId].price = price;
 
-      IERC721(nftContract).safeTransferFrom(msg.sender, address(this), tokenId);
+      IERC721(MarketItems[itemId].nftContract).safeTransferFrom(msg.sender, address(this), MarketItems[itemId].tokenId);
     }
 
     /* Places an item for sale on the marketplace */
@@ -238,31 +236,6 @@ contract ClassicArt is ERC721, IERC721Receiver, Ownable, ReentrancyGuard, ERC721
     }
 
     bids[itemId] = Bid(false, itemId, address(0), 0);
-  }
-
-
-  // DEPRECTATED, PREFERABLY DO NOT USE
-  function fetchMyNFTs() public view returns (MarketItem[] memory) { //CHECK
-    uint totalItemCount = ItemIds;
-    uint itemCount = 0;
-    uint currentIndex = 0;
-
-    for (uint i = 0; i < totalItemCount; i++) {
-      if (MarketItems[i + 1].owner == msg.sender) {
-        itemCount += 1;
-      }
-    }
-
-    MarketItem[] memory items = new MarketItem[](itemCount);
-    for (uint i = 0; i < totalItemCount; i++) {
-      if (MarketItems[i + 1].owner == msg.sender) {
-        uint currentId = i + 1;
-        MarketItem storage currentItem = MarketItems[currentId];
-        items[currentIndex] = currentItem;
-        currentIndex += 1;
-      }
-    }
-    return items;
   }
 
   function enterBid(uint256 itemId) public payable { //CHECK
