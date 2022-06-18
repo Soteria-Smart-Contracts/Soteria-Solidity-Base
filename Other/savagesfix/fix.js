@@ -17,7 +17,7 @@ async function loginWithEth(){
 async function checknum(){ 
     let num = await contract.methods.lastnum().call();
     console.log(num);
-    
+    document.getElementsByClassName("num")[0].innerHTML = num;
     return num;
 }
 
