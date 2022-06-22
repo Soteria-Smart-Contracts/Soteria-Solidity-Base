@@ -255,7 +255,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
         }
 
         if(ChangeInterest = true){
-            
+        require(COir >= LoanMapping[LoanID].InterestRate);
         }
 
     }
