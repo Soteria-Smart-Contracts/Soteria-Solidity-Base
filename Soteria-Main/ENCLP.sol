@@ -250,7 +250,7 @@ contract EVM_NFT_Collateralized_Lending_Protocol {
 
     function InitializeCounterOffer(uint256 LoanID, bool ChangeTerm, uint256 COterm, bool ChangeInterest, uint256 COir, bool ChangeETH, uint256 COeth) internal returns(uint256 COID){
         require(UIDmapping[LoanMapping[LoanID].NFT_UID].Active == true);
-        require(UIDmapping[UID].InLoan == false);
+        require(UIDmapping[LoanMapping[LoanID].NFT_UID].InLoan == false);
         require(COir > LoanMapping[LoanID].InterestRate);
 
     }
