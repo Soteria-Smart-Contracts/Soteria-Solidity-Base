@@ -3,7 +3,7 @@ pragma solidity ^0.8.7;
 
 
 contract CLDPrivateSale {
-    address public CLD = payable(0x71c6a1ae78259f9E74cD4FaA3F96CFD06d9E1616);
+    address public CLD = payable(0);
     uint256 public CLDAvailable;
     uint256 public CLDMinted;
     uint256 public TreasuryPool;
