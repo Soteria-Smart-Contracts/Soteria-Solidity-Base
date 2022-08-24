@@ -42,6 +42,8 @@ contract Multi_Signature{
     
     //Proposal Voting and executing
 
+    
+
 
     function ExecuteProposal(uint16 ProposalID) internal{
         uint256 Amount = Proposals[ProposalID].Amount;
@@ -51,15 +53,5 @@ contract Multi_Signature{
 
         emit ProposalExecuted(Amount, Reciever, Proposals[ProposalID].Memo);
     }
-
-
-
-
-
-
-
-
-
-    //MultiSig Operations
 
 }
