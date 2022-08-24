@@ -34,7 +34,7 @@ contract Multi_Signature{
 
         Proposals.push(NewProposal);
         
-        ProposalCreated(Amount, Reciever, Memo);
+        emit ProposalCreated(Amount, Reciever, Memo);
         return(success);
     }
     
