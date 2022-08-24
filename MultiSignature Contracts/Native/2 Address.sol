@@ -38,7 +38,7 @@ contract Multi_Signature{
         
         uint16 ProposalID = (Proposals.lenght - 1);
         emit ProposalCreated(Amount, Reciever, Memo);
-        return(success);
+        return(ProposalID);
     }
     
     //Proposal Internals and executing
