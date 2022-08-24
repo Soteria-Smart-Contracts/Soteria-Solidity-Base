@@ -54,7 +54,7 @@ contract Multi_Signature{
             ExecuteProposal(ID);
             return(Executed)
         }
-        
+        return(false);
     }
 
     //Proposal Internals and executing
