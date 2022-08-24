@@ -29,14 +29,14 @@ contract Multi_Signature{
         //2 Votes Needed
     }
 
-    function CreateProposal(uint256 Amount, address payable Reciever, string memory Memo) public returns(uint16 ID){
+    function CreateProposal(uint256 Amount, address payable Reciever, string memory Memo) public returns(uint256 ID){
         require(Signer[msg.sender] == true, "Not Signer");
 
         Proposal memory NewProposal = Proposal(Amount, Reciever, Memo, 0);
 
         Proposals.push(NewProposal);
         
-        uint16 ProposalID = (Proposals.length - 1);
+        uint256 ProposalID = (Proposals.length - 1);
         emit ProposalCreated(Amount, Reciever, Memo);
         return(ProposalID);
     }
