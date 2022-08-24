@@ -47,7 +47,7 @@ contract Multi_Signature{
         require(ProposalSigned[ID][msg.sender] == false);
 
         ProposalSigned[ID][msg.sender] = true;
-        
+        Proposals[ID]
     }
 
     //Proposal Internals and executing
