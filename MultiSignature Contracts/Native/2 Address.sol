@@ -32,8 +32,9 @@ contract Multi_Signature{
 
         Proposal memory NewProposal = Proposal(Amount, to, Memo, 0);
 
-        Proposals.push();
+        Proposals.push(NewProposal);
         
+        return
     }
     
 
