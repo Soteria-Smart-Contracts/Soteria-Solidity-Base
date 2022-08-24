@@ -38,7 +38,7 @@ contract Multi_Signature{
     }
     
 
-    function ExecuteProposal(ID)
+    function ExecuteProposal(uint16 ProposalID)
 
     //Proposal Voting and executing
 
