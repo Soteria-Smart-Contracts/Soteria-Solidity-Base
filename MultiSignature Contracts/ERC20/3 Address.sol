@@ -17,8 +17,10 @@ contract Multi_Signature{
         Token = token;
         SignerOne = _1;
         SignerTwo = _2;
+        SignerThree = _3;
         Signer[_1] = true;
         Signer[_2] = true;
+        Signer[_3] = true;
     }
     mapping(address => bool) Signer;
     mapping(uint256 => mapping(address => bool)) ProposalSigned;
