@@ -40,9 +40,7 @@ contract Multi_Signature{
         return(success);
     }
     
-    //Proposal Voting and executing
-
-    
+    //Proposal Internals and executing
 
 
     function ExecuteProposal(uint16 ProposalID) internal{
