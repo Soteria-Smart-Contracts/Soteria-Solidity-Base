@@ -42,7 +42,9 @@ contract Multi_Signature{
         return(ProposalID);
     }
 
-    function SignProposal(uint256 ID) public 
+    function SignProposal(uint256 ID) public returns(bool Executed){
+        
+    }
 
     //Proposal Internals and executing
 
