@@ -52,7 +52,9 @@ contract Multi_Signature{
 
         if(Proposal[ID].Votes == 2){
             ExecuteProposal(ID);
+            return(Executed)
         }
+        
     }
 
     //Proposal Internals and executing
