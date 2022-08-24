@@ -38,7 +38,7 @@ contract Multi_Signature{
     }
     
 
-    
+    function ExecuteProposal
 
     //Proposal Voting and executing
 
