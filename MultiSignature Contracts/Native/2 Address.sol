@@ -26,7 +26,8 @@ contract Multi_Signature{
     }
 
     function CreateProposal(uint256 Amount, address payable to, string memory Memo) public returns(bool success){
-        require(signer[msg.sender])
+        require(signer[msg.sender] == true, "Not Signer")
+        
     }
     
 
