@@ -23,7 +23,9 @@ contract Multi_Signature{
         string Memo;
     }
 
-    function CreateProposal(uint256 Amount, address payable to, string memory Memo) public 
+    function CreateProposal(uint256 Amount, address payable to, string memory Memo) public returns(bool success){
+        
+    }
     
 
 
