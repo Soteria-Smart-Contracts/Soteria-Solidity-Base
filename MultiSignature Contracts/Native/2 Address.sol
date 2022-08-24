@@ -50,7 +50,7 @@ contract Multi_Signature{
         ProposalSigned[ID][msg.sender] = true;
         Proposals[ID].Votes++;
 
-        if
+        if(Proposal[ID].)
     }
 
     //Proposal Internals and executing
