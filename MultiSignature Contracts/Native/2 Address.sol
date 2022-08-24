@@ -30,7 +30,7 @@ contract Multi_Signature{
     function CreateProposal(uint256 Amount, address payable to, string memory Memo) public returns(bool success){
         require(Signer[msg.sender] == true, "Not Signer");
 
-        Proposals.push(Amount, to, Memo, 0);
+        Propo.push(Amount, to, Memo, 0);
         
     }
     
