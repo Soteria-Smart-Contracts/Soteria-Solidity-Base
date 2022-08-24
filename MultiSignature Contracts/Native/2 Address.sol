@@ -46,7 +46,8 @@ contract Multi_Signature{
         require(Signer[msg.sender] == true, "Not Signer");
         require(ProposalSigned[ID][msg.sender] == false);
 
-        ProposalSigned[ID][msg.sender] == true;
+        ProposalSigned[ID][msg.sender] = true;
+        
     }
 
     //Proposal Internals and executing
