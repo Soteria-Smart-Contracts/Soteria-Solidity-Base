@@ -7,7 +7,7 @@ contract Multi_Signature{
     address public SignerTwo;
 
     event ProposalCreated(uint256 Amount, address payable Reciever, string Memo);
-    event PropsalExecut
+    event PropsalExecuted(uint256 Amount, address payable Reciever, string Memo)
 
 
     constructor(address _1, address _2){
