@@ -58,7 +58,7 @@ contract Multi_Signature{
     function ExecuteProposal(uint16 ProposalID) internal{
         uint256 Amount = Proposals[ProposalID].Amount;
         address payable Reciever = Proposals[ProposalID].Reciever;
-        require(Amount <= this.balance);
+        require(Amount <= address(this).balance);
 
         Reciever.transfer(Amount);
 
