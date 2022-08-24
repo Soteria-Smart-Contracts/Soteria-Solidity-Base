@@ -6,6 +6,7 @@ contract Multi_Signature{
     address public SignerOne;
     address public SignerTwo;
 
+    eve
     event ProposalCreated(uint256 Amount, address payable Reciever, string Memo);
     event ProposalExecuted(uint256 Amount, address payable Reciever, string Memo);
 
