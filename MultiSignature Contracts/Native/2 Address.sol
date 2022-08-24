@@ -42,8 +42,6 @@ contract Multi_Signature{
         return(ProposalID);
     }
 
-    function 
-    
     //Proposal Internals and executing
 
 
