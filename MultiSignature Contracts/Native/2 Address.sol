@@ -45,8 +45,8 @@ contract Multi_Signature{
         uint256 Amount = Proposals[ProposalID].Amount;
         address payable Reciever = Proposals[ProposalID].Reciever;
 
-        Reciver.transfer(Amount);
-
+        Reciever.transfer(Amount);
+        
 
     }
 
