@@ -51,7 +51,7 @@ contract Multi_Signature{
         Proposals[ID].Votes++;
 
         if(Proposal[ID].Votes == 2){
-            
+            ExecuteProposal(ProposalID);
         }
     }
 
