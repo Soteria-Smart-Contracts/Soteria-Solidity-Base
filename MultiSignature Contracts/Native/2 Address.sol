@@ -49,8 +49,9 @@ contract Multi_Signature{
 
         ProposalSigned[ID][msg.sender] = true;
         Proposals[ID].Votes++;
+        votes =
 
-        if(Proposal[5].Votes == 2){
+        if(Proposal[ID].Votes == 2){
             ExecuteProposal(ID);
             return(Executed);
         }
