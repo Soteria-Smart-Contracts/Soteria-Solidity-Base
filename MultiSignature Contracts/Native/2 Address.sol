@@ -9,6 +9,8 @@ contract Multi_Signature{
     constructor(address _1, address _2){
         SignerOne = _1;
         SignerTwo = _2;
+        Signer[_1];
+        Si
     }
     mapping(address => bool) Signer;
     Proposal[] Proposals;
