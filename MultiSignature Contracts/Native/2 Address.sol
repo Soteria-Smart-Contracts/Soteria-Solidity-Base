@@ -67,7 +67,7 @@ contract Multi_Signature{
     }
 
     //Fallback Function for when depositing ETC
-    receive() payable  {
+    receive() external payable  {
         emit FundsRecieved(msg.value, msg.sender);
     }
 
