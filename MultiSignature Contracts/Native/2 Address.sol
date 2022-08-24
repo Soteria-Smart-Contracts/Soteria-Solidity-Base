@@ -10,7 +10,7 @@ contract Multi_Signature{
         SignerOne = _1;
         SignerTwo = _2;
         Signer[_1] = true;
-        Signer[_2]
+        Signer[_2] = true;
     }
     mapping(address => bool) Signer;
     Proposal[] Proposals;
@@ -22,6 +22,8 @@ contract Multi_Signature{
         address To;
         string Memo;
     }
+
+    function CreateProposal
 
 
 
