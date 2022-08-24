@@ -34,12 +34,13 @@ contract Multi_Signature{
 
         Proposals.push(NewProposal);
         
+        ProposalCreated(Amount, To, Memo);
         return(success);
     }
     
 
     function ExecuteProposal(uint16 ProposalID) internal{
-        
+
     }
 
     //Proposal Voting and executing
