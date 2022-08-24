@@ -34,7 +34,7 @@ contract Multi_Signature{
 
         Proposals.push(NewProposal);
         
-        return
+        return(success);
     }
     
 
