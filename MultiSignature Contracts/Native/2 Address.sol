@@ -40,6 +40,8 @@ contract Multi_Signature{
         emit ProposalCreated(Amount, Reciever, Memo);
         return(ProposalID);
     }
+
+    function 
     
     //Proposal Internals and executing
 
