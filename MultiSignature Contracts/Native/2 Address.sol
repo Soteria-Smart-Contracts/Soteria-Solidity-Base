@@ -40,8 +40,8 @@ contract Multi_Signature{
     
 
     function ExecuteProposal(uint16 ProposalID) internal{
+        Amount = 
 
-        
     }
 
     //Proposal Voting and executing
