@@ -49,16 +49,16 @@ contract Multi_Signature{
         ProposalSigned[ID][msg.sender] = true;
         Proposals[ID].Votes++;
 
-
+        
     }
 
     //Proposal Internals and executing
 
 
     function ExecuteProposal(uint16 ProposalID) internal{
-        require();
         uint256 Amount = Proposals[ProposalID].Amount;
         address payable Reciever = Proposals[ProposalID].Reciever;
+        require(Amount <= );
 
         Reciever.transfer(Amount);
 
