@@ -17,7 +17,8 @@ contract Multi_Signature{
 
     struct Proposal{
         uint256 Amount;
-        address 
+        address To;
+        string Memo;
     }
 
 
