@@ -18,7 +18,7 @@ contract Multi_Signature{
 
 
 
-    //
+    //Voting
 
 
 
