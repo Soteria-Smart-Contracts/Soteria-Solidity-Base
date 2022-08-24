@@ -12,6 +12,7 @@ contract Multi_Signature{
 
 
     constructor(address _1, address _2){
+        require(_1 != _2);
         SignerOne = _1;
         SignerTwo = _2;
         Signer[_1] = true;
@@ -45,7 +46,7 @@ contract Multi_Signature{
 
     function SignProposal(uint256 ID) public returns(bool Executed){
         require(Signer[msg.sender] == true, "Not Signer");
-        require(ProposalSigned[ID][msg.sender] == false);
+        require(ProposalSigned[ID][msg.sender] == false, "Already Signed");
 
         ProposalSigned[ID][msg.sender] = true;
         Proposals[ID].Votes++;
