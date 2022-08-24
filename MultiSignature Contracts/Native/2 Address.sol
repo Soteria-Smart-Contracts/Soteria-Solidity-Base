@@ -12,6 +12,7 @@ contract Multi_Signature{
     }
 
     Proposal[] Proposals;
+    mapping 
 
     //Proposals
 
@@ -20,7 +21,7 @@ contract Multi_Signature{
         address To;
         string Memo;
     }
-    
+
 
 
 
