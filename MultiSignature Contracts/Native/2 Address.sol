@@ -66,4 +66,6 @@ contract Multi_Signature{
         emit ProposalExecuted(Amount, Reciever, Proposals[ProposalID].Memo);
     }
 
+    //Fallback Function for when depositing ETC
+
 }
