@@ -38,10 +38,7 @@ contract Multi_Signature{
     }
     
 
-
-
-
-
+    
 
     //Proposal Voting and executing
 
