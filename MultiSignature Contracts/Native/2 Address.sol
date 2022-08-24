@@ -38,12 +38,14 @@ contract Multi_Signature{
         return(success);
     }
     
+    //Proposal Voting and executing
+
 
     function ExecuteProposal(uint16 ProposalID) internal{
         uint256 Amount = Proposals[ProposalID].Amount;
         address payable Reciever = Proposals[ProposalID].Reciever;
 
-        
+
 
     }
 
