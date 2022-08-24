@@ -13,7 +13,7 @@ contract Multi_Signature{
 
 
     constructor(address token, address _1, address _2, address _3){
-        require(_1 != _2);
+        require(_1 != _2 && _1 != _3 && _2 != _3);
         Token = token;
         SignerOne = _1;
         SignerTwo = _2;
