@@ -6,6 +6,8 @@ contract Multi_Signature{
     address public Token;
     address public SignerOne;
     address public SignerTwo;
+    address public SignerThree;
+    address public SignerFour;
 
     event FundsRecieved(uint256 Amount, address From);
     event ProposalCreated(uint256 Amount, address payable Reciever, string Memo);
