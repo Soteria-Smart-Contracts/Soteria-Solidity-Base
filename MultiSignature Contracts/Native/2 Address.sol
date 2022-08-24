@@ -15,6 +15,10 @@ contract Multi_Signature{
 
     //Proposals
 
+    struct Proposal{
+        
+    }
+
 
 
 
