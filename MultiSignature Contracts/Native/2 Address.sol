@@ -67,5 +67,8 @@ contract Multi_Signature{
     }
 
     //Fallback Function for when depositing ETC
+    function () {
+        
+    }
 
 }
