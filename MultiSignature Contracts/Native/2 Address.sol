@@ -44,7 +44,8 @@ contract Multi_Signature{
 
     function SignProposal(uint256 ID) public returns(bool Executed){
         require(Signer[msg.sender] == true, "Not Signer");
-        
+        require(condition);
+
     }
 
     //Proposal Internals and executing
