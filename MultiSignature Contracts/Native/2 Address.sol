@@ -26,7 +26,7 @@ contract Multi_Signature{
         address payable Reciever;
         string Memo;
         uint256 Votes;
-        mapping Voted
+        mapping() Voted
         //2 Votes Needed
     }
 
