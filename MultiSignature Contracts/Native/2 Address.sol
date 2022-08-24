@@ -45,11 +45,8 @@ contract Multi_Signature{
         uint256 Amount = Proposals[ProposalID].Amount;
         address payable Reciever = Proposals[ProposalID].Reciever;
 
-
-
+        
     }
-
-    //Proposal Voting and executing
 
 
 
