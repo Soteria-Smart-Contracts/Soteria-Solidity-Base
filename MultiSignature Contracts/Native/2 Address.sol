@@ -10,7 +10,7 @@ contract Multi_Signature{
         SignerOne = _1;
         SignerTwo = _2;
     }
-    mapping(address => bool) 
+    mapping(address => bool) Signer;
     Proposal[] Proposals;
 
     //Proposals
