@@ -12,7 +12,7 @@ contract Multi_Signature{
     event ProposalExecuted(uint256 Amount, address payable Reciever, string Memo);
 
 
-    constructor(address token, address _1, address _2){
+    constructor(address token, address _1, address _2, address _3){
         require(_1 != _2);
         Token = token;
         SignerOne = _1;
