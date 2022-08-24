@@ -8,6 +8,8 @@ contract Multi_Signature{
 
     event ProposalCreated(uint256 Amount, address payable Reciever, string Memo);
 
+
+
     constructor(address _1, address _2){
         SignerOne = _1;
         SignerTwo = _2;
@@ -46,7 +48,7 @@ contract Multi_Signature{
         address payable Reciever = Proposals[ProposalID].Reciever;
 
         Reciever.transfer(Amount);
-        
+
 
     }
 
