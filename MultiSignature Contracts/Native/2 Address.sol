@@ -68,7 +68,7 @@ contract Multi_Signature{
 
     //Fallback Function for when depositing ETC
     function () {
-        emit FundsRecieved()
+        emit FundsRecieved(msg.value, msg.sender);
     }
 
 }
