@@ -49,7 +49,7 @@ contract Multi_Signature{
 
         Reciever.transfer(Amount);
 
-        emit ProposalExecut
+        emit ProposalExecuted(Amount, Reciever, )
     }
 
 
