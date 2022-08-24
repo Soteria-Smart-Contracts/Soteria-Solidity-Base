@@ -11,6 +11,8 @@ contract Multi_Signature{
         SignerTwo = _2;
     }
 
+    mapping
+
     //Proposals
 
 
