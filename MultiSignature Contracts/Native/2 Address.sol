@@ -23,7 +23,7 @@ contract Multi_Signature{
         string Memo;
     }
 
-    function CreateProposal(uint256 Amount, address payable to, )
+    function CreateProposal(uint256 Amount, address payable To, string  )
     
 
 
