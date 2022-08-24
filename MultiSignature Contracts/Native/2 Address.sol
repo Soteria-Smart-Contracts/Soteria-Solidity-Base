@@ -6,7 +6,7 @@ contract Multi_Signature{
     address public SignerOne;
     address public SignerTwo;
 
-    event ProposalCreated(uint256 Amount, address payable To, string Memo);
+    event ProposalCreated(uint256 Amount, address payable Reciever, string Memo);
 
     constructor(address _1, address _2){
         SignerOne = _1;
@@ -21,20 +21,20 @@ contract Multi_Signature{
 
     struct Proposal{
         uint256 Amount;
-        address payable To;
+        address payable Reciever;
         string Memo;
         uint256 Votes;
         //2 Votes Needed
     }
 
-    function CreateProposal(uint256 Amount, address payable to, string memory Memo) public returns(bool success){
+    function CreateProposal(uint256 Amount, address payable Reciever, string memory Memo) public returns(bool success){
         require(Signer[msg.sender] == true, "Not Signer");
 
-        Proposal memory NewProposal = Proposal(Amount, to, Memo, 0);
+        Proposal memory NewProposal = Proposal(Amount, Reciever, Memo, 0);
 
         Proposals.push(NewProposal);
         
-        ProposalCreated(Amount, To, Memo);
+        ProposalCreated(Amount, Reciever, Memo);
         return(success);
     }
     
