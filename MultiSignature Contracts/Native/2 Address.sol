@@ -17,7 +17,7 @@ contract Multi_Signature{
         Signer[_2] = true;
     }
     mapping(address => bool) Signer;
-    mapping(mapping (address => bool)
+    mapping(mapping uint256 => (address => bool))
     Proposal[] public Proposals;
 
     //Proposals
