@@ -6,7 +6,7 @@ contract Multi_Signature{
     address public SignerOne;
     address public SignerTwo;
 
-    event ProposalCreated(u)
+    event ProposalCreated(uint256 Amount, address To, )
 
     constructor(address _1, address _2){
         SignerOne = _1;
