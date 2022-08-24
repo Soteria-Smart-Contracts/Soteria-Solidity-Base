@@ -19,11 +19,11 @@ contract Multi_Signature{
 
     struct Proposal{
         uint256 Amount;
-        address To;
+        address payable To;
         string Memo;
     }
 
-    function CreateProposal(uint256 Amount, address )
+    function CreateProposal(uint256 Amount, address payable to, )
     
 
 
