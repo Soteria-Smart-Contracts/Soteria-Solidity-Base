@@ -40,7 +40,8 @@ contract Multi_Signature{
     
 
     function ExecuteProposal(uint16 ProposalID) internal{
-        Amount = Proposals[ProposalID]
+        uint256 Amount = Proposals[ProposalID].Amount;
+        
 
     }
 
