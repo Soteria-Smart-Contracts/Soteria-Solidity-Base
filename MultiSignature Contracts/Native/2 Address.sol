@@ -20,6 +20,7 @@ contract Multi_Signature{
     //Proposals
 
     struct Proposal{
+        
         uint256 Amount;
         address payable Reciever;
         string Memo;
@@ -47,7 +48,7 @@ contract Multi_Signature{
 
         Reciver.transfer(Amount);
 
-        
+
     }
 
 
