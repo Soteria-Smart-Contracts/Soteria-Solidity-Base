@@ -1,4 +1,4 @@
-
+//SPDX-License-Identifier:UNLICENSE
 // File: @openzeppelin/contracts/utils/Strings.sol
 
 
