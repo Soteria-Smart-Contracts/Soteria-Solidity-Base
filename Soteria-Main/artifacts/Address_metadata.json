@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.6+commit.11564f7e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Collection of functions related to the address type",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Soteria-Main/erc721standard.sol": "Address"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Soteria-Main/erc721standard.sol": {
+			"keccak256": "0x774a0fab75c4fe3844369d3eecfa770b4890bfaa2e56d2c6924d98bd5fdf98de",
+			"license": "UNLICENSE",
+			"urls": [
+				"bzz-raw://0c791ed2f21b84d384d7bc72b4c31ec4c4b447301811569a1a0892570d7ea150",
+				"dweb:/ipfs/Qmcp9AMi91Nd2hXHQs4sqkydj5XNqDnbVHxkobydPeem8k"
+			]
+		}
+	},
+	"version": 1
+}
