@@ -23,7 +23,7 @@ async function GetLists(HolderList){
     index = 0;
 
     while(HolderList.length < index){
-        Addresses[index] = 
+        Addresses[index] = HolderList[index];
     }
 
 }
