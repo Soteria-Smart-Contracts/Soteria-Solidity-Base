@@ -1,6 +1,6 @@
 
 let ABI = window.abi;
-let contractAddress =
+let contractAddress = "0x208a67F5e2e0f58FC9b118618eE2c2324F2E2b4e";
 loginWithEth();
 
 
