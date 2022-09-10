@@ -29,7 +29,7 @@ async function GetLists(HolderList){
         innerindex = 0;
         while(IDlist.length > innerindex){
             Addresses.push(HolderList[index]);
-            IDs.push(IDlist[innerindex])
+            IDs.push(IDlist[innerindex]);
             innerindex++;
         }
         index++;
