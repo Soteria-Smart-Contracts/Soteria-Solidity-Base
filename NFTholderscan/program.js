@@ -1,5 +1,6 @@
 
 let ABI = window.abi;
+let contractAddress =
 loginWithEth();
 
 
