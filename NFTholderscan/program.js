@@ -17,4 +17,6 @@ async function loginWithEth(){
     }
 }
 
-async function Get 
+async function GetLists{
+    
+}
