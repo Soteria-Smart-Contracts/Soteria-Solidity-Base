@@ -22,6 +22,8 @@ async function GetLists(HolderList){
     let IDs = [];
     index = 0;
 
-    while(HolderList.length_
+    while(HolderList.length < index){
+        
+    }
 
 }
