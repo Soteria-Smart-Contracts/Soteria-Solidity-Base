@@ -31,6 +31,5 @@ async function GetLists(HolderList){
         }
     }
 
-    return
-
+    return(Addresses, IDs)
 }
