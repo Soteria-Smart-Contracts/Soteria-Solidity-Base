@@ -25,7 +25,7 @@ async function GetLists(HolderList){
     while(HolderList.length < index){
         let IDlist = await contract.methods.walletOfOwner(HolderList[index]).call();
         innerindex = 0;
-        while(IDlist )
+        while(IDlist.length < ine)
     }
 
 }
