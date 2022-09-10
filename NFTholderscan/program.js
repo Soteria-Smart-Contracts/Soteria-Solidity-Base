@@ -31,6 +31,7 @@ async function GetLists(HolderList){
             IDs.push(IDlist[innerindex])
             innerindex++;
         }
+        index++;
     }
 
     return(Addresses, IDs)
