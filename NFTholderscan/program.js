@@ -17,7 +17,7 @@ async function loginWithEth(){
     }
 }
 
-async function GetLists(HolderList){
-    
+async function GetLists(HolderList){    
+    index = 0;
 
 }
