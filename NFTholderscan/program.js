@@ -34,6 +34,7 @@ async function GetLists(HolderList){
         }
         index++;
     }
-    console.log(Addresses)
-    return(Addresses, IDs)
+    console.log(Addresses);
+    console.log(IDs);
+    return(Addresses, IDs);
 }
