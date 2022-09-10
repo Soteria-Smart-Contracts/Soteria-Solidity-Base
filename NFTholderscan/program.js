@@ -17,8 +17,9 @@ async function loginWithEth(){
     }
 }
 
-async function GetLists(HolderList){    
+async function GetLists(HolderList){ 
+    let Addresses   
     index = 0;
-    
+
 
 }
