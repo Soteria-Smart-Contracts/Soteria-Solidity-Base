@@ -3,29 +3,30 @@ pragma solidity ^0.8.7;
 
 
 contract CLDPrivateSale {
-    address public CLD = payable(0);
+    address public CLD = 0xfc84c3Dc9898E186aD4b85734100e951E3bcb68c;
     uint256 public CLDAvailable;
-    uint256 public CLDMinted;
+    uint256 public CLDsold;
     uint256 public TreasuryPool;
     address payable public TresuryMultiSig;
-    uint256 public DevelopmentPool;
-    address payable public DeveloperMultiSig;
     uint256 public ETCexRate;
     uint public OpenClosed;
     address public Owner;
     bool public FundsDeposited;
+    bool public EligibilityCompleted = false;
     //Variable Declarations
     
     //Event Declartions
     event CLDBought(address indexed buyer, uint256 amountWETC, uint256 amountCLD);
     event ETCremoval(address indexed remover, string RemovalType, uint256 amountETC);
     
+    mapping(address => bool) public Eligibility;
 
     //contructor arguments
-    constructor(uint256 Total, uint256 _ETCexRate){
+    constructor(uint256 Total, uint256 _ETCexRate, address payable TreasurySig){
         CLDAvailable = Total;
         ETCexRate = _ETCexRate;
         Owner = msg.sender;
+        TresuryMultiSig = TreasurySig;
     }
     
     
@@ -33,20 +34,20 @@ contract CLDPrivateSale {
         uint256 value = msg.value;
         uint256 CLDtoMintAndSend = (value * ETCexRate);
         require (OpenClosed == 1);
+        require (FundsDeposited == true);
+        require (Eligibility[msg.sender] == true, "Not Eligible for the Private Sale");
         require (value > 100000000);
-        require ((CLDMinted + CLDtoMintAndSend) <= CLDAvailable);
+        require ((CLDsold + CLDtoMintAndSend) <= CLDAvailable);
 
         //Transfers WETC to Contract and sets amount variables
-        TreasuryPool = TreasuryPool+((value / 100) * 85);
-        DevelopmentPool = DevelopmentPool+((value / 100) * 15);
-
+        TreasuryPool = TreasuryPool + value;
         
-        //Mints and Sends CLD to Buyer
-        ERC20(CLD).Mint(msg.sender, CLDtoMintAndSend);
+        //Sends CLD to Buyer
+        ERC20(CLD).transfer(msg.sender, CLDtoMintAndSend);
         
         //Function Events and Clearings
         emit CLDBought(msg.sender, value, CLDtoMintAndSend);
-        CLDMinted = CLDMinted + CLDtoMintAndSend;
+        CLDsold = CLDsold + CLDtoMintAndSend;
         CLDtoMintAndSend = 0;
         return success;
     }
@@ -67,16 +68,8 @@ contract CLDPrivateSale {
     
     function WithdrawTRpool()public payable returns(bool success){
         require (msg.sender == Owner);
-        (payable(Owner)).transfer(TreasuryPool);
-        emit ETCremoval (Owner, "LiquidityPool", TreasuryPool);
-        TreasuryPool = 0;
-        return success;
-    }
-    
-    function WithdrawDevPool()public payable returns(bool success){
-        require (msg.sender == Owner);
-        (payable(Owner)).transfer(DevelopmentPool);
-        emit ETCremoval (Owner, "DevelopmentPool", TreasuryPool);
+        (TresuryMultiSig).transfer(TreasuryPool);
+        emit ETCremoval (Owner, "TreasuryPool", TreasuryPool);
         TreasuryPool = 0;
         return success;
     }
@@ -88,8 +81,23 @@ contract CLDPrivateSale {
     }
 
     function VerifyFundRecieval() public returns(bool success){
+        require(msg.sender == Owner);
+        require(FundsDeposited == false);
         require(ERC20(CLD).balanceOf(address(this)) == CLDAvailable);
         FundsDeposited = true;
+        return(success);
+    }
+
+    function AddEligible(address[] memory Addresses) public returns(bool success){
+        require(msg.sender == Owner);
+        require(EligibilityCompleted == false);
+
+        uint256 index = 0;
+        while(index < Addresses.length){
+            Eligibility[Addresses[index]] = true;
+            index++;
+        }
+        EligibilityCompleted = true;
         return(success);
     }
     
