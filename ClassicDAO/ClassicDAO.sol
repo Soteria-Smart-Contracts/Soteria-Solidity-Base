@@ -22,13 +22,13 @@ contract ClassicDAO {
 
     mapping(address => mapping (address => uint256)) public allowance;
     
-    constructor(uint256 _TokenCap, string memory _name, string memory _symbol, address _MultiSig){
+    constructor(uint256 _TokenCap, string memory _name, string memory _symbol){
     TokenCap = _TokenCap;
     totalSupply = 0;
     name = _name;
     symbol = _symbol;
     decimals = 18;
-    Mint(_MultiSig, _TokenCap);
+    Mint(msg.sender, _TokenCap);
     }
     
     
