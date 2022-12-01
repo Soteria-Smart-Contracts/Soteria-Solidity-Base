@@ -24,6 +24,8 @@ contract NFTRewardDistributor{
         NFTcontract = _NFTcontract;
     }
 
+    //
+
     
 }
 
