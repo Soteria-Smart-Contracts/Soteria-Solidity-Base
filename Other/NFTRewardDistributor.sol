@@ -29,7 +29,7 @@ contract NFTRewardDistributor{
     //Public functions
     function GetTotalUnclaimed() public view returns(uint256 TotalUnclaimed){
         uint256 TotalUnclaimed;
-        uint256[] Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
+        uint256[] memory Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
 
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
@@ -44,7 +44,7 @@ contract NFTRewardDistributor{
 
     function ClaimAllRewards() public returns(uint256 TotalReward){
         uint256 TotalUnclaimed;
-        uint256[] Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
+        uint256[] memory Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
 
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
