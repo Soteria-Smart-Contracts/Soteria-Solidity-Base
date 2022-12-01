@@ -11,6 +11,10 @@ contract NFTRewardDistributor{
     //Mapping, structs, enums and other declarations
     mapping(uint256 => uint256) LatestClaim;
 
+    struct {
+
+    }
+
     //On Deploy code to run (Constructor)
     constructor(address _NFTcontract){
         NFTcontract = _NFTcontract;
