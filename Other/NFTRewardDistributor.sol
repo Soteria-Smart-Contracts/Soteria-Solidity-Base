@@ -71,7 +71,7 @@ contract NFTRewardDistributor{
     }
 
     receive() external payable {
-        if
+        if(address(this))
 
     }
 }
