@@ -34,7 +34,7 @@ contract NFTRewardDistributor{
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
                 for(uint256 Instance = LatestClaim[Tokens[index]]++; Instance < RewardInstances.length;){
-                    TotalUnclaimed = (TotalUnclaimed + RewardInstances
+                    TotalUnclaimed = (TotalUnclaimed + RewardInstances[Instance]
                 }
             }
             LatestClaim[Tokens[index]] = (RewardInstances.length - 1);
