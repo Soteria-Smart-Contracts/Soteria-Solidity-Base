@@ -27,7 +27,7 @@ contract NFTRewardDistributor{
     }
 
     //Public functions
-    function GetTotalUnclaimed() public view returns(uint256 TotalUnclaimed){
+    function GetTotalUnclaimed() public view returns(uint256 Unclaimed){
         uint256 TotalUnclaimed;
         uint256[] memory Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
 
