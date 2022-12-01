@@ -39,6 +39,7 @@ contract NFTRewardDistributor{
             }
             LatestClaim[Tokens[index]] = (RewardInstances.length - 1);
         }
+        TotalEtherInRewards
     }
 
     function ClaimAllRewards() public returns(uint256 TotalReward){
