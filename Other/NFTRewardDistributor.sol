@@ -30,12 +30,11 @@ contract NFTRewardDistributor{
     //Internal functions
     function InitializeRewardInstance() internal{
         uint256 NewIdentifier = RewardInstances.length;
-        RewardInstance storage
 
         uint256 TotalEther = (address(this).balance - TotalEtherInRewards);
         uint256 EtherReward = (TotalEther / TotalTokens);
 
-        RewardInstance memory NewInstance = RewardInstance(NewIdentifier, TotalEther, EtherReward);
+        RewardInstance storage NewInstance = RewardInstance(NewIdentifier, TotalEther, EtherReward);
     }
 
     
