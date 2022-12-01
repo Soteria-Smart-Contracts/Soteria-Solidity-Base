@@ -8,8 +8,10 @@ contract NFTRewardDistributor{
     uint256 TotalTokens;
     address NFTcontract;
 
+    /
+
     //On Deploy code to run (Constructor)
     constructor(address _NFTcontract){
-        NFT
+        NFTcontract = _NFTcontract;
     }
 }
