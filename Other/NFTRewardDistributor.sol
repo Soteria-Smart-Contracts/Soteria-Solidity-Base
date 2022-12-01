@@ -12,6 +12,7 @@ contract NFTRewardDistributor{
     mapping(uint256 => uint256) LatestClaim;
 
     struct RewardInstance{
+        uint256 InstanceIdentifier;
         uint256 TotalEtherReceived;
         uint256 EtherReward;
         
