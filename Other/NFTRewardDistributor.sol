@@ -27,6 +27,9 @@ contract NFTRewardDistributor{
 
     //Public functions
 
+
+    
+
     //Internal functions
     function InitializeRewardInstance() internal{
         uint256 NewIdentifier = RewardInstances.length;
