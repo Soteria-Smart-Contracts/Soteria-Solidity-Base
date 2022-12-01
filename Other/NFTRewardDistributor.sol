@@ -28,5 +28,5 @@ contract NFTRewardDistributor{
 }
 
 interface ERC721{
-    function walletOfOwner
+    function walletOfOwner(address owner)
 }
