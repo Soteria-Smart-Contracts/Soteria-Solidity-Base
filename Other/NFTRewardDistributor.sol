@@ -23,4 +23,7 @@ contract NFTRewardDistributor{
     constructor(address _NFTcontract){
         NFTcontract = _NFTcontract;
     }
+
+    
 }
+
