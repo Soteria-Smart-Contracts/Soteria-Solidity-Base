@@ -11,8 +11,8 @@ contract NFTRewardDistributor{
     //Mapping, structs, enums and other declarations
     mapping(uint256 => uint256) LatestClaim;
 
-    struct {
-
+    struct RewardInstance{
+        uint256 Total
     }
 
     //On Deploy code to run (Constructor)
