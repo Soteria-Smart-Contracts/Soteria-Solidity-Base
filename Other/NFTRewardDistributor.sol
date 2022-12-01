@@ -37,7 +37,7 @@ contract NFTRewardDistributor{
 
                 }
             }
-            LatestClaim[Tokens[index]] = 
+            LatestClaim[Tokens[index]] = (RewardInstances.length - 1);
         }
     }
 
