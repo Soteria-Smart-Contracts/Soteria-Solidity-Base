@@ -37,10 +37,7 @@ contract NFTRewardDistributor{
                     TotalUnclaimed = (TotalUnclaimed + RewardInstances[Instance].EtherReward);
                 }
             }
-            LatestClaim[Tokens[index]] = (RewardInstances.length - 1);
         }
-        TotalEtherInRewards = (TotalEtherInRewards - TotalUnclaimed);
-
         return(TotalUnclaimed);
     }
 
