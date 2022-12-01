@@ -27,7 +27,9 @@ contract NFTRewardDistributor{
     }
 
     //Public functions
-    function GetTotalUnclaimed() public returns(uint256 TotalUnclaimed)
+    function GetTotalUnclaimed() public returns(uint256 TotalUnclaimed){
+        
+    }
 
     function ClaimAllRewards() public returns(uint256 TotalReward){
 
