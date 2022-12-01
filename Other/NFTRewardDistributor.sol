@@ -37,6 +37,7 @@ contract NFTRewardDistributor{
 
                 }
             }
+            LatestClaim
         }
     }
 
