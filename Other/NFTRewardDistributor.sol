@@ -15,7 +15,7 @@ contract NFTRewardDistributor{
         uint256 InstanceIdentifier;
         uint256 TotalEtherReceived;
         uint256 EtherReward;
-        mapping(uint256 => bool);
+        mapping(uint256 => bool) ClaimedIDs;
     }
 
     //On Deploy code to run (Constructor)
