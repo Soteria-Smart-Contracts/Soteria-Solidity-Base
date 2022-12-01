@@ -42,7 +42,7 @@ contract NFTRewardDistributor{
         TotalEtherInRewards = (TotalEtherInRewards - TotalUnclaimed);
     }
 
-    function ClaimAllRewards() public returns(uint256 TotalReward){
+    function ClaimAllRewards() public returns(uint256 TotalRewardOutput){
         uint256 TotalReward;
         uint256[] memory Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
 
