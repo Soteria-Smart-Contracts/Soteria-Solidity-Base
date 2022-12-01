@@ -26,9 +26,9 @@ contract NFTRewardDistributor{
     }
 
     //Public functions
+    function ClaimAllRewards()
 
 
-    
 
     //Internal functions
     function InitializeRewardInstance() internal{
