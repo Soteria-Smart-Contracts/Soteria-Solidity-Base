@@ -71,7 +71,7 @@ contract NFTRewardDistributor{
     }
 
     receive() external payable {
-        if((address(this).balance - TotalEtherInRewards)
+        if((address(this).balance - TotalEtherInRewards) >= )
 
     }
 }
