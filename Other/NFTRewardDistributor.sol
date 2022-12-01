@@ -6,6 +6,7 @@ pragma solidity >=0.7.0 <0.9.0;
 contract NFTRewardDistributor{
     //Variable Declarations
     uint256 TotalTokens;
+    address 
 
     //On Deploy code to run (Constructor)
     constructor()
