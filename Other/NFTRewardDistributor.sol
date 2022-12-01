@@ -27,3 +27,6 @@ contract NFTRewardDistributor{
     
 }
 
+interface ERC721{
+    function walletOfOwner
+}
