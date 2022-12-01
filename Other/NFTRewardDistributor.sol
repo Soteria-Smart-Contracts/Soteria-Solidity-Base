@@ -70,6 +70,7 @@ contract NFTRewardDistributor{
 
     receive{
         
+
     }
 }
 
