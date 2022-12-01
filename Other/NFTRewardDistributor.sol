@@ -31,7 +31,7 @@ contract NFTRewardDistributor{
         uint256 TotalUnclaimed;
         uint256[] Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
         for(uint256 index; index < Tokens.length; index++){
-            for()
+            for(uint256 )
         }
     }
 
