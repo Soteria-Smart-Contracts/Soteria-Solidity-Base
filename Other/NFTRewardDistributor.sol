@@ -15,7 +15,7 @@ contract NFTRewardDistributor{
 
     struct RewardInstance{
         uint256 InstanceIdentifier;
-        uint256 TotalEtherReceived;
+        uint256 TotalEther;
         uint256 EtherReward;
         mapping(uint256 => bool) ClaimedIDs;
     }
@@ -31,7 +31,7 @@ contract NFTRewardDistributor{
     function InitializeRewardInstance() internal{
         NewIdentifier = RewardInstances.length;
         uint256 TotalEther = (address(this).balance - TotalEtherInRewards);
-        uint256 EtherReward
+        uint256 EtherReward = 
 
         RewardInstance NewInstance = RewardInstance(NewIdentifier, TotalEther, )
     }
