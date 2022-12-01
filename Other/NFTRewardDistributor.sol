@@ -41,7 +41,7 @@ contract NFTRewardDistributor{
         }
         TotalEtherInRewards = (TotalEtherInRewards - TotalUnclaimed);
 
-        return(TotalUnclaimed)
+        return(TotalUnclaimed);
     }
 
     function ClaimAllRewards() public returns(uint256 TotalRewardOutput){
