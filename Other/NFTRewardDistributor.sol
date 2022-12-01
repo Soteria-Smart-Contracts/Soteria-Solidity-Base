@@ -21,8 +21,9 @@ contract NFTRewardDistributor{
     }
 
     //On Deploy code to run (Constructor)
-    constructor(address _NFTcontract, uint256 _MinReward){
+    constructor(address _NFTcontract, uint256 _MinimumToReward){
         NFTcontract = _NFTcontract;
+        
         TotalTokens = ERC721(NFTcontract).maxSupply();
     }
 
