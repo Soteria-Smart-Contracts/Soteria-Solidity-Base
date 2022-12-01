@@ -35,7 +35,7 @@ contract NFTRewardDistributor{
         uint256 EtherReward = (TotalEther / TotalTokens);
 
         RewardInstance memory NewInstance = RewardInstance(NewIdentifier, TotalEther, EtherReward);
-        NewInstance
+        RewardInstances.push(NewInstance);
     }
 
     
