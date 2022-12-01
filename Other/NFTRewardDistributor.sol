@@ -72,9 +72,8 @@ contract NFTRewardDistributor{
 
     receive() external payable {
         if((address(this).balance - TotalEtherInRewards) >= MinimumToReward){
-            
+            InitializeRewardInstance();
         }
-
     }
 }
 
