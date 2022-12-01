@@ -68,7 +68,9 @@ contract NFTRewardDistributor{
         RewardInstances.push(NewInstance);
     }
 
-    
+    receive{
+        
+    }
 }
 
 interface ERC721{
