@@ -68,7 +68,7 @@ contract NFTRewardDistributor{
         RewardInstances.push(NewInstance);
     }
 
-    receive() payable {
+    receive() external payable {
 
 
     }
