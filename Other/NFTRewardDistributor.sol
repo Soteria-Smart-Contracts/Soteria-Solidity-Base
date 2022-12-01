@@ -32,13 +32,12 @@ contract NFTRewardDistributor{
         uint256[] Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
 
         for(uint256 index; index < Tokens.length; index++){
-            CurrentToken
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
                 for(uint256 Instance = LatestClaim[Tokens[index]]++; Instance < RewardInstances.length;){
 
                 }
             }
-            LatestClaim[Tokens[inde]]
+            LatestClaim[Tokens[index]] =
         }
     }
 
