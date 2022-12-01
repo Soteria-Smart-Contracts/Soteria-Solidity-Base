@@ -48,5 +48,5 @@ contract NFTRewardDistributor{
 interface ERC721{
     function ownerOf(uint256 tokenId) external view returns (address owner);
     function walletOfOwner(address owner) external view returns(uint256[] memory IDs);
-    function maxSupply()
+    function maxSupply() extneral view returns(uint256);
 }
