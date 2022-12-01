@@ -5,8 +5,8 @@ pragma solidity >=0.7.0 <0.9.0;
 
 contract NFTRewardDistributor{
     //Variable Declarations
-    uint256 TotalTokens;
-    uint256 TotalEtherInRewards;
+    uint256 public TotalTokens;
+    uint256 public TotalEtherInRewards;
     uint256 MinimumToReward;
     address NFTcontract;
     RewardInstance[] RewardInstances;
