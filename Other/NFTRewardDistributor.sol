@@ -28,6 +28,7 @@ contract NFTRewardDistributor{
     //Public functions
 
     //Internal functions
+    function 
 
     
 }
