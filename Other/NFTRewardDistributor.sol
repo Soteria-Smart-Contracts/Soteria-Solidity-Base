@@ -33,8 +33,15 @@ contract NFTRewardDistributor{
         uint256[] memory Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
 
         for(uint256 index; index < Tokens.length; index++){
-            if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
-                for(uint256 Instance = (LatestClaim[Tokens[index]] + 1); Instance < RewardInstances.length;){
+            if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1) || LatestClaim[Tokens[index]] == 0){
+                uint256 Instance;
+                if(LatestClaim[Tokens[index]] == 0){
+                    Instance = 0;
+                }
+                else{
+                    Instance = LatestClaim[Tokens[index]] + 1;
+                }
+                for(Instance; Instance < RewardInstances.length; Instance++){
                     TotalUnclaimed = (TotalUnclaimed + RewardInstances[Instance].EtherReward);
                 }
             }
@@ -42,21 +49,30 @@ contract NFTRewardDistributor{
         return(TotalUnclaimed);
     }
 
-    function ClaimAllRewards() public returns(uint256 TotalRewardOutput){
+    function ClaimAllRewards() public returns(uint256 TotalRewardOutput, uint256 len){
         uint256 TotalReward;
         uint256[] memory Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
 
         for(uint256 index; index < Tokens.length; index++){
-            if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
-                for(uint256 Instance = (LatestClaim[Tokens[index]] + 1); Instance < RewardInstances.length;){
+            if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1) || LatestClaim[Tokens[index]] == 0){
+                uint256 Instance;
+                if(LatestClaim[Tokens[index]] == 0){
+                    Instance = 0;
+                }
+                else{
+                    Instance = LatestClaim[Tokens[index]] + 1;
+                }
+                for(Instance; Instance < RewardInstances.length; Instance++){
                     TotalReward = (TotalReward + RewardInstances[Instance].EtherReward);
                 }
             }
             LatestClaim[Tokens[index]] = (RewardInstances.length - 1);
         }
-        TotalEtherInRewards = (TotalEtherInRewards - TotalReward);
 
-        return(TotalReward);
+        TotalEtherInRewards = (TotalEtherInRewards - TotalReward);
+        (payable(msg.sender)).transfer(TotalReward);
+
+        return(TotalReward, len);
     }
 
     //Internal functions
@@ -68,6 +84,7 @@ contract NFTRewardDistributor{
 
         RewardInstance memory NewInstance = RewardInstance(NewIdentifier, TotalEther, EtherReward);
         RewardInstances.push(NewInstance);
+        TotalEtherInRewards = TotalEtherInRewards + msg.value;
     }
 
     receive() external payable {
