@@ -12,7 +12,6 @@ contract NFTRewardDistributor{
 
     //Mapping, structs, enums and other declarations
     mapping(uint256 => uint256) LatestClaim;
-    mapping(uint256 => mapping(uint256 => bool)) ClaimedIDs;
 
     struct RewardInstance{
         uint256 InstanceIdentifier;
@@ -48,7 +47,6 @@ contract NFTRewardDistributor{
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
                 for(uint256 Instance = (LatestClaim[Tokens[index]] + 1); Instance < RewardInstances.length;){
-                    ClaimedIDs[Tokens[index]][Instance] = true;
                     TotalReward = (TotalReward + RewardInstances[Instance].EtherReward);
                 }
             }
