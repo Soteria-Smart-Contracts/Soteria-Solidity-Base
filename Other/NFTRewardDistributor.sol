@@ -37,7 +37,7 @@ contract NFTRewardDistributor{
 
                 }
             }
-            LatestClaim
+            LatestClaim[Tokens[inde]]
         }
     }
 
