@@ -7,12 +7,12 @@ contract NFTRewardDistributor{
     //Variable Declarations
     uint256 public TotalTokens;
     uint256 public TotalEtherInRewards;
-    uint256 MinimumToReward;
-    address NFTcontract;
-    RewardInstance[] RewardInstances;
+    uint256 public MinimumToReward;
+    address public NFTcontract;
+    RewardInstance[] public RewardInstances;
 
     //Mapping, structs, enums and other declarations
-    mapping(uint256 => uint256) LatestClaim;
+    mapping(uint256 => uint256) public LatestClaim;
 
     struct RewardInstance{
         uint256 InstanceIdentifier;
