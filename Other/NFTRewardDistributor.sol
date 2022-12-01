@@ -8,7 +8,8 @@ contract NFTRewardDistributor{
     uint256 TotalTokens;
     address NFTcontract;
 
-    /
+    //Mapping, structs, enums and other declarations
+    mapping
 
     //On Deploy code to run (Constructor)
     constructor(address _NFTcontract){
