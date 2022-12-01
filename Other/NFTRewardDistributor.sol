@@ -9,7 +9,7 @@ contract NFTRewardDistributor{
     address NFTcontract;
 
     //Mapping, structs, enums and other declarations
-    mapping
+    mapping(uint256 => uint256)
 
     //On Deploy code to run (Constructor)
     constructor(address _NFTcontract){
