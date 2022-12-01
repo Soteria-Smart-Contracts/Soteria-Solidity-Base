@@ -30,6 +30,7 @@ contract NFTRewardDistributor{
     //Internal functions
     function InitializeRewardInstance() internal{
         NewIdentifier = RewardInstances.length;
+        TotalEther
         RewardInstance NewInstance = RewardInstance(NewIdentifier, )
     }
 
