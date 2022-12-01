@@ -48,7 +48,7 @@ contract NFTRewardDistributor{
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1)){
                 for(uint256 Instance = (LatestClaim[Tokens[index]] + 1); Instance < RewardInstances.length;){
-                    ClaimedIDs
+                    ClaimedIDs[Tokens[index]][]
                     TotalReward = (TotalReward + RewardInstances[Instance].EtherReward);
                 }
             }
