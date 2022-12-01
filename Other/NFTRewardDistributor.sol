@@ -9,5 +9,7 @@ contract NFTRewardDistributor{
     address NFTcontract;
 
     //On Deploy code to run (Constructor)
-    constructor(address _NFTcontract)
+    constructor(address _NFTcontract){
+        NFT
+    }
 }
