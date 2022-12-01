@@ -7,6 +7,7 @@ contract NFTRewardDistributor{
     //Variable Declarations
     uint256 TotalTokens;
     uint256 TotalEtherInRewards;
+    uint256 MinimumToReward;
     address NFTcontract;
     RewardInstance[] RewardInstances;
 
