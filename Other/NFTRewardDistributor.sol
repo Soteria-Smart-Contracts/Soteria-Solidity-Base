@@ -13,7 +13,7 @@ contract NFTRewardDistributor{
 
     struct RewardInstance{
         uint256 TotalEtherReceived;
-        uint256 Total
+        uint256 ETCreward;
     }
 
     //On Deploy code to run (Constructor)
