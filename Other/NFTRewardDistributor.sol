@@ -7,6 +7,7 @@ contract NFTRewardDistributor{
     //Variable Declarations
     uint256 TotalTokens;
     address NFTcontract;
+    Reward
 
     //Mapping, structs, enums and other declarations
     mapping(uint256 => uint256) LatestClaim;
