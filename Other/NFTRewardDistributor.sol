@@ -7,5 +7,6 @@ contract NFTRewardDistributor{
     //Variable Declarations
     uint256 TotalTokens;
 
-    
+    //On Deploy code to run (Constructor)
+    constructor()
 }
