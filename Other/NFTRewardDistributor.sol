@@ -23,6 +23,7 @@ contract NFTRewardDistributor{
     //On Deploy code to run (Constructor)
     constructor(address _NFTcontract){
         NFTcontract = _NFTcontract;
+        TotalTokens = 
     }
 
     //Public functions
