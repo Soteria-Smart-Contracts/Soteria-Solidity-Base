@@ -79,7 +79,7 @@ contract NFTRewardDistributor{
         TotalEtherInRewards = (TotalEtherInRewards - TotalReward);
         (payable(msg.sender)).transfer(TotalReward);
 
-        emit ClaimAllRewards();
+        emit ClaimAllRewards(TotalReward, msg.sender);
         return(TotalReward, len);
     }
 
