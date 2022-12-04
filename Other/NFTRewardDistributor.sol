@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 //This contract uses ERC721 tokens to verify the ownership of rewards before transfer
 //Created by SoteriaSC for ShibaClassic/ClassicDawgs but is open-source
+//The code is the documentation ♥
 pragma solidity >=0.7.0 <0.9.0;
 
 contract NFTRewardDistributor{
@@ -13,6 +14,10 @@ contract NFTRewardDistributor{
 
     //Mapping, structs, enums and other declarations
     mapping(uint256 => uint256) public LatestClaim;
+    mapping(uint256 => bool) internal FirstClaimComplete;
+
+    event ClaimedAllRewards(uint256 TotalReward, address User);
+    event NewInstanceCreated(RewardInstance NewInstanceDetails);
 
     struct RewardInstance{
         uint256 InstanceIdentifier;
@@ -35,7 +40,7 @@ contract NFTRewardDistributor{
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1) || LatestClaim[Tokens[index]] == 0){
                 uint256 Instance;
-                if(LatestClaim[Tokens[index]] == 0){
+                if(FirstClaimComplete[Tokens[index]] == false){
                     Instance = 0;
                 }
                 else{
@@ -56,8 +61,9 @@ contract NFTRewardDistributor{
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1) || LatestClaim[Tokens[index]] == 0){
                 uint256 Instance;
-                if(LatestClaim[Tokens[index]] == 0){
+                if(FirstClaimComplete[Tokens[index]] == false){
                     Instance = 0;
+                    FirstClaimComplete[Tokens[index]] = true;
                 }
                 else{
                     Instance = LatestClaim[Tokens[index]] + 1;
@@ -69,6 +75,7 @@ contract NFTRewardDistributor{
             LatestClaim[Tokens[index]] = (RewardInstances.length - 1);
         }
 
+        require(TotalReward > 1 wei, "You do not have any ETC to claim!");
         TotalEtherInRewards = (TotalEtherInRewards - TotalReward);
         (payable(msg.sender)).transfer(TotalReward);
 
