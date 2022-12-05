@@ -4,7 +4,9 @@
 //The code is the documentation ♥
 pragma solidity >=0.7.0 <0.9.0;
 
-contract NFTRewardDistributor{
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol";
+
+contract NFTRewardDistributor is ReentrancyGuard{
     //Variable Declarations
     uint256 public TotalTokens;
     uint256 public TotalEtherInRewards;
@@ -14,6 +16,7 @@ contract NFTRewardDistributor{
 
     //Mapping, structs, enums and other declarations
     mapping(uint256 => uint256) public LatestClaim;
+    mapping(address => uint256) public UserTotalClaimed;
     mapping(uint256 => bool) internal FirstClaimComplete;
 
     event ClaimedAllRewards(uint256 TotalReward, address User);
@@ -54,9 +57,10 @@ contract NFTRewardDistributor{
         return(TotalUnclaimed);
     }
 
-    function ClaimAllRewards() public returns(uint256 TotalRewardOutput, uint256 len){
+    function ClaimAllRewards() public nonReentrant returns(uint256 TotalRewardOutput, uint256 len){
         uint256 TotalReward;
         uint256[] memory Tokens = ERC721(NFTcontract).walletOfOwner(msg.sender);
+        require(Tokens.length > 0, "You do not own any rewardable NFTs");
 
         for(uint256 index; index < Tokens.length; index++){
             if(LatestClaim[Tokens[index]] != (RewardInstances.length - 1) || LatestClaim[Tokens[index]] == 0){
@@ -77,6 +81,7 @@ contract NFTRewardDistributor{
 
         require(TotalReward > 1 wei, "You do not have any ETC to claim!");
         TotalEtherInRewards = (TotalEtherInRewards - TotalReward);
+        UserTotalClaimed[msg.sender] = UserTotalClaimed[msg.sender] + TotalReward;
         (payable(msg.sender)).transfer(TotalReward);
 
         emit ClaimedAllRewards(TotalReward, msg.sender);
