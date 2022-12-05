@@ -2,7 +2,7 @@
 //This contract uses ERC721 tokens to verify the ownership of rewards before transfer
 //Created by SoteriaSC for ShibaClassic/ClassicDawgs but is open-source
 //The code is the documentation ♥
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity ^0.8.17;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol";
 
