@@ -44,7 +44,7 @@ contract LockedStaking{
 
         uint256 NewLockID = UserLocks[msg.sender].length;
         uint256 AmountOnWithdraw = ((amount * LockTypeMultiplier[Type]) / 10000) + amount;
-        require(GetACEAvailable() >= amount);
+        require(GetACEAvailable() >= AmountOnWithdraw);
         uint256 Expiration = (block.timestamp + LockTypeTime[Type]);
         Lock memory NewLock = Lock(NewLockID, msg.sender, Type, amount, AmountOnWithdraw, Expiration);
 
