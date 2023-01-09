@@ -87,7 +87,7 @@ contract LockedStaking{
         }
     }
 
-    function GetACEAvailable() public view returns
+    function GetACEAvailable() public view returns()
 
     function GetActiveUserLocks(address User) public view returns(uint256 Number){
         return(UserLocks[User].length);
