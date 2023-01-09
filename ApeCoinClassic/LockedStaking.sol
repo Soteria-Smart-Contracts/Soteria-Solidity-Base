@@ -17,8 +17,8 @@ contract LockedStaking{
         Operator = msg.sender;
         LockTypeTime[1] = 15780000;//6 Months
         LockTypeTime[2] = 28930000;//11 Months
-        LockTypeMultiplier[1] = 1000;
-        LockTypeMultiplier[2] = 2250;
+        LockTypeMultiplier[1] = 1000;//10%
+        LockTypeMultiplier[2] = 2250;//22.5%
     }
     //Lock Types:
     //6M 10% 
