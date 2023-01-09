@@ -38,7 +38,7 @@ contract LockedStaking{
     //Public Functions
     function CreateLock(uint8 Type, uint256 amount) public returns(bool success){
         require(amount >= 1000000000000000000, "The minimum deposit for staking is 1 ACE");
-        require(ERC20(ACE).transferFrom(msg.sender, address(this), amount), "You do not have enough ACE to stake this amount");
+        require(ERC20(ACE).transferFrom(msg.sender, address(this), amount), "Unable to transfer ACE to the contract, may be due to ");
         require((ActiveLocks[msg.sender] + 1) <= 3);
         require(Type != 0 && Type <= 2);
 
