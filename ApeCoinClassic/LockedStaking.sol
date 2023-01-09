@@ -62,8 +62,8 @@ contract LockedStaking{
         require(UserLocks[msg.sender][ID].Type != 66);
         uint256 amount = UserLocks[msg.sender][ID].WithdrawAmount;
 
-        TotalDeposits = TotalDeposits - UserLocks[msg.sender][ID].DepositAmount;
-        TotalToBeWithdrawn 
+        TotalDeposits -= TotalDeposits - UserLocks[msg.sender][ID].DepositAmount;
+        TotalToBeWithdrawn -=
         UserLocks[msg.sender][ID].Type = 66;
         UserLocks[msg.sender][ID].User = address(0);
         UserLocks[msg.sender][ID].DepositAmount = 0;
