@@ -15,7 +15,7 @@ contract LockedStaking{
     constructor(address _ACE){
         ACE = _ACE; 
         Operator = msg.sender;
-        LockTypeTime[1] = 2592000;//30 Days 2592000
+        LockTypeTime[1] = 15780000;//30 Days 2592000
         LockTypeTime[2] = 2592000;
         LockTypeMultiplier[1] = 1000;
         LockTypeMultiplier[2] = 2250;
