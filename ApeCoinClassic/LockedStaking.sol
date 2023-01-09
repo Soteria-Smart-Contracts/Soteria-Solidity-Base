@@ -6,7 +6,7 @@ contract LockedStaking{
     address ACE;
     address Operator;
     uint256 public TotalDeposits;
-    
+
     //Array for each person
     mapping(address => Lock[]) public UserLocks;
     mapping(address => uint256) public ActiveLocks;
@@ -39,7 +39,6 @@ contract LockedStaking{
     function CreateLock(uint8 Type, uint256 amount) public returns(bool success){
         require(amount >= 1000000000000000000, "The minimum deposit for staking is 1 ACE");
         require(ERC20(ACE).balanceOf(msg.sender) >= amount, "You do not have enough ACE to stake this amount");
-        require(ERC20(ACE).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
         require((ActiveLocks[msg.sender] + 1) <= 3);
         require(Type != 0 && Type <= 2);
 
@@ -47,8 +46,6 @@ contract LockedStaking{
         uint256 AmountOnWithdraw = ((amount * LockTypeMultiplier[Type]) / 10000) + amount;
         uint256 Expiration = (block.timestamp + LockTypeTime[Type]);
         Lock memory NewLock = Lock(NewLockID, msg.sender, Type, amount, AmountOnWithdraw, Expiration);
-
-        ERC20(ACE).transferFrom(msg.sender, address(this), amount);
 
         ActiveLocks[msg.sender] = ActiveLocks[msg.sender] + 1;
         UserLocks[msg.sender].push(NewLock);
