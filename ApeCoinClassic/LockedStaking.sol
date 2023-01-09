@@ -51,8 +51,8 @@ contract LockedStaking{
 
         ActiveLocks[msg.sender] = ActiveLocks[msg.sender] + 1;
         UserLocks[msg.sender].push(NewLock);
-        TotalDeposits = TotalDeposits + amount;
-        TotalToBeWithdrawn = AmountOnWithdraw 
+        TotalDeposits += TotalDeposits + amount;
+        TotalToBeWithdrawn += AmountOnWithdraw;
 
         return(success);
     }
