@@ -21,7 +21,7 @@ contract LockedStaking{
         LockTypeMultiplier[2] = 320;
     }
     //Lock Types:
-    //6M 10% Reg 25% WL (5 and 6)
+    //6M 10% 
     //11M 22.5% 
 
     struct Lock{
