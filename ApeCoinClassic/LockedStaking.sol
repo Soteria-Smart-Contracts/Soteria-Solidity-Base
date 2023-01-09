@@ -60,9 +60,6 @@ contract LockedStaking{
         require(UserLocks[msg.sender][ID].Expiration <= block.timestamp, "This lock has not acheived its maturity date yet");
         require(UserLocks[msg.sender][ID].Type != 66);
         uint256 amount = UserLocks[msg.sender][ID].WithdrawAmount;
-        if(((ERC20(ACE).balanceOf(address(this)) - (UserLocks[msg.sender][ID].WithdrawAmount - UserLocks[msg.sender][ID].DepositAmount)) <= TotalDeposits)){ //This exists as protection in the case that the contract has not been refilled with ACE in time
-             amount = UserLocks[msg.sender][ID].DepositAmount; 
-        }
 
         TotalDeposits = TotalDeposits - UserLocks[msg.sender][ID].DepositAmount;
         UserLocks[msg.sender][ID].Type = 66;
