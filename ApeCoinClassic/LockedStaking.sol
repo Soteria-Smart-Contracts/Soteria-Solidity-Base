@@ -41,7 +41,6 @@ contract LockedStaking{
         require(ERC20(ACE).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
         require((ActiveLocks[msg.sender] + 1) <= 3);
 
-
         uint256 NewLockID = UserLocks[msg.sender].length;
         uint256 AmountOnWithdraw = ((amount * LockTypeMultiplier[Type]) / 10000) + amount;
         uint256 Expiration = (block.timestamp + LockTypeTime[Type]);
