@@ -58,7 +58,7 @@ contract LockedStaking{
 
     function ClaimLock(uint256 ID) public returns(bool success){
         require(UserLocks[msg.sender][ID].Expiration <= block.timestamp, "This lock has not acheived its maturity date yet");
-        if(UserLocks[msg.sender][ID].Type == 66){
+        require(UserLocks[msg.sender][ID].Type =! 66){
             revert("This lock has already been claimed");
         }
         uint256 amount = UserLocks[msg.sender][ID].WithdrawAmount;
