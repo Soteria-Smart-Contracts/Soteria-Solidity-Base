@@ -82,22 +82,7 @@ contract LockedStaking{
     }
 
     //Internal Functions
-    
 
-    //Owner Only Functions
-
-    function AddEligible(address[] memory Addresses) public returns(bool success){
-        require(msg.sender == Operator);
-        require(PreSaleListCompleted == false);
-
-        uint256 index = 0;
-        while(index < Addresses.length){
-            PreSaleUser[Addresses[index]] = true;
-            index++;
-        }
-        PreSaleListCompleted = true;
-        return(success);
-    }
 
     //Informatical View Functions
 
