@@ -22,7 +22,7 @@ contract LockedStaking{
     }
     //Lock Types:
     //6M 10% Reg 25% WL (5 and 6)
-    //11M 50% Reg 63% WL (7 and 8)
+    //11M 22.5% 
 
     struct Lock{
         uint256 ID;
