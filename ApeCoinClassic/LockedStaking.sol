@@ -55,9 +55,6 @@ contract LockedStaking{
         require(ERC20(ACE).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
         require((ActiveLocks[msg.sender] + 1) <= 3);
 
-        if(Type == 2 || Type == 4 || Type == 6 || Type == 8){
-            require(PreSaleUser[msg.sender] == true, "Cannot use this lock type because you are not a Pre Sale participant");
-        }
 
         uint256 NewLockID = UserLocks[msg.sender].length;
         uint256 AmountOnWithdraw = ((amount * LockTypeMultiplier[Type]) / 10000) + amount;
