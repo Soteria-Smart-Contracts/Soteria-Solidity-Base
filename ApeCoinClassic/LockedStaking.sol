@@ -6,12 +6,9 @@ contract LockedStaking{
     address ACE;
     address Operator;
     uint256 public TotalDeposits;
-    bool PreSaleListCompleted = false;
-
     //Array for each person
     mapping(address => Lock[]) public UserLocks;
     mapping(address => uint256) public ActiveLocks;
-    mapping(address => bool) public PreSaleUser;
     mapping(uint8 => uint256) LockTypeTime;
     mapping(uint8 => uint256) LockTypeMultiplier;
 
