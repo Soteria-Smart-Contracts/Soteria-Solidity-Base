@@ -81,9 +81,6 @@ contract LockedStaking{
         return(success);
     }
 
-    //Internal Functions
-
-
     //Informatical View Functions
 
     function GetDaysLeft(address User, uint256 ID) public view returns(uint256 Days){
