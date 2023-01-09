@@ -6,7 +6,7 @@ contract LockedStaking{
     address ACE;
     address Operator;
     uint256 public TotalDeposits;
-    uint256 public Total
+    uint256 public TotalToBeWithdrawn;
 
     //Array for each person
     mapping(address => Lock[]) public UserLocks;
