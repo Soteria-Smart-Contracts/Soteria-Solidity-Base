@@ -78,6 +78,8 @@ contract LockedStaking{
         return(((UserLocks[User][ID].Expiration - block.timestamp) / 86400));
     }
 
+    function 
+
     function GetTimeLeft(address User, uint256 ID) public view returns(uint256 Seconds){
         if(UserLocks[User][ID].Expiration > block.timestamp){
         return((UserLocks[User][ID].Expiration - block.timestamp));
