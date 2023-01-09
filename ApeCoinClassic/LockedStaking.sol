@@ -76,9 +76,7 @@ contract LockedStaking{
 
     function GetDaysLeft(address User, uint256 ID) public view returns(uint256 Days){
         return(((UserLocks[User][ID].Expiration - block.timestamp) / 86400));
-    }
-
-    function 
+    } 
 
     function GetTimeLeft(address User, uint256 ID) public view returns(uint256 Seconds){
         if(UserLocks[User][ID].Expiration > block.timestamp){
@@ -88,6 +86,8 @@ contract LockedStaking{
             revert("This Lock has Expired already");
         }
     }
+
+    function 
 
     function GetActiveUserLocks(address User) public view returns(uint256 Number){
         return(UserLocks[User].length);
