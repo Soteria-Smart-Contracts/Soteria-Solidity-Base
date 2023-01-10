@@ -93,7 +93,7 @@ contract LockedStaking{
     }
 
     function GetTKNAvailable() public view returns(uint256 Available){
-        return(ERC20(TKN).balanceOf(address(this)) - TotalDeposits);
+        return(ERC20(TKN).balanceOf(address(this)) - TotalToBeWithdrawn);
     }
 
     function GetActiveUserLocks(address User) public view returns(uint256 Number){
