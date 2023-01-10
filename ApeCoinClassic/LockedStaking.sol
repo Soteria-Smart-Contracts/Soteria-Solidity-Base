@@ -18,7 +18,7 @@ contract LockedStaking{
         ACE = _ACE; 
         Operator = msg.sender;
         LockTypeTime[1] = 60;//6 Months
-        LockTypeTime[2] = 30;//11 Months
+        LockTypeTime[2] = 60;//11 Months
         LockTypeMultiplier[1] = 1000;//10%
         LockTypeMultiplier[2] = 2250;//22.5%
     }
