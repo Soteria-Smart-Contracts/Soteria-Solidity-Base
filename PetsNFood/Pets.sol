@@ -14,7 +14,6 @@ contract Pets is ERC721Enumerable, Ownable {
   uint256 public maxSupply = 1000; 
   uint256 public maxMintAmount = 50; 
   bool public paused = false;
-  bool public revealed = true;
 
   //Minting Protocol based on Fisher-Yates Shuffle using mapping instead of array
   mapping(uint256 => uint256) public UnMinted;
