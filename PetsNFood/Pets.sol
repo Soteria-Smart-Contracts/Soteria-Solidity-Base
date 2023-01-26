@@ -10,8 +10,8 @@ contract Pets is ERC721Enumerable, Ownable {
 
   string baseURI;
   string public baseExtension = ".json";
-  uint256 public cost = 50000000000000000;
-  uint256 public maxSupply = 4444; 
+  uint256 public cost = 1000000000000000; //Change Before Official Deploy
+  uint256 public maxSupply = 1000; 
   uint256 public maxMintAmount = 50; 
   bool public paused = false;
   bool public revealed = true;
@@ -20,7 +20,7 @@ contract Pets is ERC721Enumerable, Ownable {
 
   //Minting Protocol based on Fisher-Yates Shuffle using mapping instead of array
   mapping(uint256 => uint256) public UnMinted;
-  uint256 public MaxUnMinted = 4444; //If this we're an array, this would be the equivalent of UnMinted.length
+  uint256 public MaxUnMinted = 1000; //If this we're an array, this would be the equivalent of UnMinted.length
 
 
   constructor(
