@@ -92,7 +92,7 @@ contract LockedStaking{
     }
 
     function GetACEAvailable() public view returns(uint256 Available){
-        return(ERC20(ACE).balanceOf(address(this)) - TotalDeposits);
+        return(ERC20(ACE).balanceOf(address(this)) - TotalToBeWithdrawn);
     }
 
     function GetActiveUserLocks(address User) public view returns(uint256 Number){
