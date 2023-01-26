@@ -128,7 +128,7 @@ contract Pets is ERC721Enumerable, Ownable {
     transferOwnership(newOwner);
   }
 
-  function _generateRandom(uint256 num) public view returns (uint256)
+  function _generateRandom(uint256 num) internal view returns (uint256)
   {
        uint256 random;
         
