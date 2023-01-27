@@ -23,7 +23,7 @@ contract UnnamedStake{
 
     //Stake pet with up to 10 food
     function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){ //TODO: TEST
-        require(condition);
+        require(FoodIDs.length <= 10);
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
         
         uint256 index = 0;
