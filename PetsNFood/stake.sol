@@ -61,6 +61,8 @@ contract UnnamedStake{
         }
 
         StakePetWithFood(PetID, FoodsToSubmit);
+
+        return(success);
     }
 
 
