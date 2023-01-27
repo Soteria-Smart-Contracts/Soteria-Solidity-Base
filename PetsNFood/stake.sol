@@ -13,7 +13,8 @@ contract UnnamedStake{
     mapping(uint256 => PetStake) public PetStakes; //TODO: TEST
 
     struct PetStake{
-        uint256 PetID;
+        bool Staked;
+        address Staker;
         uint256 FoodStaked;
         uint256[] FoodIDs; //List of all food IDs staked with this pet
         uint256 ROIPerSecond; //Tokens returned per second
