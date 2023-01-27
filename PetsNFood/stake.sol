@@ -19,7 +19,9 @@ contract UnnamedStake{
         require(ERC721(Pets).transferFrom(msg.sender, address(this), PetID), 'Unable to transfer PET token, check allowance');
 
         
-
+        
+        
+        return(success)
     }
 
     function StakePetWithAllFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
