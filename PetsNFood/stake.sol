@@ -52,7 +52,8 @@ contract UnnamedStake{
 
     function StakePetWithMaxFood(uint256 PetID) public returns(bool success){
         require(ERC721(Food).balanceOf(msg.sender) > 0);
-        uint256[] AllFoods = ERC721(Food).
+        uint256[] AllFoods = ERC721(Food).walletOfOwner(msg.sender);
+        
 
     }
 
