@@ -57,6 +57,7 @@ contract UnnamedStake{
 
         uint256 index;
         while(index < ERC721(Food).balanceOf(msg.sender) || index < 10){
+            FoodsToSubmit
 
         }
 
