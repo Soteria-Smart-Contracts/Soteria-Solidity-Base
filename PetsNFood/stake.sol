@@ -16,7 +16,7 @@ contract UnnamedStake{
     }
 
     function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-        require(ERC721.transferFrom(msg.sender, address(this), tokenId););
+        require(ERC721.transferFrom(msg.sender, address(this), PetID));
 
     }
 
