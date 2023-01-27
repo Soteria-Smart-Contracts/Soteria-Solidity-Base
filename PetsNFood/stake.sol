@@ -55,6 +55,8 @@ contract UnnamedStake{
         uint256[] memory AllFoods = ERC721(Food).walletOfOwner(msg.sender);
         uint256[] memory FoodsToSubmit;
 
+        if(ERC721(Food).balanceOf(msg.sender))
+
         uint256 index;
         while(index < ERC721(Food).balanceOf(msg.sender) || index < 10){
             FoodsToSubmit[index] = AllFoods[index];
