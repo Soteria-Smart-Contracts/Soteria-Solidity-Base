@@ -17,7 +17,7 @@ contract UnnamedStake{
         uint256 FoodStaked;
         uint256[] FoodIDs; //List of all food IDs staked with this pet
         uint256 ROIPerSecond; //Tokens returned per second
-        uint256 LastPayout;
+        uint256 LastPayout; //Last time this stake was claimed
     }
 
     function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){ //TODO: TEST
