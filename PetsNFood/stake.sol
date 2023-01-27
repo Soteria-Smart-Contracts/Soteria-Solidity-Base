@@ -83,8 +83,6 @@ contract LinuxPetStake{
             index++;
         }
 
-
-
     }
 
     function ClaimRewards(uint256 PetID) public returns(bool success, uint256 Payout){ //TODO: TEST
