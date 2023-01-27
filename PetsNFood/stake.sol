@@ -70,11 +70,9 @@ contract UnnamedStake{
         return(success);
     }
 
-    function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-        require(PetStakes[PetID].Staked == true);
-
-        
-    }
+    // function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
+    //     require(PetStakes[PetID].Staked == true);
+    // }
 
 
 
