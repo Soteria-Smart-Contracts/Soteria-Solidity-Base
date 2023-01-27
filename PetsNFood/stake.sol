@@ -74,7 +74,7 @@ contract LinuxPetStake{
     //     require(PetStakes[PetID].Staked == true);
     // }
 
-    function
+    function ClaimRewards(PetID)
 
 
 
