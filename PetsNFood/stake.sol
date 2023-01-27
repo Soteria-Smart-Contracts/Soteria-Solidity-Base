@@ -76,6 +76,12 @@ contract LinuxPetStake{
      function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
          require(PetStakes[PetID].Staked == true);
 
+        uint256 index = 0;
+        while(index < FoodIDs.length){
+            ERC721(Food).safeTransferFrom(msg.sender, address(this), FoodIDs[index]);
+            index++;
+        }
+
          PetStakes
     }
 
