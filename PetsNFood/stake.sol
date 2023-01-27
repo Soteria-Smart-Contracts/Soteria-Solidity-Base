@@ -8,7 +8,7 @@ contract UnnamedStake{
     address public TKN;
     uint256 public BasePay; //Yearly Base ROI in $TKN
     uint256 public FoodBoost = 334; // in 0.0001 of percentage
-    uint256[]
+    uint256[] internal EmptyArray;
 
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; //TODO: TEST
@@ -27,7 +27,7 @@ contract UnnamedStake{
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
 
         uint256 ROIPerSecond = (BasePay / 31557600); //TODO: TEST
-        PetStakes[PetID] = PetStake(true, msg.sender, 0, [], ROIPerSecond, block.timestamp);
+        PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
         return(success);
     }
