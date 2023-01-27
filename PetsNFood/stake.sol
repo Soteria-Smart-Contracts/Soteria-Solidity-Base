@@ -113,7 +113,6 @@ contract LinuxPetStake{
         uint256 index = 0;
         while(index < PetStakes[PetID].FoodIDs.length){
             ERC721(Food).transferFrom(msg.sender, address(this), PetStakes[index]);
-            PetStakes[PetID].FoodIDs.push(FoodIDs[index]);
             index++;
         }
         
