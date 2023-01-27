@@ -75,7 +75,7 @@ contract LinuxPetStake{
 
      function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
         require(PetStakes[PetID].Staked == true);
-        require((PetStakes[PetID].FoodStaked + FoodIDs.length) );
+        require((PetStakes[PetID].FoodStaked + FoodIDs.length) <= 10);
 
         uint256 index = 0;
         while(index < FoodIDs.length){
@@ -84,7 +84,7 @@ contract LinuxPetStake{
             PetStakes[PetID].FoodStaked++;
             index++;
         }
-
+        FoodMultiplier
         NewSecondsROI = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
 
     }
