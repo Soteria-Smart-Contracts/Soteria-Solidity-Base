@@ -51,9 +51,9 @@ contract UnnamedStake{
     }
 
     function StakePetWithAllFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-         require(Pets == Pets);
+         
 
-     }
+    }
 
 
 
