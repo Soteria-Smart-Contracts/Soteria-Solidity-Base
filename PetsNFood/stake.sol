@@ -2,6 +2,7 @@
 pragma solidity ^0.8.17;
 
 contract UnnamedStake{
+    //Core Variables
     address public Pets;
     address public Food;
     address public TKN;
