@@ -104,7 +104,7 @@ contract LinuxPetStake{
         return(success, Payout);
     }
 
-    function UnstakePet(uint256 PetID) public returns(bool success){
+    function UnstakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
         ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
 
