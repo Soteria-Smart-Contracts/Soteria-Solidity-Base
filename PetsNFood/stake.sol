@@ -22,6 +22,9 @@ contract LinuxPetStake{
         uint256 LastPayout; //Last time this stake was claimed
     }
 
+    //TODO: EVENTS
+
+
     //Stake Pet With no Food
     function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
