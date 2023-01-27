@@ -81,7 +81,7 @@ contract LinuxPetStake{
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
 
         Payout = (PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
-        PetStakes[PetID].Las
+        PetStakes[PetID].LastPayout = block.timestamp;
 
         return(true, Payout);
     }
