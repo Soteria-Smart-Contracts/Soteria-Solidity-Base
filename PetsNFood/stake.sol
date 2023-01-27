@@ -79,7 +79,7 @@ contract LinuxPetStake{
 
         uint256 index = 0;
         while(index < FoodIDs.length){
-            ERC721(Food).TransferFrom(msg.sender, address(this), FoodIDs[index]);
+            ERC721(Food).transferFrom(msg.sender, address(this), FoodIDs[index]);
             PetStakes[PetID].FoodIDs.push(FoodIDs[index]);
             index++;
         }
@@ -108,7 +108,7 @@ contract LinuxPetStake{
         ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
 
-        ERC721.safeTransferFrom(address(this), msg.sender, tokenId);
+        ERC721.safeTransferFrom(address(this), msg.sender, PetID);
         
         PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
 
