@@ -16,7 +16,9 @@ contract UnnamedStake{
     }
 
     function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-        ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID);
+        require(ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID);
+                require(ERC20(ACE).transferFrom(msg.sender, address(this), amount), "Unable to transfer ACE to the contract, may be due to low allowance or not enough funds");
+
 
         
         
