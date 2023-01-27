@@ -23,14 +23,7 @@ contract UnnamedStake{
 
     //Stake Pet With no Food
     function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
-        require(FoodIDs.length <= 10);
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
-        
-        uint256 index = 0;
-        while(index < FoodIDs.length){
-            ERC721(Food).safeTransferFrom(msg.sender, address(this), FoodIDs[index]);
-            index++;
-        }
 
         uint256 FoodMultiplier = FoodIDs.length * FoodBoost;
         uint256 ROIPerSecond = (((BasePay / 31557600) * FoodMultiplier) / 10000000); //TODO: TEST
