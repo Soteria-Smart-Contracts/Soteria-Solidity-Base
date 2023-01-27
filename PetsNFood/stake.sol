@@ -26,7 +26,7 @@ contract UnnamedStake{
             index++;
         }
 
-        UserStakes[PetID] = PetStake(PetID)
+        UserStakes[PetID] = PetStake(PetID, )
 
         return(success);
     }
