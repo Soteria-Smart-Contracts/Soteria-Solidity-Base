@@ -74,7 +74,7 @@ contract LinuxPetStake{
     }
 
      function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-        require(PetStakes[PetID].Staked == true);
+        require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
         require((PetStakes[PetID].FoodStaked + FoodIDs.length) <= 10);
         ClaimRewards(PetID);
 
