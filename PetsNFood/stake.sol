@@ -105,9 +105,9 @@ contract LinuxPetStake{
         return(success, Payout);
     }
 
+    function
 
-
-
+    
 }
 
 interface ERC721{
