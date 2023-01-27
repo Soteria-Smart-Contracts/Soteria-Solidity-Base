@@ -82,7 +82,7 @@ contract LinuxPetStake{
 
         Payout = (PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
 
-        return(msg.)
+        return(true, Payout);
     }
 
 
