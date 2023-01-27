@@ -23,8 +23,11 @@ contract UnnamedStake{
             uint256 index = 0;
             while(index < FoodIDs.length){
                  ERC721(Food).safeTransferFrom(msg.sender, address(this), FoodIDs[index]);
-                 index++
+                 index++;
             }
+        }
+        else{
+            
         }
 
 
