@@ -20,8 +20,7 @@ contract UnnamedStake{
 
         
         
-        
-        return(success)
+        return(success);
     }
 
     function StakePetWithAllFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
