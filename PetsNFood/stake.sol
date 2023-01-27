@@ -90,6 +90,8 @@ contract LinuxPetStake{
         uint256 NewSecondsROI = (BasePay / 31557600) + (((BasePay / 31557600) * FoodMultiplier) / 10000000);
 
         PetStakes[PetID].ROIPerSecond = NewSecondsROI;
+
+        return(success)
     }
 
     function ClaimRewards(uint256 PetID) public returns(bool success, uint256 Payout){ //TODO: TEST
@@ -100,7 +102,7 @@ contract LinuxPetStake{
 
         ERC20(TKN).transfer(msg.sender, Payout);
 
-        return(true, Payout);
+        return(success, Payout);
     }
 
 
