@@ -83,7 +83,7 @@ contract LinuxPetStake{
             PetStakes[PetID].FoodIDs.push(FoodIDs[index]);
             index++;
         }
-        PetStakes[PetID].FoodStaked = 
+        PetStakes[PetID].FoodStaked = PetStakes[PetID].FoodIDs.length;
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
         NewSecondsROI = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
