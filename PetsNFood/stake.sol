@@ -23,10 +23,10 @@ contract LinuxPetStake{
     }
 
     //TODO: EVENTS
-    event PetStaked()
-    event PetUnstaked()
-    event FoodStaked()
-    event RewardsClaimed()
+    event PetStaked();
+    event PetUnstaked();
+    event FoodStaked();
+    event RewardsClaimed();
 
 
     //Stake Pet With no Food
