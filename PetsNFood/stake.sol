@@ -84,7 +84,7 @@ contract LinuxPetStake{
             index++;
         }
 
-        NewSecondsROI
+        NewSecondsROI = 
 
     }
 
