@@ -26,6 +26,7 @@ contract UnnamedStake{
             index++;
         }
 
+        ROI
         PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, 0);
         
 
