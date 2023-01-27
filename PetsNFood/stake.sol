@@ -83,7 +83,7 @@ contract LinuxPetStake{
         Payout = (PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
         PetStakes[PetID].LastPayout = block.timestamp;
 
-        ERC20(TKN).
+        ERC20(TKN).transfer(msg.sender, Payout);
 
         return(true, Payout);
     }
