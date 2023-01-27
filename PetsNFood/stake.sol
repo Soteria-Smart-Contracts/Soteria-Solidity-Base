@@ -15,6 +15,7 @@ contract UnnamedStake{
         uint256 FoodStaked;
         uint256[] FoodIDs;
         uint256 ROIPerSecond;
+        uint256 LastPayout;
     }
 
     function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
@@ -28,7 +29,7 @@ contract UnnamedStake{
 
         FoodMultiplier = FoodIDs.length * 334;
         uint256 ROIPerSecond = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
-        PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, ROI);
+        PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, ROIPerSecond);
         
 
         return(success);
