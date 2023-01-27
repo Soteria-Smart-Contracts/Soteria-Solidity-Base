@@ -7,7 +7,7 @@ contract UnnamedStake{
     address public Food;
     address public TKN;
     uint256 public BasePay; //Yearly Base ROI in $TKN
-    uint256 public FoodMultiplier;
+    uint256 public FoodBoost = 334;
 
     mapping(uint256 => PetStake) public PetStakes; //TODO: TEST
 
