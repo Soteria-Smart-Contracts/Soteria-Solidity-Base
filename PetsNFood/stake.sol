@@ -84,7 +84,8 @@ contract LinuxPetStake{
             PetStakes[PetID].FoodStaked++;
             index++;
         }
-        FoodMultiplier
+
+        uint256 FoodMultiplier
         NewSecondsROI = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
 
     }
