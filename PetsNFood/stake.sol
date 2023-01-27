@@ -80,6 +80,7 @@ contract LinuxPetStake{
         while(index < FoodIDs.length){
             ERC721(Food).safeTransferFrom(msg.sender, address(this), FoodIDs[index]);
             PetStakes[PetID].FoodIDs
+            Food
             index++;
         }
 
