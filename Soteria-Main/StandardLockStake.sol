@@ -100,6 +100,7 @@ contract LockedStaking{
         return(UserLocks[User].length);
     }
 
+
 }
 
 interface ERC20 {
