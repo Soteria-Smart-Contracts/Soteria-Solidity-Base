@@ -82,7 +82,7 @@ contract LinuxPetStake{
             index++;
         }
 
-        PetStakes[PetID].
+        PetStakes[PetID].FoodStaked
 
 
 
