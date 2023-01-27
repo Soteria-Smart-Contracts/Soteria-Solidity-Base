@@ -15,7 +15,7 @@ contract UnnamedStake{
     struct PetStake{
         uint256 PetID;
         uint256 FoodStaked;
-        uint256[] FoodIDs;
+        uint256[] FoodIDs; //List of all food IDs staked with this pet
         uint256 ROIPerSecond;
         uint256 LastPayout;
     }
