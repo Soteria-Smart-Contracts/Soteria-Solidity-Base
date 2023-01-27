@@ -25,11 +25,8 @@ contract UnnamedStake{
             ERC721(Food).safeTransferFrom(msg.sender, address(this), FoodIDs[index]);
             index++;
         }
-        
 
 
-
-        
         
         return(success);
     }
