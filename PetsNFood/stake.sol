@@ -16,7 +16,7 @@ contract UnnamedStake{
         uint256 PetID;
         uint256 FoodStaked;
         uint256[] FoodIDs; //List of all food IDs staked with this pet
-        uint256 ROIPerSecond;
+        uint256 ROIPerSecond; //Tokens returned per second
         uint256 LastPayout;
     }
 
