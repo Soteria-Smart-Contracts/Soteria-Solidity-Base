@@ -56,7 +56,7 @@ contract UnnamedStake{
         uint256[] memory FoodsToSubmit;
 
         if(AllFoods.length < 10){
-
+            total = A;
         }
 
         uint256 index;
