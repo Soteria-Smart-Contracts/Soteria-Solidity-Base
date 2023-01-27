@@ -15,7 +15,9 @@ contract UnnamedStake{
         uint256 ROIPerSecond;
     }
 
-    function StakePetWithFood(uint256 PetID, uint256[] FoodIDs) public 
+    function StakePetWithFood(uint256 PetID, uint256[] FoodIDs) public returns(bool success){
+        
+    }
 
 
 
