@@ -1,3 +1,11 @@
 pragma solidity ^0.8.17;
 
-contract Unnamed
+contract UnnamedStake{
+    address Pets
+
+
+
+
+
+
+}
