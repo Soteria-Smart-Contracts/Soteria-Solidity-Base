@@ -23,6 +23,7 @@ contract LinuxPetStake{
     }
 
     //TODO: EVENTS
+    event PetStaked
 
 
     //Stake Pet With no Food
