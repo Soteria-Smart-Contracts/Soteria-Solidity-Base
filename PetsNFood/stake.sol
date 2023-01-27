@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 pragma solidity ^0.8.17;
 
-contract UnnamedStake{
+contract LinuxPetStake{
     //Core Variables
     address public Pets;
     address public Food;
