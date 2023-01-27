@@ -69,7 +69,7 @@ contract UnnamedStake{
         return(success);
     }
 
-    function 
+    function StakeFood(uint256 PetID, )
 
 
 
