@@ -70,7 +70,7 @@ contract UnnamedStake{
     }
 
     function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-        
+        require(PetStakes);
     }
 
 
