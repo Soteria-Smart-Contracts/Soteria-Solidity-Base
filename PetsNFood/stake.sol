@@ -84,7 +84,7 @@ contract LinuxPetStake{
             index++;
         }
 
-        NewSecondsROI = 
+        NewSecondsROI = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
 
     }
 
