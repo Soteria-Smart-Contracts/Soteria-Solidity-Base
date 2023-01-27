@@ -78,7 +78,7 @@ contract LinuxPetStake{
     // }
 
     function ClaimRewards(uint256 PetID) public returns(bool success, uint256 Payout){
-        require();
+        require(Stak);
 
     }
 
