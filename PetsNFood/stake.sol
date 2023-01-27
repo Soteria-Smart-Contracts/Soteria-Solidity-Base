@@ -23,7 +23,7 @@ contract LinuxPetStake{
     }
 
     //TODO: EVENTS
-    event PetStaked();
+    event PetStaked(uint256 PetID, address Staker);
     event PetUnstaked();
     event FoodStaked();
     event RewardsClaimed();
