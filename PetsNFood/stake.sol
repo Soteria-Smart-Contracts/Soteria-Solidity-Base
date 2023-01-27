@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSE
 pragma solidity ^0.8.17;
 
 contract UnnamedStake{
@@ -5,6 +6,8 @@ contract UnnamedStake{
     address public Food;
 
     
+
+
 
 
 
