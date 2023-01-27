@@ -8,6 +8,8 @@ contract UnnamedStake{
     uint256 public BasePay; //Yearly Base ROI in $TKN
     uint256 public FoodMultiplier;
 
+    mapping(address => )
+
     struct PetStake{
         uint256 PetID;
         uint256 FoodStaked;
