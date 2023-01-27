@@ -105,7 +105,7 @@ contract LinuxPetStake{
         return(success, Payout);
     }
 
-    function UnstakePet(PetID)
+    function UnstakePet(uint256 PetID) public returns()
 
 
 }
