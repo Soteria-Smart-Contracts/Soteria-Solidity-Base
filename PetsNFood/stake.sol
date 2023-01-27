@@ -50,8 +50,8 @@ contract UnnamedStake{
         return(success);
     }
 
-    function StakePetWithAllFood(uint256 PetID) public returns(bool success){
-         
+    function StakePetWithMaxFood(uint256 PetID) public returns(bool success){
+        require(condition);
 
     }
 
