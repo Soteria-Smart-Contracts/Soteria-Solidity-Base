@@ -18,7 +18,7 @@ contract UnnamedStake{
         uint256 LastPayout;
     }
 
-    function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
+    function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){ //TODO: TEST
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
         
         uint256 index = 0;
@@ -28,7 +28,7 @@ contract UnnamedStake{
         }
 
         FoodMultiplier = FoodIDs.length * 334;
-        uint256 ROIPerSecond = (((BasePay / 31557600) * FoodMultiplier) / 10000000); //
+        uint256 ROIPerSecond = (((BasePay / 31557600) * FoodMultiplier) / 10000000); //TODO: TEST
         PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
         
 
