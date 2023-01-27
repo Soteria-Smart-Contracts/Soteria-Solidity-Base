@@ -12,7 +12,7 @@ contract UnnamedStake{
         uint256 PetID;
         uint256 FoodStaked;
         uint256[] FoodIDs;
-        uint256 
+        uint256 ROIYOY;
     }
 
 
