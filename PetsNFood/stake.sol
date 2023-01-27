@@ -26,8 +26,8 @@ contract UnnamedStake{
             index++;
         }
 
+        UserStakes
 
-        
         return(success);
     }
 
