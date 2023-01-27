@@ -108,7 +108,7 @@ contract LinuxPetStake{
         ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
 
-        PetStaked
+        
         
 
         return(success);
