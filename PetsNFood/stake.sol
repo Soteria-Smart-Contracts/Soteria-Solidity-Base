@@ -69,7 +69,9 @@ contract UnnamedStake{
         return(success);
     }
 
-    function StakeFood(uint256 PetID, uint256[] memory FoodIDs)
+    function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
+        
+    }
 
 
 
