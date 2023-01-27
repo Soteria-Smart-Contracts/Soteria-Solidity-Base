@@ -21,6 +21,7 @@ contract UnnamedStake{
         uint256 LastPayout; //Last time this stake was claimed
     }
 
+    //
     function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){ //TODO: TEST
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
         
