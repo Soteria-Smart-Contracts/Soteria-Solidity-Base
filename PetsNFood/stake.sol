@@ -107,9 +107,10 @@ contract LinuxPetStake{
 
     function UnstakePet(uint256 PetID) public returns(bool success){
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
+        ClaimRewards(PetID);
         PetStakes[PetID].Staked = false;
 
-        
+
         
 
         return(success);
