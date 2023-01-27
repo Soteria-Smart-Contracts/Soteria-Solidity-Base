@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSE
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity ^0.8.17;
 
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
@@ -75,10 +75,6 @@ contract Pets is ERC721Enumerable, Ownable {
       _exists(tokenId),
       "ERC721Metadata: URI query for nonexistent token"
     );
-    
-    if(revealed == false) {
-        return notRevealedUri;
-    }
 
     string memory currentBaseURI = _baseURI();
     return bytes(currentBaseURI).length > 0
@@ -87,9 +83,7 @@ contract Pets is ERC721Enumerable, Ownable {
   }
 
   //only owner
-  function reveal() public onlyOwner() {
-      revealed = true;
-  }
+
   
   function setCost(uint256 _newCost) public onlyOwner() {
     cost = _newCost;
@@ -97,10 +91,6 @@ contract Pets is ERC721Enumerable, Ownable {
 
   function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner() {
     maxMintAmount = _newmaxMintAmount;
-  }
-  
-  function setNotRevealedURI(string memory _notRevealedURI) public onlyOwner {
-    notRevealedUri = _notRevealedURI;
   }
 
   function setBaseURI(string memory _newBaseURI) public onlyOwner {
