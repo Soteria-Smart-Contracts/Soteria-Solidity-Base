@@ -73,7 +73,7 @@ contract LinuxPetStake{
         return(success);
     }
 
-     function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
+     function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){ //TODO: TEST
         ClaimRewards(PetID);
         require((PetStakes[PetID].FoodStaked + FoodIDs.length) <= 10);
 
@@ -108,7 +108,7 @@ contract LinuxPetStake{
         ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
 
-
+        
         
 
         return(success);
