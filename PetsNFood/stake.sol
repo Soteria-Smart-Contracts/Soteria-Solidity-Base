@@ -109,7 +109,7 @@ contract LinuxPetStake{
         PetStakes[PetID].Staked = false;
 
         
-        PetStakes[PetID] = PetStake(false, address(0), 0, 0, 0, 0);
+        PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
 
         return(success);
     }
