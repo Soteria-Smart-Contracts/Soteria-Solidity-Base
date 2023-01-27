@@ -30,3 +30,7 @@ contract UnnamedStake{
 
 
 }
+
+interface ERC721{
+    
+}
