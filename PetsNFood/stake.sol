@@ -15,6 +15,8 @@ contract UnnamedStake{
         uint256 ROIPerSecond;
     }
 
+    
+
 
 
 
