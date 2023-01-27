@@ -29,16 +29,16 @@ contract UnnamedStake{
 
         FoodMultiplier = FoodIDs.length * 334;
         uint256 ROIPerSecond = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
-        PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, ROIPerSecond);
+        PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
         
 
         return(success);
     }
 
-    function StakePetWithAllFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-        require(Pets == Pets);
+    // function StakePetWithAllFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
+    //     require(Pets == Pets);
 
-    }
+    // }
 
 
 
