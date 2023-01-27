@@ -108,7 +108,7 @@ contract LinuxPetStake{
 
         ERC20(TKN).transfer(msg.sender, Payout);
 
-        emit Rewar
+        emit RewardsClaimed(Payout, msg.sender);
         return(success, Payout);
     }
 
