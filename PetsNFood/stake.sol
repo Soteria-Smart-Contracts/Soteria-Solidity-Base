@@ -25,8 +25,7 @@ contract UnnamedStake{
     function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
 
-        uint256 FoodMultiplier = FoodIDs.length * FoodBoost;
-        uint256 ROIPerSecond = (((BasePay / 31557600) * FoodMultiplier) / 10000000); //TODO: TEST
+        uint256 ROIPerSecond = (BasePay / 31557600); //TODO: TEST
         PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
         return(success);
