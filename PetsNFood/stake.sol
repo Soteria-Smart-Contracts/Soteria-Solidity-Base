@@ -108,6 +108,7 @@ contract LinuxPetStake{
         ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
 
+        ERC721.tr
         
         PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
 
