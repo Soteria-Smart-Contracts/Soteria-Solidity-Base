@@ -26,7 +26,7 @@ contract UnnamedStake{
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
 
         uint256 ROIPerSecond = (BasePay / 31557600); //TODO: TEST
-        PetStakes[PetID] = PetStake(true, msg.sender, 0, uint256[] memory, ROIPerSecond, block.timestamp);
+        PetStakes[PetID] = PetStake(true, msg.sender, 0, memory uint256[], ROIPerSecond, block.timestamp);
 
         return(success);
     }
