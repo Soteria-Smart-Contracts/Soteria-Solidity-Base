@@ -69,13 +69,7 @@ contract UnnamedStake{
         return(success);
     }
 
-
-
-
-
-
-
-
+    function 
 
 
 
