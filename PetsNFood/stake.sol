@@ -22,7 +22,7 @@ contract UnnamedStake{
     }
 
     //Stake Pet With no Food
-    function StakePetuint256 PetID) public returns(bool success){ //TODO: TEST
+    function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
         require(FoodIDs.length <= 10);
         ERC721(Pets).safeTransferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
         
