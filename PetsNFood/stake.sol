@@ -26,7 +26,7 @@ contract UnnamedStake{
             index++;
         }
 
-        FoodMultiplier = FoodIDs.length
+        FoodMultiplier = FoodIDs.length * 334;
         uint256 ROIPerSecond = BasePay / 31557600;
         PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, 0);
         
