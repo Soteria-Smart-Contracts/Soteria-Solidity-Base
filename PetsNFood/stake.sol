@@ -32,7 +32,7 @@ contract UnnamedStake{
 
         uint256 FoodMultiplier = FoodIDs.length * FoodBoost;
         uint256 ROIPerSecond = (((BasePay / 31557600) * FoodMultiplier) / 10000000); //TODO: TEST
-        PetStakes[PetID] = PetStake(PetID, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
+        PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
         
 
         return(success);
