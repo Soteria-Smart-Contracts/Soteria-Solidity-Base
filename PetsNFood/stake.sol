@@ -108,6 +108,7 @@ contract LinuxPetStake{
 
         ERC20(TKN).transfer(msg.sender, Payout);
 
+        emit Rewar
         return(success, Payout);
     }
 
