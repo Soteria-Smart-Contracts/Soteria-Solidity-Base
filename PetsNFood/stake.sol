@@ -8,7 +8,7 @@ contract UnnamedStake{
     uint256 public BasePay; //Yearly Base ROI in $TKN
     uint256 public FoodMultiplier;
 
-    mapping(address => mapping(uint256 => PetStake)) public UserStakes;
+    mapping(uint256 => PetStake)) public UserStakes;
 
     struct PetStake{
         uint256 PetID;
@@ -26,7 +26,7 @@ contract UnnamedStake{
             index++;
         }
 
-        UserStakes[msg.sender][PetID]
+        UserStakes[PetID]
 
         return(success);
     }
