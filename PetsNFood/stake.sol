@@ -73,9 +73,9 @@ contract LinuxPetStake{
         return(success);
     }
 
-    // function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-    //     require(PetStakes[PetID].Staked == true);
-    // }
+     function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
+         require(PetStakes[PetID].Staked == true);
+    }
 
     function ClaimRewards(uint256 PetID) public returns(bool success, uint256 Payout){ //TODO: TEST
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
