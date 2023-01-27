@@ -74,7 +74,7 @@ contract LinuxPetStake{
     }
 
      function StakeFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){
-         require(PetStakes[PetID].Staked == true);
+        require(PetStakes[PetID].Staked == true);
 
         uint256 index = 0;
         while(index < FoodIDs.length){
@@ -82,7 +82,7 @@ contract LinuxPetStake{
             index++;
         }
 
-         PetStakes
+        PetStakes
     }
 
     function ClaimRewards(uint256 PetID) public returns(bool success, uint256 Payout){ //TODO: TEST
