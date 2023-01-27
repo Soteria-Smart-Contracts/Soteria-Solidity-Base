@@ -28,7 +28,6 @@ contract UnnamedStake{
 
         UserStakes[PetID] = PetStake(PetID, )
         
-        
 
         return(success);
     }
