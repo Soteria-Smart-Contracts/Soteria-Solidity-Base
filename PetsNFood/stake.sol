@@ -80,7 +80,7 @@ contract LinuxPetStake{
     function ClaimRewards(uint256 PetID) public returns(bool success, uint256 Payout){
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
 
-        Payout =  
+        Payout = PetStakes[PetID].ROIPerSecond
 
     }
 
