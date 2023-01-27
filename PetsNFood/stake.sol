@@ -109,6 +109,8 @@ contract LinuxPetStake{
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
 
         
+
+        return(success);
     }
 
 
