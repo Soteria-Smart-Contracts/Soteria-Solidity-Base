@@ -61,7 +61,7 @@ contract UnnamedStake{
             Total = AllFoods.length;
         }
         while(Index < Total){
-            FoodsToSubmit[index] = AllFoods[index];
+            FoodsToSubmit[Index] = AllFoods[Index];
         }
 
         StakePetWithFood(PetID, FoodsToSubmit);
