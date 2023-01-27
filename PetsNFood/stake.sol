@@ -85,7 +85,7 @@ contract LinuxPetStake{
             index++;
         }
 
-        uint256 FoodMultiplier
+        uint256 FoodMultiplier = FoodBoost * 
         NewSecondsROI = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
 
     }
