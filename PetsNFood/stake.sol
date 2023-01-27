@@ -48,6 +48,7 @@ contract LinuxPetStake{
         uint256 index = 0;
         while(index < FoodIDs.length){
             ERC721(Food).transferFrom(msg.sender, address(this), FoodIDs[index]);
+            emit FoodStaked(PetID, FoodID, Staker);
             index++;
         }
 
