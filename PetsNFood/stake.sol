@@ -91,7 +91,7 @@ contract LinuxPetStake{
 
         PetStakes[PetID].ROIPerSecond = NewSecondsROI;
 
-        return(success)
+        return(success);
     }
 
     function ClaimRewards(uint256 PetID) public returns(bool success, uint256 Payout){ //TODO: TEST
