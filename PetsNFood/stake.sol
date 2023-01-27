@@ -10,7 +10,8 @@ contract UnnamedStake{
 
     struct PetStake{
         uint256 PetID;
-        uint256 Food
+        uint256 FoodStaked;
+        uint256[]
     }
 
 
