@@ -26,7 +26,7 @@ contract UnnamedStake{
             index++;
         }
 
-        UserStakes[PetID] = PetStake(PetID, )
+        UserStakes[PetID] = PetStake(PetID, )))
 
         return(success);
     }
@@ -35,7 +35,13 @@ contract UnnamedStake{
         require(Pets == Pets);
 
     }
+    event
+    event
+    ecrecover(e
     
+    event
+    e
+    e, v, r, s)
 
 
 
