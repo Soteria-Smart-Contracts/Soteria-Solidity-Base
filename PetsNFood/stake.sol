@@ -109,7 +109,7 @@ contract LinuxPetStake{
         PetStakes[PetID].Staked = false;
 
         
-        
+        PetStakes[PetID] = PetStake(false, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
         return(success);
     }
