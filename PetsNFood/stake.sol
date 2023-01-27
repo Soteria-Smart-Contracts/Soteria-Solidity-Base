@@ -81,9 +81,9 @@ contract LinuxPetStake{
         while(index < FoodIDs.length){
             ERC721(Food).safeTransferFrom(msg.sender, address(this), FoodIDs[index]);
             PetStakes[PetID].FoodIDs.push(FoodIDs[index]);
-            PetStakes[PetID].FoodStaked++;
             index++;
         }
+        PetStakes[PetID].FoodStaked = 
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
         NewSecondsROI = (((BasePay / 31557600) * FoodMultiplier) / 10000000);
