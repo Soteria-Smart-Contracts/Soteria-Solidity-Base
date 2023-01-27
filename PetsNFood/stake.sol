@@ -9,7 +9,8 @@ contract UnnamedStake{
     uint256 public FoodMultiplier;
 
     struct PetStake{
-        uint
+        uint256 PetID;
+        uint256 Food
     }
 
 
