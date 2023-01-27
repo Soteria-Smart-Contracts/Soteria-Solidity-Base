@@ -106,7 +106,7 @@ contract LinuxPetStake{
     }
 
     function UnstakePet(uint256 PetID) public returns(bool success){
-        ClaimRewards(PetID);
+        ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
 
 
