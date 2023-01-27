@@ -26,7 +26,7 @@ contract UnnamedStake{
             index++;
         }
 
-        UserStakes[msg.sender, ]
+        UserStakes[msg.sender, ID]
 
         return(success);
     }
