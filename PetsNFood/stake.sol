@@ -22,7 +22,7 @@ contract UnnamedStake{
         if(FoodIDs.length > 1){
             uint256 index = 0;
             while(index < FoodIDs.length){
-                 ERC721(Food).safeTransferFrom(msg.sender, address(this), PetID);
+                 ERC721(Food).safeTransferFrom(msg.sender, address(this), FoodIDs[index]);
                  index++
             }
         }
