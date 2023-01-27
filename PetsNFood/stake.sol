@@ -60,7 +60,7 @@ contract UnnamedStake{
         }
 
         uint256 index;
-        while(index < 10){
+        while(index < total){
             FoodsToSubmit[index] = AllFoods[index];
         }
 
