@@ -60,7 +60,7 @@ contract UnnamedStake{
             FoodsToSubmit[index] = AllFoods[index];
         }
 
-        StakePetWithFood(PetID, )
+        StakePetWithFood(PetID, FoodsToSubmit);
     }
 
 
