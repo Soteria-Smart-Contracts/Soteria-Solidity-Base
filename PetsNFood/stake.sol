@@ -34,9 +34,7 @@ contract UnnamedStake{
 interface ERC721{
     function balanceOf(address owner) external view returns (uint256 balance);
     function ownerOf(uint256 tokenId) external view returns (address owner);
-    function walletOfOwner(address _owner) public
-    view
-    returns (uint256[] memory)
+    function walletOfOwner(address _owner) external view returns (uint256[] memory);
     function safeTransferFrom(address from, address to, uint256 tokenId, bytes calldata data) external;
     function safeTransferFrom(address from, address to, uint256 tokenId) external;
     function transferFrom(address from, address to, uint256 tokenId) external;
