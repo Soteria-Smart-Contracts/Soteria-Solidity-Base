@@ -22,7 +22,6 @@ contract LinuxPetStake{
         uint256 LastPayout; //Last time this stake was claimed
     }
 
-    //TODO: EVENTS
     event PetStaked(uint256 PetID, address Staker);
     event PetUnstaked(uint256 PetID, address Staker);
     event FoodStaked(uint256 PetID, uint256 FoodID, address Staker);
