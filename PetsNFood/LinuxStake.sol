@@ -34,7 +34,7 @@ contract LinuxPetStake{
     function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
         ERC721(Pets).transferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
 
-        uint256 ROIPerSecond = (BasePay / ); //TODO: TEST
+        uint256 ROIPerSecond = (BasePay / 600); //TODO: TEST
         PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
         emit PetStaked(PetID, msg.sender);
@@ -54,7 +54,7 @@ contract LinuxPetStake{
         }
 
         uint256 FoodMultiplier = FoodIDs.length * FoodBoost;
-        uint256 ROIPerSecond = (BasePay / 31557600) + (((BasePay / 31557600) * FoodMultiplier) / 10000000); //TODO: TEST
+        uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 31557600) * FoodMultiplier) / 10000000); //TODO: TEST
         PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
         return(success);
@@ -95,7 +95,7 @@ contract LinuxPetStake{
         PetStakes[PetID].FoodStaked = PetStakes[PetID].FoodIDs.length;
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
-        uint256 NewSecondsROI = (BasePay / 31557600) + (((BasePay / 31557600) * FoodMultiplier) / 10000000);
+        uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 31557600) * FoodMultiplier) / 10000000);
 
         PetStakes[PetID].ROIPerSecond = NewSecondsROI;
 
