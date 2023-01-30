@@ -10,7 +10,7 @@ contract LinuxPetStake{
     uint256 public FoodBoost = 1000; // in 0.0001 of percentage
     uint256[] internal EmptyArray;
 
-    //1 year in seconds, do not forget to change: 31557600
+    //FIXME: 1 year in seconds, do not forget to change: 31557600
 
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; //TODO: TEST
@@ -34,7 +34,7 @@ contract LinuxPetStake{
     function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
         ERC721(Pets).transferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
 
-        uint256 ROIPerSecond = (BasePay / 31557600); //TODO: TEST
+        uint256 ROIPerSecond = (BasePay / ); //TODO: TEST
         PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
         emit PetStaked(PetID, msg.sender);
