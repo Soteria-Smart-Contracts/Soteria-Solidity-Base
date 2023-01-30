@@ -133,6 +133,8 @@ contract LinuxPetStake{
         emit PetUnstaked(PetID, msg.sender);
         return(success);
     }
+    
+    //TODO: Get unclaimed rewards view fucntion
 
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
