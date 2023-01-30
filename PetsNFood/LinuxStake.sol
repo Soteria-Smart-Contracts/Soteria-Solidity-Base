@@ -132,7 +132,8 @@ contract LinuxPetStake{
         return(success);
     }
 
-    //TODO: 
+    //TODO: Change Base pay and Boost Pay OnlyOwner
+    
 
 
 }
