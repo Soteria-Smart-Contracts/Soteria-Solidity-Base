@@ -177,10 +177,10 @@ contract LinuxPetStake{
         return(success);
     }
 
-    function ChangeBoostPay(uint256 NewBoostPay) public returns(bool success){
+    function ChangeFoodBoost(uint256 NewFoodBoost) public returns(bool success){
         require(msg.sender == Owner);
 
-        FoodBoost = ;
+        FoodBoost = NewFoodBoost;
 
         return(success);
     }
