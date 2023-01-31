@@ -134,6 +134,8 @@ contract LinuxPetStake{
         
         PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
 
+        
+
         emit PetUnstaked(PetID, msg.sender);
         return(success);
     }
