@@ -134,6 +134,9 @@ contract LinuxPetStake{
         return(success);
     }
 
+    //TODO: GetUnclaimed
+    //View  Functions
+
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
 
