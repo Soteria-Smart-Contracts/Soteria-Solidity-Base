@@ -8,7 +8,7 @@ contract LinuxPetStake{
     address public LinuxToken = 0x0000000000000000000000000000000000000000; //Replace Before Deploy
     address public Owner;
     uint256 public BasePay = 100000000000000000000; //Yearly Base ROI in $LinuxToken
-    uint256 public FoodBoost = 1000; // in 0.0001 of percentage
+    uint256 public FoodBoost = 3340; // in 0.0001 of percentage
     uint256 public TotalPetsStaked;
     uint256[] internal EmptyArray;
 
