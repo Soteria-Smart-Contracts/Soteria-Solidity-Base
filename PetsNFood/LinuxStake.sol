@@ -202,7 +202,7 @@ contract LinuxPetStake{
         return(StakedPets[User]);
     }
 
-    //Returns a list of 
+    //Returns a list of food staked with a pet
     function GetStakedFood(uint256 PetID) public view returns(uint256[] memory StakedFood){
         require(PetStakes[PetID].Staked);
         return(PetStakes[PetID].FoodIDs);
