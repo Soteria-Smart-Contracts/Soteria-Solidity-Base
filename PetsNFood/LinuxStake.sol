@@ -74,7 +74,7 @@ contract LinuxPetStake{
     }
 
     //Stakes the maximum of food you have with your pet, up to 10
-    function StakePetWithMaxFood(uint256 PetID) public returns(bool success){ //TODO: TEST
+    function StakePetWithMaxFood(uint256 PetID) public returns(bool success){ 
         require(ERC721(Food).balanceOf(msg.sender) > 0);
         uint256[] memory AllFoods = ERC721(Food).walletOfOwner(msg.sender);
         uint256[] memory FoodsToSubmit;
@@ -82,7 +82,7 @@ contract LinuxPetStake{
         uint256 Total = AllFoods.length;
         uint256 Index;
 
-        while(Index < Total && FoodsToSubmit.length < 10){
+        while(Index < Total && FoodsToSubmit.length < 10){ //TODO: TEST
             FoodsToSubmit[Index] = AllFoods[Index];
             Index++;
         }
