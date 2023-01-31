@@ -134,7 +134,7 @@ contract LinuxPetStake{
         
         PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
 
-        StakedPets[msg.sender][PetInd]
+        StakedPets[msg.sender][PetIndex[msg.sender][PetID]]
 
         emit PetUnstaked(PetID, msg.sender);
         return(success);
