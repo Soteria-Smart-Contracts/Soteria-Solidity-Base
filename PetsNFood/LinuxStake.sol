@@ -14,6 +14,7 @@ contract LinuxPetStake{
 
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; //TODO: TEST
+    mapping(uint256 => )
 
     struct PetStake{
         bool Staked;
