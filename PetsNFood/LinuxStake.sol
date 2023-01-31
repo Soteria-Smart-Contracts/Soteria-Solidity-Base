@@ -9,13 +9,14 @@ contract LinuxPetStake{
     address public Owner;
     uint256 public BasePay = 100000000000000000000; //Yearly Base ROI in $LinuxToken
     uint256 public FoodBoost = 1000; // in 0.0001 of percentage
+    uint256 public TotalPetsStaked;
     uint256[] internal EmptyArray;
 
     //FIXME: 1 year in seconds, do not forget to change: 31557600
 
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; 
-    mapping(address => uint256[]) public StakedPets;//TODO: TEST
+    mapping(address => uint256[]) internal StakedPets;//TODO: TEST
     mapping(address => mapping (uint256 => uint256)) internal PetIndex;//TODO: TEST
 
     struct PetStake{
@@ -46,6 +47,7 @@ contract LinuxPetStake{
 
         StakedPets[msg.sender].push(PetID); //TODO: TEST
         PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;
+        TotalPetsStaked++;
 
         emit PetStaked(PetID, msg.sender);
         return(success);
@@ -69,6 +71,7 @@ contract LinuxPetStake{
 
         StakedPets[msg.sender].push(PetID);//TODO: TEST
         PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;//TODO: TEST
+        TotalPetsStaked++;
 
         return(success);
     }
@@ -150,6 +153,7 @@ contract LinuxPetStake{
         }
         PetIndex[msg.sender][PetID] = 0;
         delete StakedPets[msg.sender];
+        TotalPetsStaked--;
 
         emit PetUnstaked(PetID, msg.sender);
         return(success);
@@ -185,6 +189,10 @@ contract LinuxPetStake{
     function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){ //TODO: TEST
         require(PetStakes[PetID].Staked == true);
         return(PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
+    }
+
+    function GetStakedPets(address User) public view returns(uint256[] memory PetIDs){
+        return(StakedPets[User]);
     }
 
     function GetStakedFood(uint256 PetID) public view returns(uint256[] memory StakedFood){ //TODO: TEST
