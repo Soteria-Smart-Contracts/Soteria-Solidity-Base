@@ -210,7 +210,7 @@ contract LinuxPetStake{
 
     //Only Owner Functions
 
-    function ChangeBasePay(uint256 NewBasePay) public returns(bool success){ //TODO: TEST
+    function ChangeBasePay(uint256 NewBasePay) public returns(bool success){ 
         require(msg.sender == Owner);
 
         BasePay = NewBasePay;
@@ -218,7 +218,7 @@ contract LinuxPetStake{
         return(success);
     }
 
-    function ChangeFoodBoost(uint256 NewFoodBoost) public returns(bool success){ //TODO: TEST
+    function ChangeFoodBoost(uint256 NewFoodBoost) public returns(bool success){ 
         require(msg.sender == Owner);
 
         FoodBoost = NewFoodBoost;
@@ -226,7 +226,7 @@ contract LinuxPetStake{
         return(success);
     }
 
-    function RemoveRewardPool() public returns(bool success){ //TODO: TEST
+    function RemoveRewardPool() public returns(bool success){ 
         require(msg.sender == Owner);
 
         ERC20(LinuxToken).transfer(msg.sender, ERC20(LinuxToken).balanceOf(address(this)));
