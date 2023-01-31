@@ -213,6 +213,10 @@ contract LinuxPetStake{
 
     function RemoveRewardPool() public returns(bool success){
         require(msg.sender == Owner);
+
+        ERC20(Linu)
+
+
     }
 
     function TransferOwnership(address NewOwner) public returns(bool success){
