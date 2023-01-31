@@ -38,13 +38,13 @@ contract LinuxPetStake{
 
 
     //Stake Pet With no Food
-    function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
+    function StakePet(uint256 PetID) public returns(bool success){ 
         ERC721(Pets).transferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
 
-        uint256 ROIPerSecond = (BasePay / 600); //TODO: TEST
+        uint256 ROIPerSecond = (BasePay / 600);
         PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
-        StakedPets[msg.sender].push(PetID);
+        StakedPets[msg.sender].push(PetID); //TODO: TEST
         PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;
 
         emit PetStaked(PetID, msg.sender);
