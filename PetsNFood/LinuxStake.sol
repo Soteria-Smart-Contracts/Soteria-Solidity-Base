@@ -151,7 +151,7 @@ contract LinuxPetStake{
     //View  Functions
 
     function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){
-        return(PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout))
+        return(PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
     }
 
     //function GetFoodStaked
