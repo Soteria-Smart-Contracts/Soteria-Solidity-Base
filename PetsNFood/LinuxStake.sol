@@ -156,6 +156,29 @@ contract LinuxPetStake{
     }
 
     //EmergencyUnstake
+    function UnstakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
+        ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
+        PetStakes[PetID].Staked = false;
+
+        ERC721(Pets).transferFrom(address(this), msg.sender, PetID);
+
+        uint256 index = 0;
+        while(index < PetStakes[PetID].FoodIDs.length){
+            ERC721(Food).transferFrom(address(this), msg.sender, PetStakes[PetID].FoodIDs[index]);
+            index++;
+        }
+        
+        PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
+
+        if(StakedPets[msg.sender][StakedPets[msg.sender].length - 1] != PetID){
+            StakedPets[msg.sender][PetIndex[msg.sender][PetID]] = StakedPets[msg.sender][StakedPets[msg.sender].length - 1];
+        }
+        PetIndex[msg.sender][PetID] = 0;
+        delete StakedPets[msg.sender];
+
+        emit PetUnstaked(PetID, msg.sender);
+        return(success);
+    }
 
     //View  Functions
 
