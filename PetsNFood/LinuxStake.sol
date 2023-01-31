@@ -151,7 +151,7 @@ contract LinuxPetStake{
     //View  Functions
 
     function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){
-        
+        return
     }
 
     //function GetFoodStaked
