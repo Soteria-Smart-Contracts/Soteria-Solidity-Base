@@ -108,7 +108,6 @@ contract LinuxPetStake{
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
         uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
-
         PetStakes[PetID].ROIPerSecond = NewSecondsROI;
 
         return(success);
@@ -123,6 +122,7 @@ contract LinuxPetStake{
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
         uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
+        PetStakes[PetID].ROIPerSecond = NewSecondsROI;
 
         ERC20(TKN).transfer(msg.sender, Payout);
 
