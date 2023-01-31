@@ -168,8 +168,10 @@ contract LinuxPetStake{
     //Only Owner Functions
 
     function TransferOwnership(address NewOwner) public returns(bool success){
+        require(msg.sender == Owner);
 
-        
+        Owner = NewOwner;
+
         return(success)
     }
 
