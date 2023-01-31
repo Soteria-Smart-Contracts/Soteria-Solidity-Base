@@ -204,7 +204,7 @@ contract LinuxPetStake{
 
     //Returns a list of 
     function GetStakedFood(uint256 PetID) public view returns(uint256[] memory StakedFood){
-        require(PetStakes[PetID].Staked == true && PetStakes[PetID].FoodStaked > 0);
+        require(PetStakes[PetID].Staked);
         return(PetStakes[PetID].FoodIDs);
     }
 
