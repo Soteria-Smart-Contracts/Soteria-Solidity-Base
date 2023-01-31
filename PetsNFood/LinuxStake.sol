@@ -33,7 +33,7 @@ contract LinuxPetStake{
     event RewardsClaimed(uint256 Payout, address Staker);
 
     constructor(){
-        Owner= msg.sender
+        Owner = msg.sender;
     }
 
 
@@ -167,6 +167,9 @@ contract LinuxPetStake{
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
 
+    function name(type name) {
+        
+    }
 
 
 
