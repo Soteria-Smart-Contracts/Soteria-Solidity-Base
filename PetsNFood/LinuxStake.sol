@@ -12,7 +12,7 @@ contract LinuxPetStake{
     uint256 public TotalPetsStaked;
     uint256[] internal EmptyArray;
 
-    //FIXME: 1 year in seconds, do not forget to change: 31557600
+    //FIXME: 1 year in seconds, do not forget to change: 3155731557600
 
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; 
@@ -42,7 +42,7 @@ contract LinuxPetStake{
     function StakePet(uint256 PetID) public returns(bool success){ 
         ERC721(Pets).transferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
 
-        uint256 ROIPerSecond = (BasePay / 600);
+        uint256 ROIPerSecond = (BasePay / 31557600);
         PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
         StakedPets[msg.sender].push(PetID); 
@@ -66,7 +66,7 @@ contract LinuxPetStake{
         }
 
         uint256 FoodMultiplier = FoodIDs.length * FoodBoost;
-        uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
+        uint256 ROIPerSecond = (BasePay / 31557600) + (((BasePay / 31557600) * FoodMultiplier) / 100000);
         PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
         StakedPets[msg.sender].push(PetID);
@@ -116,7 +116,7 @@ contract LinuxPetStake{
         PetStakes[PetID].FoodStaked = PetStakes[PetID].FoodIDs.length;
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
-        uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
+        uint256 NewSecondsROI = (BasePay / 31557600) + (((BasePay / 31557600) * FoodMultiplier) / 100000);
         PetStakes[PetID].ROIPerSecond = NewSecondsROI;
 
         return(success);
@@ -130,7 +130,7 @@ contract LinuxPetStake{
         PetStakes[PetID].LastPayout = block.timestamp;
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
-        uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
+        uint256 NewSecondsROI = (BasePay / 31557600) + (((BasePay / 31557600) * FoodMultiplier) / 100000);
         PetStakes[PetID].ROIPerSecond = NewSecondsROI;
 
         ERC20(LinuxToken).transfer(msg.sender, Payout);
