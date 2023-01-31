@@ -5,7 +5,7 @@ pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Pets is ERC721Enumerable, Ownable {
+contract LinuxPets is ERC721Enumerable, Ownable {
   using Strings for uint256;
 
   string baseURI;
