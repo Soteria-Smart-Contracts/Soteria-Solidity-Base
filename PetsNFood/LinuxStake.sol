@@ -68,7 +68,6 @@ contract LinuxPetStake{
 
         uint256 Total = AllFoods.length;
         uint256 Index;
-        Total = AllFoods.length;
         if(AllFoods.length < 10){
             Total = AllFoods.length;
         }
