@@ -193,7 +193,7 @@ contract LinuxPetStake{
 
     //View  Functions
 
-    function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){ //TODO: TEST
+    function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){
         require(PetStakes[PetID].Staked == true);
         return(PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
     }
@@ -202,7 +202,7 @@ contract LinuxPetStake{
         return(StakedPets[User]);
     }
 
-    function GetStakedFood(uint256 PetID) public view returns(uint256[] memory StakedFood){ //TODO: TEST
+    function GetStakedFood(uint256 PetID) public view returns(uint256[] memory StakedFood){
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].FoodStaked > 0);
         return(PetStakes[PetID].FoodIDs);
     }
