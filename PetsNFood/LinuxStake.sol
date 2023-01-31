@@ -150,7 +150,9 @@ contract LinuxPetStake{
     //TODO: GetUnclaimed
     //View  Functions
 
-    function GetUnclaimed(uint256 PetID) public view returns(uint256 UnclaimedReward)
+    function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){
+        
+    }
 
     //function GetFoodStaked
 
