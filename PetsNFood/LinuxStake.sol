@@ -52,7 +52,7 @@ contract LinuxPetStake{
     }
 
     //Stake pet with up to 10 food
-    function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){ //TODO: TEST
+    function StakePetWithFood(uint256 PetID, uint256[] memory FoodIDs) public returns(bool success){ 
         require(FoodIDs.length <= 10);
         ERC721(Pets).transferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
         
@@ -64,11 +64,11 @@ contract LinuxPetStake{
         }
 
         uint256 FoodMultiplier = FoodIDs.length * FoodBoost;
-        uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000); //TODO: TEST
+        uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
         PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
-        StakedPets[msg.sender].push(PetID);
-        PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;
+        StakedPets[msg.sender].push(PetID);//TODO: TEST
+        PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;//TODO: TEST
 
         return(success);
     }
