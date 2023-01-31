@@ -138,6 +138,8 @@ contract LinuxPetStake{
             StakedPets[msg.sender][PetIndex[msg.sender][PetID]] = StakedPets[msg.sender][StakedPets[msg.sender].length - 1];
         }
 
+        
+
         emit PetUnstaked(PetID, msg.sender);
         return(success);
     }
