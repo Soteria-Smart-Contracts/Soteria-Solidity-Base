@@ -191,11 +191,13 @@ contract LinuxPetStake{
 
     //View  Functions
 
+    //Returns Unclaimed reward for a staked NFT
     function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){
         require(PetStakes[PetID].Staked == true);
         return(PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
     }
 
+    //
     function GetStakedPets(address User) public view returns(uint256[] memory PetIDs){
         return(StakedPets[User]);
     }
