@@ -152,7 +152,7 @@ contract LinuxPetStake{
 
     function GetUnclaimed(uint256 PetID) 
 
-    
+    //function GetFoodStaked
 
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
