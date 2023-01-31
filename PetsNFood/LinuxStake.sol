@@ -155,7 +155,7 @@ contract LinuxPetStake{
         return(success);
     }
 
-    //Allows users to unstake their NFT even if there isnt enough 
+    //Allows users to unstake their NFT even if there isnt enough funds to pay out their reward
     function UnstakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
         ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
