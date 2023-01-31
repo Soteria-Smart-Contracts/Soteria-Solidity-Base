@@ -31,6 +31,10 @@ contract LinuxPetStake{
     event FoodStaked(uint256 PetID, uint256 FoodID, address Staker);
     event RewardsClaimed(uint256 Payout, address Staker);
 
+    constructor(){
+        
+    }
+
 
     //Stake Pet With no Food
     function StakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
@@ -162,7 +166,7 @@ contract LinuxPetStake{
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
 
-    
+
 
 
 }
