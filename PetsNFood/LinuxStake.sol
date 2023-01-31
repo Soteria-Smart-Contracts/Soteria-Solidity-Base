@@ -197,7 +197,7 @@ contract LinuxPetStake{
         return(PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
     }
 
-    //
+    //Returns a list of staked pets that an address has
     function GetStakedPets(address User) public view returns(uint256[] memory PetIDs){
         return(StakedPets[User]);
     }
