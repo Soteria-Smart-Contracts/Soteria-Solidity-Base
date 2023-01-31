@@ -40,7 +40,7 @@ contract LinuxPetStake{
         PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
         StakedPets[msg.sender].push(PetID);
-        PetIndex[msg.sender][PetID] = StakedPets[msg.sender]
+        PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;
 
         emit PetStaked(PetID, msg.sender);
         return(success);
