@@ -54,7 +54,7 @@ contract LinuxPetStake{
         }
 
         uint256 FoodMultiplier = FoodIDs.length * FoodBoost;
-        uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 10000000); //TODO: TEST
+        uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000); //TODO: TEST
         PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
         return(success);
@@ -95,7 +95,7 @@ contract LinuxPetStake{
         PetStakes[PetID].FoodStaked = PetStakes[PetID].FoodIDs.length;
 
         uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
-        uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 10000000);
+        uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
 
         PetStakes[PetID].ROIPerSecond = NewSecondsROI;
 
@@ -124,7 +124,7 @@ contract LinuxPetStake{
 
         uint256 index = 0;
         while(index < PetStakes[PetID].FoodIDs.length){
-            ERC721(Food).transferFrom(msg.sender, address(this), PetStakes[PetID].FoodIDs[index]);
+            ERC721(Food).transferFrom(address(this), msg.sender, PetStakes[PetID].FoodIDs[index]);
             index++;
         }
         
@@ -133,9 +133,6 @@ contract LinuxPetStake{
         emit PetUnstaked(PetID, msg.sender);
         return(success);
     }
-
-    //TODO: Get unclaimed rewards view fucntion
-    //View Functions 
 
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
