@@ -39,7 +39,8 @@ contract LinuxPetStake{
         uint256 ROIPerSecond = (BasePay / 600); //TODO: TEST
         PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
-        StakedPets[msg.sender].push
+        StakedPets[msg.sender].push(PetID);
+        PetIndex
 
         emit PetStaked(PetID, msg.sender);
         return(success);
