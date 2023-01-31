@@ -17,7 +17,7 @@ contract LinuxPetStake{
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; 
     mapping(address => uint256[]) internal StakedPets;
-    mapping(address => mapping (uint256 => uint256)) internal PetIndex;/
+    mapping(address => mapping (uint256 => uint256)) internal PetIndex;
 
     struct PetStake{
         bool Staked;
@@ -45,7 +45,7 @@ contract LinuxPetStake{
         uint256 ROIPerSecond = (BasePay / 600);
         PetStakes[PetID] = PetStake(true, msg.sender, 0, EmptyArray, ROIPerSecond, block.timestamp);
 
-        StakedPets[msg.sender].push(PetID);
+        StakedPets[msg.sender].push(PetID); //TODO: TEST
         PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;
         TotalPetsStaked++;
 
@@ -69,8 +69,8 @@ contract LinuxPetStake{
         uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
         PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
-        StakedPets[msg.sender].push(PetID);
-        PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;
+        StakedPets[msg.sender].push(PetID);//TODO: TEST
+        PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;//TODO: TEST
         TotalPetsStaked++;
 
         return(success);
@@ -80,12 +80,18 @@ contract LinuxPetStake{
     function StakePetWithMaxFood(uint256 PetID) public returns(bool success){ 
         require(ERC721(Food).balanceOf(msg.sender) > 0);
         uint256[] memory AllFoods = ERC721(Food).walletOfOwner(msg.sender);
-        uint256[] memory FoodsToSubmit;
 
-        uint256 Total = AllFoods.length;
+        uint256 Size;
+        if(AllFoods.length > 10){
+            Size = 10;
+        }
+        else{
+            Size = AllFoods.length;
+        }
+        uint256[] memory FoodsToSubmit = new uint256[](Size);
         uint256 Index;
 
-        while(Index < Total && FoodsToSubmit.length < 10){ //TODO: TEST
+        while(Index < Size){ //TODO: TEST
             FoodsToSubmit[Index] = AllFoods[Index];
             Index++;
         }
