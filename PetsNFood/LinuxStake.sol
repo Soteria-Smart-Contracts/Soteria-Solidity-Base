@@ -157,7 +157,8 @@ contract LinuxPetStake{
 
     //function GetFoodStaked
     function GetStakedFood(uint256 PetID) public view returns(uint256[] StakedFood){
-        
+        require(PetStakes[PetID].Staked == true && require(PetStakes[PetID].Staked == true););
+
     }
 
     //TODO: Change Base pay and Boost Pay OnlyOwner
