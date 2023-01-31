@@ -150,7 +150,9 @@ contract LinuxPetStake{
     //TODO: GetUnclaimed
     //View  Functions
 
-    function GetUnclaimed(uint256 PetID)
+    function GetUnclaimed(uint256 PetID) 
+
+    
 
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
