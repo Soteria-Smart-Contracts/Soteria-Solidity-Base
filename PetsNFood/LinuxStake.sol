@@ -12,7 +12,6 @@ contract LinuxPetStake{
     uint256 public TotalPetsStaked;
     uint256[] internal EmptyArray;
 
-    //FIXME: 1 year in seconds, do not forget to change: 3155731557600
 
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; 
