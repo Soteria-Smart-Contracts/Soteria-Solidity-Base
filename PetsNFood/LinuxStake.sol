@@ -131,7 +131,7 @@ contract LinuxPetStake{
     }
 
     //Unstakes pet and returns Foods(if any)
-    function UnstakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
+    function UnstakePet(uint256 PetID) public returns(bool success){ 
         ClaimRewards(PetID); //Does not check for owner since that already happens in ClaimReward
         PetStakes[PetID].Staked = false;
 
@@ -145,7 +145,7 @@ contract LinuxPetStake{
         
         PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
 
-        if(StakedPets[msg.sender][StakedPets[msg.sender].length - 1] != PetID){
+        if(StakedPets[msg.sender][StakedPets[msg.sender].length - 1] != PetID){ //TODO: TEST
             StakedPets[msg.sender][PetIndex[msg.sender][PetID]] = StakedPets[msg.sender][StakedPets[msg.sender].length - 1];
         }
         PetIndex[msg.sender][PetID] = 0;
