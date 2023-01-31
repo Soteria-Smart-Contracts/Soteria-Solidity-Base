@@ -172,7 +172,7 @@ contract LinuxPetStake{
 
         Owner = NewOwner;
 
-        return(success)
+        return(success);
     }
 
 
