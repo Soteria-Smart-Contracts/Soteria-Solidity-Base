@@ -36,7 +36,6 @@ contract LinuxPetStake{
         Owner = msg.sender;
     }
 
-
     //Stake Pet With no Food
     function StakePet(uint256 PetID) public returns(bool success){ 
         ERC721(Pets).transferFrom(msg.sender, address(this), PetID); //No Extra checks since function will bounce if owner is not message sender, just gas savings 
