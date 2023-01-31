@@ -214,7 +214,7 @@ contract LinuxPetStake{
     function RemoveRewardPool() public returns(bool success){
         require(msg.sender == Owner);
 
-        ERC20(LinuxToken)
+        ERC20(LinuxToken).transfer(, value);
 
 
     }
