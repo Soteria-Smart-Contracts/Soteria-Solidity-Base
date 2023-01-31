@@ -121,6 +121,9 @@ contract LinuxPetStake{
         Payout = (PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
         PetStakes[PetID].LastPayout = block.timestamp;
 
+        uint256 FoodMultiplier = FoodBoost * PetStakes[PetID].FoodStaked;
+        uint256 NewSecondsROI = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000);
+
         ERC20(TKN).transfer(msg.sender, Payout);
 
         emit RewardsClaimed(Payout, msg.sender);
