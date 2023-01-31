@@ -71,6 +71,7 @@ contract LinuxPetStake{
 
         while(Index < Total && FoodsToSubmit.length <= 10){
             FoodsToSubmit[Index] = AllFoods[Index];
+            Index++;
         }
 
         StakePetWithFood(PetID, FoodsToSubmit);
