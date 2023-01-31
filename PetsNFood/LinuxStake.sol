@@ -20,7 +20,7 @@ contract LinuxPetStake{
 
     struct PetStake{
         bool Staked;
-        address Staker;
+        address Staker;  
         uint256 FoodStaked;
         uint256[] FoodIDs; //List of all food IDs staked with this pet
         uint256 ROIPerSecond; //Tokens returned per second
