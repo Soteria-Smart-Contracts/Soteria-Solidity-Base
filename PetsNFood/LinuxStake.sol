@@ -17,7 +17,7 @@ contract LinuxPetStake{
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; 
     mapping(address => uint256[]) internal StakedPets;
-    mapping(address => mapping (uint256 => uint256)) internal PetIndex;
+    mapping(address => mapping (uint256 => uint256)) internal PetIndex;/
 
     struct PetStake{
         bool Staked;
@@ -152,7 +152,7 @@ contract LinuxPetStake{
             StakedPets[msg.sender][PetIndex[msg.sender][PetID]] = StakedPets[msg.sender][StakedPets[msg.sender].length - 1];
         }
         PetIndex[msg.sender][PetID] = 0;
-        delete StakedPets[msg.sender];
+        StakedPets[msg.sender].pop();
         TotalPetsStaked--;
 
         emit PetUnstaked(PetID, msg.sender);
@@ -178,7 +178,8 @@ contract LinuxPetStake{
             StakedPets[msg.sender][PetIndex[msg.sender][PetID]] = StakedPets[msg.sender][StakedPets[msg.sender].length - 1];
         }
         PetIndex[msg.sender][PetID] = 0;
-        delete StakedPets[msg.sender];
+        StakedPets[msg.sender].pop();
+        TotalPetsStaked--;
 
         emit PetUnstaked(PetID, msg.sender);
         return(success);
