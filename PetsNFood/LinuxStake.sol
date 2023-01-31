@@ -192,7 +192,7 @@ contract LinuxPetStake{
         return(PetStakes[PetID].FoodIDs);
     }
 
-    //TODO: Change Base pay and Boost Pay OnlyOwner
+
     //Only Owner Functions
 
     function ChangeBasePay(uint256 NewBasePay) public returns(bool success){
