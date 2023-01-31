@@ -3,7 +3,7 @@ pragma solidity ^0.8.17;
 
 contract LinuxPetStake{
     //Core Variables
-    address public Pets = 0xF063BeccBccA5698532673de7E454Acd8B603BEA;
+    address public Pets = 0x000000000000000000000000000;
     address public Food = 0xF98b0713375793184E49526a243D799a5179735a;
     address public LinuxToken = 0x369Acc7aaE208F59f0a4043A534943cfd7C0a066;
     address public Owner;
