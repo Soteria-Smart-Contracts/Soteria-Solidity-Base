@@ -14,9 +14,9 @@ contract LinuxPetStake{
     //FIXME: 1 year in seconds, do not forget to change: 31557600
 
     //All stakes stored here
-    mapping(uint256 => PetStake) public PetStakes; //TODO: TEST
-    mapping(address => uint256[]) public StakedPets;
-    mapping(address => mapping (uint256 => uint256)) internal PetIndex;
+    mapping(uint256 => PetStake) public PetStakes; 
+    mapping(address => uint256[]) public StakedPets;//TODO: TEST
+    mapping(address => mapping (uint256 => uint256)) internal PetIndex;//TODO: TEST
 
     struct PetStake{
         bool Staked;
