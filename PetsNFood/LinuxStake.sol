@@ -152,6 +152,8 @@ contract LinuxPetStake{
         return(success);
     }
 
+    //EmergencyUnstake
+
     //View  Functions
 
     function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){
