@@ -167,7 +167,11 @@ contract LinuxPetStake{
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
 
-    function TransferOwnership(address NewOwner) 
+    function TransferOwnership(address NewOwner) public returns(bool success){
+
+        
+        return(success)
+    }
 
 
 
