@@ -3,9 +3,9 @@ pragma solidity ^0.8.17;
 
 contract LinuxPetStake{
     //Core Variables
-    address public Pets = 0x0000000000000000000000000000000000000000; //Replace 
-    address public Food = 0x0000000000000000000000000000000000000000;
-    address public LinuxToken = 0x0000000000000000000000000000000000000000;
+    address public Pets = 0x0000000000000000000000000000000000000000; //Replace Before Deploy
+    address public Food = 0x0000000000000000000000000000000000000000; //Replace Before Deploy
+    address public LinuxToken = 0x0000000000000000000000000000000000000000; //Replace Before Deploy
     address public Owner;
     uint256 public BasePay = 100000000000000000000; //Yearly Base ROI in $LinuxToken
     uint256 public FoodBoost = 1000; // in 0.0001 of percentage
