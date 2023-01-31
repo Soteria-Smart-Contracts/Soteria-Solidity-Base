@@ -147,7 +147,6 @@ contract LinuxPetStake{
         return(success);
     }
 
-    //TODO: GetUnclaimed
     //View  Functions
 
     function GetUnclaimedReward(uint256 PetID) public view returns(uint256 UnclaimedReward){
@@ -155,7 +154,6 @@ contract LinuxPetStake{
         return(PetStakes[PetID].ROIPerSecond * (block.timestamp - PetStakes[PetID].LastPayout));
     }
 
-    //function GetFoodStaked
     function GetStakedFood(uint256 PetID) public view returns(uint256[] memory StakedFood){
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].FoodStaked > 0);
         return(PetStakes[PetID].FoodIDs);
