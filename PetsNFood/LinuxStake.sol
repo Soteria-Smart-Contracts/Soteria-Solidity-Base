@@ -16,8 +16,8 @@ contract LinuxPetStake{
 
     //All stakes stored here
     mapping(uint256 => PetStake) public PetStakes; 
-    mapping(address => uint256[]) internal StakedPets;//TODO: TEST
-    mapping(address => mapping (uint256 => uint256)) internal PetIndex;//TODO: TEST
+    mapping(address => uint256[]) internal StakedPets;
+    mapping(address => mapping (uint256 => uint256)) internal PetIndex;
 
     struct PetStake{
         bool Staked;
