@@ -68,10 +68,8 @@ contract LinuxPetStake{
 
         uint256 Total = AllFoods.length;
         uint256 Index;
-        if(AllFoods.length < 10){
-            Total = AllFoods.length;
-        }
-        while(Index < Total){
+
+        while(Index < Total && ){
             FoodsToSubmit[Index] = AllFoods[Index];
         }
 
