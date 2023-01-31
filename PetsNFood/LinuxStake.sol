@@ -156,7 +156,7 @@ contract LinuxPetStake{
     }
 
     //function GetFoodStaked
-    function GetStakedFood(uint256 PetID)
+    function GetStakedFood(uint256 PetID) public view returns(uint256[])
 
     //TODO: Change Base pay and Boost Pay OnlyOwner
     //Only Owner Functions
