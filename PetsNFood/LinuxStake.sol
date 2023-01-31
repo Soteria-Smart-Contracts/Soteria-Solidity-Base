@@ -66,8 +66,9 @@ contract LinuxPetStake{
         uint256[] memory AllFoods = ERC721(Food).walletOfOwner(msg.sender);
         uint256[] memory FoodsToSubmit;
 
-        uint256 Total;
+        uint256 Total = AllFoods.length;
         uint256 Index;
+        Total = AllFoods.length;
         if(AllFoods.length < 10){
             Total = AllFoods.length;
         }
