@@ -62,6 +62,9 @@ contract LinuxPetStake{
         uint256 ROIPerSecond = (BasePay / 600) + (((BasePay / 600) * FoodMultiplier) / 100000); //TODO: TEST
         PetStakes[PetID] = PetStake(true, msg.sender, FoodIDs.length, FoodIDs, ROIPerSecond, block.timestamp);
 
+        StakedPets[msg.sender].push(PetID);
+        PetIndex[msg.sender][PetID] = StakedPets[msg.sender].length - 1;
+
         return(success);
     }
 
