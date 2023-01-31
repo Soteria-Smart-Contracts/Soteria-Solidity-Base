@@ -10,9 +10,10 @@ contract Food is ERC721Enumerable, Ownable {
 
   string baseURI;
   string public baseExtension = ".json";
-  uint256 public cost = 1000000000000000; //Change Before Official Deploy
+  uint256 public cost = 25000000000000000000; //Change Before Official Deploy
   uint256 public maxSupply = 1000; 
   uint256 public maxMintAmount = 50; 
+  address public LinuxToken = 0x369Acc7aaE208F59f0a4043A534943cfd7C0a066; //Must be changed on deploy to desired token
   bool public paused = false;
 
   //Minting Protocol based on Fisher-Yates Shuffle using mapping instead of array
@@ -43,7 +44,7 @@ contract Food is ERC721Enumerable, Ownable {
     require(supply + _mintQuantity <= maxSupply);
 
     if (msg.sender != owner()) {
-      require(msg.value >= cost * _mintQuantity);
+      ERC20(LinuxToken).transferFrom(msg.sender, address(this),(cost * _mintQuantity));
     }
 
     for (uint256 i = 1; i <= _mintQuantity; i++) {
@@ -106,8 +107,7 @@ contract Food is ERC721Enumerable, Ownable {
   }
  
   function withdraw() public payable onlyOwner {
-    (bool success, ) = payable(msg.sender).call{value: address(this).balance}("");
-    require(success);
+    ERC20(LinuxToken).transfer(msg.sender, ERC20(LinuxToken).balanceOf(address(this)));
   }
 
 
@@ -176,3 +176,13 @@ contract Food is ERC721Enumerable, Ownable {
    }
   
 }
+
+interface ERC20 {
+  function balanceOf(address owner) external view returns (uint256);
+  function allowance(address owner, address spender) external view returns (uint256);
+  function approve(address spender, uint value) external returns (bool);
+  function Mint(address _MintTo, uint256 _MintAmount) external;
+  function transfer(address to, uint value) external returns (bool);
+  function transferFrom(address from, address to, uint256 value) external returns (bool); 
+  function totalSupply() external view returns (uint);
+}  
