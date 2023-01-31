@@ -137,7 +137,7 @@ contract LinuxPetStake{
         if(StakedPets[msg.sender][StakedPets[msg.sender].length - 1] != PetID){
             StakedPets[msg.sender][PetIndex[msg.sender][PetID]] = StakedPets[msg.sender][StakedPets[msg.sender].length - 1];
         }
-
+        PetIndex[msg.sender][PetID] = 0;
         delete StakedPets[msg.sender];
 
         emit PetUnstaked(PetID, msg.sender);
