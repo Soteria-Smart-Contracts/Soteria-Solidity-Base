@@ -154,7 +154,7 @@ contract LinuxPetStake{
         
         PetStakes[PetID] = PetStake(false, address(0), 0, EmptyArray, 0, 0);
 
-        if(StakedPets[msg.sender][StakedPets[msg.sender].length - 1] != PetID){ //TODO: TEST
+        if(StakedPets[msg.sender][StakedPets[msg.sender].length - 1] != PetID){
             StakedPets[msg.sender][PetIndex[msg.sender][PetID]] = StakedPets[msg.sender][StakedPets[msg.sender].length - 1];
         }
         PetIndex[msg.sender][PetID] = 0;
@@ -166,7 +166,7 @@ contract LinuxPetStake{
     }
 
     //Allows users to unstake their NFT even if there isnt enough funds to pay out their reward
-    function EmergencyUnstakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
+    function EmergencyUnstakePet(uint256 PetID) public returns(bool success){
         require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
         PetStakes[PetID].Staked = false;
 
