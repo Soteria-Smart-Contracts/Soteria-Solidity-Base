@@ -172,7 +172,9 @@ contract LinuxPetStake{
     function ChangeBasePay(uint256 NewBasePay) public returns(bool success){
         require(msg.sender == Owner);
 
-        
+        BasePay = NewBasePay;
+
+        return(success);
     }
 
     function TransferOwnership(address NewOwner) public returns(bool success){
