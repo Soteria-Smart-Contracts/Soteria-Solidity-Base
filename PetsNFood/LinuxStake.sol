@@ -216,7 +216,7 @@ contract LinuxPetStake{
 
         ERC20(LinuxToken).transfer(msg.sender, ERC20(LinuxToken).balanceOf(address(this)));
 
-        
+        return(success);
     }
 
     function TransferOwnership(address NewOwner) public returns(bool success){
