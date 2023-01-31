@@ -211,7 +211,7 @@ contract LinuxPetStake{
         return(success);
     }
 
-    function RemoveRewardPool()
+    function RemoveRewardPool() public returns(bool success)
 
     function TransferOwnership(address NewOwner) public returns(bool success){
         require(msg.sender == Owner);
