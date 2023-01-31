@@ -234,7 +234,7 @@ contract LinuxPetStake{
         return(success);
     }
 
-    function TransferOwnership(address NewOwner) public returns(bool success){ //TODO: TEST
+    function TransferOwnership(address NewOwner) public returns(bool success){ 
         require(msg.sender == Owner);
 
         Owner = NewOwner;
