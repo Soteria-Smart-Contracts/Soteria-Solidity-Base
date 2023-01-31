@@ -157,7 +157,7 @@ contract LinuxPetStake{
 
     //Allows users to unstake their NFT even if there isnt enough funds to pay out their reward
     function EmergencyUnstakePet(uint256 PetID) public returns(bool success){ //TODO: TEST
-    require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
+        require(PetStakes[PetID].Staked == true && PetStakes[PetID].Staker == msg.sender);
         PetStakes[PetID].Staked = false;
 
         ERC721(Pets).transferFrom(address(this), msg.sender, PetID);
