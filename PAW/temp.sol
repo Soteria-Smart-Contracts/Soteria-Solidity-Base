@@ -90,6 +90,8 @@ contract FlexibleStaking{
     function ChangePairAddress(address NewPair) public returns(bool success){
         require(msg.sender == Operator);
 
+        PairContract = NewPair;
+
         return(success);
     }
 
