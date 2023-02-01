@@ -25,7 +25,7 @@ contract FlexibleStaking{
 
     constructor(address _PAW, address _Pair){
         PAW = _PAW;
-        Pair = _Pair;
+        PairContract = _Pair;
         Operator = msg.sender;
     }
 
@@ -33,8 +33,8 @@ contract FlexibleStaking{
     //Public Functions
     function Deposit(uint256 amount) public returns(bool success){  
         require(amount >= 1000000000000000000, "The minimum deposit for staking is 1 PAW");
-        require(ERC20(PAW).balanceOf(msg.sender) >= amount, "You do not have enough PAW to stake this amount");
-        require(ERC20(PAW).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
+        require(ERC20(PairContract).balanceOf(msg.sender) >= amount, "You do not have enough PAW to stake this amount");
+        require(ERC20(PairContract).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
 
         if(Deposits[msg.sender] > 0){
             Claim();
