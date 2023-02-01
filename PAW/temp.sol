@@ -100,7 +100,6 @@ contract FlexibleStaking{
         LastUpdateUnix[user] = block.timestamp;
     }
 
-
     //Functional view functions
 
     function GetUnclaimed(address user) public view returns(uint256){
