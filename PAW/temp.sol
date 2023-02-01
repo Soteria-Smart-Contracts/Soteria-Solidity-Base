@@ -58,7 +58,7 @@ contract FlexibleStaking{
 
         Deposits[msg.sender] = Deposits[msg.sender] - amount;
         TotalDeposits = TotalDeposits - amount;
-        ERC20(PAW).transfer(msg.sender, amount);
+        ERC20(PairContract).transfer(msg.sender, amount);
         
         emit Withdrawn(Deposits[msg.sender], msg.sender);
         return(success);
