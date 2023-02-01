@@ -25,6 +25,7 @@ contract FlexibleStaking{
 
     constructor(address _PAW){
         PAW = _PAW;
+        Pair
         Operator = msg.sender;
     }
 
