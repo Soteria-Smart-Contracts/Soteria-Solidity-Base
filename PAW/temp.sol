@@ -32,7 +32,7 @@ contract FlexibleStaking{
 
     //Public Functions
     function Deposit(uint256 amount) public returns(bool success){  
-        require(amount >= 1000000000000000000, "The minimum deposit for staking is  PAW");
+        require(amount >= 100000000000, "The minimum deposit for staking is  PAW");
         require(ERC20(PairContract).balanceOf(msg.sender) >= amount, "You do not have enough PAW to stake this amount");
         require(ERC20(PairContract).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
 
