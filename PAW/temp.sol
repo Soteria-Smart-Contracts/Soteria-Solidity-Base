@@ -52,7 +52,7 @@ contract FlexibleStaking{
     function Withdraw(uint256 amount) public returns(bool success){
         require(Deposits[msg.sender] >= amount);
         
-        if((ERC20(PAW).balanceOf(address(this)) - (GetUnclaimed(msg.sender))) >= TotalDeposits){
+        if((ERC20(PAW).balanceOf(address(this)) >= (GetUnclaimed(msg.sender)))){
             Claim();
         }
 
