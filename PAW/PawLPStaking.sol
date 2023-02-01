@@ -5,7 +5,6 @@ contract PAWPairStaking{
     address Creator;
     address PairContract;
     address PAW;
-    address Coin2;
     string public PAWPair;
     uint Multiplier;
     uint OnOff;
