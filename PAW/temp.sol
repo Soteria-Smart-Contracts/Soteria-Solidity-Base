@@ -126,7 +126,7 @@ contract FlexibleStaking{
     }
 
     function CalculatePAWequivalent(uint256 _amount) public view returns(uint256){
-        return (((ERC20(PAW).balanceOf(PairContract)*((((1000000000000000000 * _amount) / (Pair(PairContract).totalSupply())))) / 1000000000000000000))*2);
+        return (((ERC20(PAW).balanceOf(PairContract)*((((1000000000000000000 * _amount) / (ERC20(PairContract).totalSupply())))) / 1000000000000000000))*2);
     }
 
 }
