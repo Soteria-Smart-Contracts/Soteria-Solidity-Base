@@ -5,6 +5,7 @@ pragma solidity ^0.8.7;
 contract FlexibleStaking{
     //Variable and other Declarations
     address public PAW;
+    address public PairContract;
     uint256 public TotalDeposits;
     bool PreSaleListCompleted = false;
     address public Operator;
