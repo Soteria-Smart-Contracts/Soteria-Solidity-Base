@@ -8,7 +8,6 @@ contract FlexibleStaking{
     address public PairContract;
     uint256 public TotalDeposits;
     uint256 public RewardMultiplier = 7927448; //Default set at 1%
-    bool PreSaleListCompleted = false;
     address public Operator;
 
     //Add Total Staked (for projections)
