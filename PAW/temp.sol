@@ -79,7 +79,7 @@ contract FlexibleStaking{
 
     //OwnerOnly Functions
 
-    function ChangeMultiplier()
+    function ChangeMultiplier(uint256 NewMultiplier) public returns(bool success)PairContract
 
 
     //Internal Functions
