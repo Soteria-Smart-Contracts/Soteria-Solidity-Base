@@ -41,7 +41,7 @@ contract FlexibleStaking{
         }
 
         Update(msg.sender);
-        ERC20(PAW).transferFrom(msg.sender, address(this), amount);
+        ERC20(PairContract).transferFrom(msg.sender, address(this), amount);
         TotalDeposits = TotalDeposits + amount;
         Deposits[msg.sender] = (Deposits[msg.sender] + amount);
 
