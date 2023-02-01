@@ -80,7 +80,10 @@ contract FlexibleStaking{
     //OwnerOnly Functions
 
     function ChangeMultiplier(uint256 NewMultiplier) public returns(bool success){
-        
+        require(msg.sender == Operator);
+
+
+        return(success)
     }
 
 
