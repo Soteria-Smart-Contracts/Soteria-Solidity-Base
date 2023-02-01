@@ -79,7 +79,7 @@ contract FlexibleStaking{
 
     //OwnerOnly Functions
 
-    function 
+    function ChangeAP
 
 
     //Internal Functions
