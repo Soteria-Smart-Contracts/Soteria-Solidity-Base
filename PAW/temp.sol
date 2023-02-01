@@ -87,6 +87,8 @@ contract FlexibleStaking{
         return(success);
     }
 
+    function Change
+
 
     //Internal Functions
     function Update(address user) internal{
