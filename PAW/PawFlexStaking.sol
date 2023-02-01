@@ -4,7 +4,7 @@ pragma solidity ^0.8.7;
 
 contract FlexibleStaking{
     //Variable and other Declarations
-    address public CLD;
+    address public PAW;
     uint256 public TotalDeposits;
     bool PreSaleListCompleted = false;
     address public Operator;
@@ -21,24 +21,24 @@ contract FlexibleStaking{
     event ReInvested(uint256 NewBalance, address user);
 
 
-    constructor(address _CLD){
-        CLD = _CLD;
+    constructor(address _PAW){
+        PAW = _PAW;
         Operator = msg.sender;
     }
 
 
     //Public Functions
     function Deposit(uint256 amount) public returns(bool success){  
-        require(amount >= 1000000000000000000, "The minimum deposit for staking is 1 CLD");
-        require(ERC20(CLD).balanceOf(msg.sender) >= amount, "You do not have enough CLD to stake this amount");
-        require(ERC20(CLD).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
+        require(amount >= 1000000000000000000, "The minimum deposit for staking is 1 PAW");
+        require(ERC20(PAW).balanceOf(msg.sender) >= amount, "You do not have enough PAW to stake this amount");
+        require(ERC20(PAW).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
 
         if(Deposits[msg.sender] > 0){
             ReInvest();
         }
 
         Update(msg.sender);
-        ERC20(CLD).transferFrom(msg.sender, address(this), amount);
+        ERC20(PAW).transferFrom(msg.sender, address(this), amount);
         TotalDeposits = TotalDeposits + amount;
         Deposits[msg.sender] = (Deposits[msg.sender] + amount);
 
@@ -49,13 +49,13 @@ contract FlexibleStaking{
     function Withdraw(uint256 amount) public returns(bool success){
         require(Deposits[msg.sender] >= amount);
         
-        if((ERC20(CLD).balanceOf(address(this)) - (GetUnclaimed(msg.sender))) >= TotalDeposits){
+        if((ERC20(PAW).balanceOf(address(this)) - (GetUnclaimed(msg.sender))) >= TotalDeposits){
         Claim();
         }
 
         Deposits[msg.sender] = Deposits[msg.sender] - amount;
         TotalDeposits = TotalDeposits - amount;
-        ERC20(CLD).transfer(msg.sender, amount);
+        ERC20(PAW).transfer(msg.sender, amount);
         
         emit Withdrawn(Deposits[msg.sender], msg.sender);
         return(success);
@@ -65,7 +65,7 @@ contract FlexibleStaking{
         require(GetUnclaimed(msg.sender) > 0);
         
         uint256 Unclaimed = GetUnclaimed(msg.sender);
-        require((ERC20(CLD).balanceOf(address(this)) - Unclaimed) >= TotalDeposits, "The contract does not have enough CLD to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with CLD in time
+        require((ERC20(PAW).balanceOf(address(this)) - Unclaimed) >= TotalDeposits, "The contract does not have enough PAW to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with PAW in time
         Update(msg.sender);
 
         Deposits[msg.sender] = Deposits[msg.sender] + Unclaimed;
@@ -80,10 +80,10 @@ contract FlexibleStaking{
         uint256 Unclaimed = GetUnclaimed(msg.sender);
         require(Unclaimed > 0);
 
-        require((ERC20(CLD).balanceOf(address(this)) - Unclaimed) >= TotalDeposits, "The contract does not have enough CLD to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with CLD in time
+        require((ERC20(PAW).balanceOf(address(this)) - Unclaimed) >= TotalDeposits, "The contract does not have enough PAW to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with PAW in time
         Update(msg.sender);
 
-        ERC20(CLD).transfer(msg.sender, Unclaimed);
+        ERC20(PAW).transfer(msg.sender, Unclaimed);
         
         emit Claimed(Unclaimed, msg.sender);
         return(success);
@@ -103,7 +103,7 @@ contract FlexibleStaking{
     function GetUnclaimed(address user) public view returns(uint256){
         uint256 Time = (block.timestamp - LastUpdateUnix[user]);
         uint256 Unclaimed;
-        
+
         Unclaimed = (((7927448 * Time) * Deposits[user]) / 1000000000000000);
 
         return(Unclaimed);
