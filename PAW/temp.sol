@@ -84,7 +84,7 @@ contract FlexibleStaking{
 
         RewardMultiplier = NewMultiplier;
 
-        return(success)
+        return(success);
     }
 
 
