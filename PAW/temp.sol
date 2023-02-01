@@ -118,12 +118,9 @@ contract FlexibleStaking{
     function GetUnclaimed(address user) public view returns(uint256){
         uint256 Time = (block.timestamp - LastUpdateUnix[user]);
         uint256 Unclaimed;
-        if(PreSaleUser[user] == true){
-        Unclaimed = (((9512937 * Time) * Deposits[user]) / 1000000000000000);
-        }
-        else{
+        
         Unclaimed = (((7927448 * Time) * Deposits[user]) / 1000000000000000);
-        }
+
         return(Unclaimed);
     }
 
