@@ -13,8 +13,7 @@ contract FlexibleStaking{
 
     mapping(address => uint256) public Deposits;
     mapping(address => uint256) public LastUpdateUnix;
-    mapping(address => bool) public PreSaleUser;
-
+    
     //Events
     event Deposited(uint256 NewBalance, address user);
     event Withdrawn(uint256 NewBalance, address user);
