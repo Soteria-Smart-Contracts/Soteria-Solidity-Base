@@ -89,9 +89,9 @@ contract FlexibleStaking{
 
     function ChangePairAddress(address NewPair) public returns(bool success){
         require(msg.sender == Operator);
-        RewardMultiplier = NewMultiplier;
 
-
+        return(success);
+    }
 
     //Internal Functions
     function Update(address user) internal{
