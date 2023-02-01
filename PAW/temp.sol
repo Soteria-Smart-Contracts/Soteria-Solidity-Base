@@ -106,7 +106,7 @@ contract FlexibleStaking{
         uint256 Time = (block.timestamp - LastUpdateUnix[user]);
         uint256 Unclaimed;
         
-        Unclaimed = (((7927448 * Time) * Deposits[user]) / 1000000000000000); // 7927448 per %
+        Unclaimed = (((RewardMultiplier * Time) * Deposits[user]) / 1000000000000000); // 7927448 per %
 
         return(Unclaimed);
     }
