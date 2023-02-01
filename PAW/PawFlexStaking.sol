@@ -6,7 +6,7 @@ contract FlexibleStaking{
     //Variable and other Declarations
     address public PAW;
     uint256 public TotalDeposits;
-    bool PreSaleListCompleted = false;
+    uint256 public RewardMultiplier = 7927448; //Default set at 1%
     address public Operator;
 
     //Add Total Staked (for projections)
