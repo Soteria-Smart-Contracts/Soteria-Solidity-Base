@@ -1,24 +1,24 @@
 // SPDX-License-Identifier: UNLICENSE
 pragma solidity ^0.8.17;
 
-contract EXCPairStaking{
+contract PAWPairStaking{
     address Creator;
     address PairContract;
-    address EXC;
+    address PAW;
     address Coin2;
-    string public EXCPair;
+    string public PAWPair;
     uint Multiplier;
     uint OnOff;
     
     mapping(address => uint256) Staked;
-    mapping(address => uint256) ClaimableEXC;
+    mapping(address => uint256) ClaimablePAW;
     mapping(address => uint256) BlockDeposit;
     
-    constructor(address payable _Coin2, address payable _EXC, address payable _PairContract, string memory _Pair){
+    constructor(address payable _Coin2, address payable _PAW, address payable _PairContract, string memory _Pair){
         PairContract = _PairContract;
-        EXC = _EXC;
+        PAW = _PAW;
         Coin2 = _Coin2;
-        EXCPair = _Pair;
+        PAWPair = _Pair;
         Creator = msg.sender;
     }
     
@@ -33,7 +33,7 @@ contract EXCPairStaking{
         ERC20(PairContract).transferFrom(msg.sender, (address(this)), _amount);
         
         if (Staked[msg.sender] > 0){
-            ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
+            ClaimablePAW[msg.sender] = UnclaimedPAW(msg.sender);
         }
         Staked[msg.sender] = Staked[msg.sender]+(_amount);
         BlockDeposit[msg.sender] = block.number;
@@ -45,17 +45,17 @@ contract EXCPairStaking{
     }
     
     
-    function ClaimEXC() public payable returns(bool success){
+    function ClaimPAW() public payable returns(bool success){
         require (Staked[msg.sender] > 0);
         require (OnOff == 1);
         
-        ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
+        ClaimablePAW[msg.sender] = UnclaimedPAW(msg.sender);
         
-        ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
+        ERC20(PAW).Mint(msg.sender, ClaimablePAW[msg.sender]);
         
-        emit Withdraw(address(this),ClaimableEXC[msg.sender]);
+        emit Withdraw(address(this),ClaimablePAW[msg.sender]);
         
-        ClaimableEXC[msg.sender] = 0;
+        ClaimablePAW[msg.sender] = 0;
         BlockDeposit[msg.sender] = block.number;
         return success;
     }
@@ -65,14 +65,14 @@ contract EXCPairStaking{
         require (Staked[msg.sender] > 0);
         require (Staked[msg.sender] >= _amount);
         
-        ClaimableEXC[msg.sender] = UnclaimedEXC(msg.sender);
+        ClaimablePAW[msg.sender] = UnclaimedPAW(msg.sender);
         
-        ERC20(EXC).Mint(msg.sender, ClaimableEXC[msg.sender]);
+        ERC20(PAW).Mint(msg.sender, ClaimablePAW[msg.sender]);
         ERC20(PairContract).transfer(msg.sender, _amount);
         
         Staked[msg.sender] = Staked[msg.sender]-(_amount);
         BlockDeposit[msg.sender] = block.number;
-        ClaimableEXC[msg.sender] = 0;
+        ClaimablePAW[msg.sender] = 0;
         
         return success;
     }
@@ -81,16 +81,16 @@ contract EXCPairStaking{
         return Staked[Staker];
     }
     
-    function UnclaimedEXC(address Staker) public view returns(uint256){
-        return ClaimableEXC[Staker]+((((CalculateEXCequivalent(Staked[Staker])*(12594*(block.number-(BlockDeposit[Staker]))))/10000000000)/1000)*Multiplier);
+    function UnclaimedPAW(address Staker) public view returns(uint256){
+        return ClaimablePAW[Staker]+((((CalculatePAWequivalent(Staked[Staker])*(12594*(block.number-(BlockDeposit[Staker]))))/10000000000)/1000)*Multiplier);
     }
     
     function TotalStaked()public view returns(uint256){
         return ERC20(PairContract).balanceOf(address(this));
     }
 
-    function CalculateEXCequivalent(uint256 _amount) public view returns(uint256){
-        return (((ERC20(EXC).balanceOf(PairContract)*((((1000000000000000000 * _amount) / (Pair(PairContract).totalSupply())))) / 1000000000000000000))*2);
+    function CalculatePAWequivalent(uint256 _amount) public view returns(uint256){
+        return (((ERC20(PAW).balanceOf(PairContract)*((((1000000000000000000 * _amount) / (Pair(PairContract).totalSupply())))) / 1000000000000000000))*2);
         
     }
     
