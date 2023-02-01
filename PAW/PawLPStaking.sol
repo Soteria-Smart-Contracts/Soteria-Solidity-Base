@@ -135,5 +135,4 @@ interface ERC20 {
 
 interface Pair {
     function totalSupply() external view returns (uint);
-    
 }
