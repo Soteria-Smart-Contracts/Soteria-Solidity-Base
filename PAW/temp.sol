@@ -15,7 +15,6 @@ contract FlexibleStaking{
 
     mapping(address => uint256) public Deposits;
     mapping(address => uint256) public LastUpdateUnix;
-    mapping(address => bool) public PreSaleUser;
 
     //Events
     event Deposited(uint256 NewBalance, address user);
@@ -93,19 +92,6 @@ contract FlexibleStaking{
     }
 
     //OwnerOnly Functions
-
-    function AddEligible(address[] memory Addresses) public returns(bool success){
-        require(msg.sender == Operator);
-        require(PreSaleListCompleted == false);
-
-        uint256 index = 0;
-        while(index < Addresses.length){
-            PreSaleUser[Addresses[index]] = true;
-            index++;
-        }
-        PreSaleListCompleted = true;
-        return(success);
-    }
 
 
     //Internal Functions
