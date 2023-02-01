@@ -79,6 +79,8 @@ contract FlexibleStaking{
 
     //OwnerOnly Functions
 
+    function 
+
 
     //Internal Functions
     function Update(address user) internal{
