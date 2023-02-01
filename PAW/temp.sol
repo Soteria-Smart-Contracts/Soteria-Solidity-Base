@@ -7,6 +7,7 @@ contract FlexibleStaking{
     address public PAW;
     address public PairContract;
     uint256 public TotalDeposits;
+    uint256 public 
     bool PreSaleListCompleted = false;
     address public Operator;
 
