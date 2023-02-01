@@ -14,10 +14,9 @@ contract PAWPairStaking{
     mapping(address => uint256) ClaimablePAW;
     mapping(address => uint256) BlockDeposit;
     
-    constructor(address payable _Coin2, address payable _PAW, address payable _PairContract, string memory _Pair){
+    constructor(address payable _PAW, address payable _PairContract, string memory _Pair){
         PairContract = _PairContract;
         PAW = _PAW;
-        Coin2 = _Coin2;
         PAWPair = _Pair;
         Creator = msg.sender;
     }
