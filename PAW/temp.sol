@@ -87,7 +87,7 @@ contract FlexibleStaking{
         return(success);
     }
 
-    function Change
+    function ChangePairAddress(address NewPair) public returns(bool success){
 
 
     //Internal Functions
