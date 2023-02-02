@@ -50,7 +50,7 @@ contract FlexibleStaking{
         require(Deposits[msg.sender] >= amount);
         
         if((ERC20(PAW).balanceOf(address(this)) - (GetUnclaimed(msg.sender))) >= TotalDeposits){
-        Claim();
+            Claim();
         }
 
         Deposits[msg.sender] = Deposits[msg.sender] - amount;
