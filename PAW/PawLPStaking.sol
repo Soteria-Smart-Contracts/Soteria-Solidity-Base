@@ -85,7 +85,7 @@ contract FlexibleStaking{
 
         return(success);
     }
-    
+
     function ChangePairAddress(address NewPair) public returns(bool success){
         require(msg.sender == Operator);
 
@@ -93,6 +93,8 @@ contract FlexibleStaking{
 
         return(success);
     }
+
+    function RemoveRewardPool() public re
 
     //Internal Functions
     function Update(address user) internal{
