@@ -6,7 +6,7 @@ contract FlexibleStaking{
     //Variable and other Declarations
     address public PAW;
     uint256 public TotalDeposits;
-    uint256 public RewardMultiplier = 7927448; //Default set at 1% 7927448
+    uint256 public RewardMultiplier; //Default set at 1% 7927448
     address public Operator;
 
     //Add Total Staked (for projections)
@@ -21,7 +21,7 @@ contract FlexibleStaking{
     event ReInvested(uint256 NewBalance, address user);
 
 
-    constructor(address _PAW){
+    constructor(address _PAW, ){
         PAW = _PAW;
         Operator = msg.sender;
     }
