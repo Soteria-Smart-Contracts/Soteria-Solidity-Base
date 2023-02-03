@@ -109,7 +109,9 @@ contract FlexibleStaking{
         return(success);
     }
 
-    func
+    function PauseRewards
+
+    function UnPauseRewards
 
     //Internal Functions
     function Update(address user) internal{
