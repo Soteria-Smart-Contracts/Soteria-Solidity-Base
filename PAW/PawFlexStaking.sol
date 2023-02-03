@@ -35,7 +35,7 @@ contract FlexibleStaking{
         require(ERC20(PAW).balanceOf(msg.sender) >= amount, "You do not have enough PAW to stake this amount");
         require(ERC20(PAW).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
 
-        if(Deposits[msg.sender] > 0){
+        if(Deposits[msg.sender] > 0 && Rewards){
             ReInvest();
         }
 
