@@ -103,7 +103,7 @@ contract FlexibleStaking{
     function RemoveRewardPool() public returns(bool success){
         require(msg.sender == Operator);
 
-        ERC20(PAW).transfer(msg.sender, ERC20(PAW).balanceOf(address(this)));
+        ERC20(PAW).transfer(msg.sender, (ERC20(PAW).balanceOf(address(this))) );
 
         return(success);
     }
