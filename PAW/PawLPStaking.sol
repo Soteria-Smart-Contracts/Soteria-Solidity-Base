@@ -94,7 +94,10 @@ contract FlexibleStaking{
         return(success);
     }
 
-    function RemoveRewardPool() public re
+    function RemoveRewardPool() public returns(bool success){
+        require(msg.sender == Operator);
+
+    }
 
     //Internal Functions
     function Update(address user) internal{
