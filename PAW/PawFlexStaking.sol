@@ -114,9 +114,16 @@ contract FlexibleStaking{
 
         RewardsPaused = true;
 
+        return(success)
     }
 
-    //function UnpauseRewards
+    function PauseRewards() public returns(bool success){
+        require(msg.sender == Operator);
+
+        RewardsPaused = true;
+
+        return(success)
+    }
 
     //Internal Functions
     function Update(address user) internal{
