@@ -37,7 +37,7 @@ contract FlexibleStaking{
         require(ERC20(PairContract).balanceOf(msg.sender) >= amount, "You do not have enough LP to stake this amount");
         require(ERC20(PairContract).allowance(msg.sender, address(this)) >= amount, "You have not given the staking contract enough allowance");
 
-        if(Deposits[msg.sender] > 0){
+        if(Deposits[msg.sender] > 0 && RewardsPaused == false){
             Claim();
         }
 
