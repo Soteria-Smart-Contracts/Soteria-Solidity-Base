@@ -21,7 +21,7 @@ contract FlexibleStaking{
     event ReInvested(uint256 NewBalance, address user);
 
 
-    constructor(address _PAW, ){
+    constructor(address _PAW, uint256 APY){
         PAW = _PAW;
         Operator = msg.sender;
     }
