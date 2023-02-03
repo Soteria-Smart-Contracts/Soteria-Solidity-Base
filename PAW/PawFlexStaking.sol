@@ -95,7 +95,7 @@ contract FlexibleStaking{
     function ChangeMultiplier(uint256 NewAPY) public returns(bool success){
         require(msg.sender == Operator);
 
-        NewAPY = NewMultiplier;
+        RewardMultiplier = NewAPY ;
 
         return(success);
     }
