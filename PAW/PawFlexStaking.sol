@@ -64,6 +64,7 @@ contract FlexibleStaking{
     }
 
     function ReInvest() public returns(bool success){
+        require(RewardsPaused == false);
         require(GetUnclaimed(msg.sender) > 0);
         
         uint256 Unclaimed = GetUnclaimed(msg.sender);
