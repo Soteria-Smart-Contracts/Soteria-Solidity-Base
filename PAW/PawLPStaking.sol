@@ -104,6 +104,22 @@ contract FlexibleStaking{
         return(success);
     }
 
+    function PauseRewards() public returns(bool success){
+        require(msg.sender == Operator);
+
+        RewardsPaused = true;
+
+        return(success);
+    }
+
+    function UnpauseRewards() public returns(bool success){
+        require(msg.sender == Operator);
+
+        RewardsPaused = false;
+
+        return(success);
+    }
+
     //Internal Functions
     function Update(address user) internal{
         LastUpdateUnix[user] = block.timestamp;
