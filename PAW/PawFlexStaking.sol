@@ -112,11 +112,11 @@ contract FlexibleStaking{
     function PauseRewards() public returns(bool success){
         require(msg.sender == Operator);
 
-        
+        Reward
 
     }
 
-    function UnpauseRewards
+    //function UnpauseRewards
 
     //Internal Functions
     function Update(address user) internal{
