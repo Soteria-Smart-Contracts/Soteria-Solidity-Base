@@ -97,6 +97,8 @@ contract FlexibleStaking{
     function RemoveRewardPool() public returns(bool success){
         require(msg.sender == Operator);
 
+        ERC20(PA)
+
     }
 
     //Internal Functions
