@@ -8,6 +8,7 @@ contract FlexibleStaking{
     uint256 public TotalDeposits;
     uint256 public RewardMultiplier;
     address public Operator;
+    bool public RewardsPaused = false;
 
     //Add Total Staked (for projections)
 
