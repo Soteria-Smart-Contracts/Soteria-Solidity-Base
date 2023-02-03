@@ -112,7 +112,7 @@ contract FlexibleStaking{
     function PauseRewards() public returns(bool success){
         require(msg.sender == Operator);
 
-        Reward
+        RewardsPaused = true;
 
     }
 
