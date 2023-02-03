@@ -23,7 +23,7 @@ contract FlexibleStaking{
 
     constructor(address _PAW, uint256 APY){
         PAW = _PAW;
-        RewardMultiplier = APY 
+        RewardMultiplier = APY * 7927448;
         Operator = msg.sender;
     }
 
