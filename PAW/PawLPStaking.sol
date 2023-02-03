@@ -99,6 +99,7 @@ contract FlexibleStaking{
 
         ERC20(PAW).transfer(msg.sender, ERC20(PAW).balanceOf(address(this)));
 
+        return(success);
     }
 
     //Internal Functions
