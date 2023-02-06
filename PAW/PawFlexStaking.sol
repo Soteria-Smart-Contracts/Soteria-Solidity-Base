@@ -88,7 +88,7 @@ contract FlexibleStaking{
         uint256 Unclaimed = GetUnclaimed(msg.sender);
         require(Unclaimed > 0);
 
-        require((ERC20(wPAW).balanceOf(address(this)) - Unclaimed) >= , "The contract does not have enough PAW to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with PAW in time
+        require((ERC20(wPAW).balanceOf(address(this))) , "The contract does not have enough PAW to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with PAW in time
         Update(msg.sender);
 
         ERC20(PAW).transfer(msg.sender, Unclaimed);
