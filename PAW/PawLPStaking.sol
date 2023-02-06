@@ -30,7 +30,7 @@ contract FlexibleStaking{
         wPAW = _wPAW;
         PairContract = _Pair;
         APY = _APY;
-        RewardMultiplier = _APY * 792744;
+        RewardMultiplier = _APY * 31688;
         Operator = msg.sender;
     }
 
