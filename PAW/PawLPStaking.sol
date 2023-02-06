@@ -8,6 +8,7 @@ contract FlexibleStaking{
     address public wPAW;
     address public PairContract;
     uint256 public TotalDeposits;
+    uint256 public APY;
     uint256 public RewardMultiplier; 
     address public Operator;
     bool public RewardsPaused = false;
@@ -28,6 +29,7 @@ contract FlexibleStaking{
         PAW = _PAW;
         wPAW = _wPAW;
         PairContract = _Pair;
+        APY = 
         RewardMultiplier = APY * 792744;
         Operator = msg.sender;
     }
