@@ -27,8 +27,8 @@ contract FlexibleStaking{
     constructor(address _PAW, address _wPAW, uint256 _APY){ // APY is 0.1% to 1, so 1% is 10, 10% is 100, etc...
         PAW = _PAW;
         wPAW = _wPAW;
-        APY = APY;
-        RewardMultiplier = APY * 792744;
+        APY = _APY;
+        RewardMultiplier = _APY * 792744;
         Operator = msg.sender;
     }
 
@@ -102,6 +102,7 @@ contract FlexibleStaking{
     function ChangeMultiplier(uint256 NewAPY) public returns(bool success){
         require(msg.sender == Operator);
 
+        APY = 
         RewardMultiplier = NewAPY * 792744;
 
         return(success);
