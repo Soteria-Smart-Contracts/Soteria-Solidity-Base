@@ -67,20 +67,20 @@ contract FlexibleStaking{
         return(success);
     }
 
-    function ReInvest() public returns(bool success){
-        require(RewardsPaused == false);
-        require(GetUnclaimed(msg.sender) > 0);
+    // function ReInvest() public returns(bool success){
+    //     require(RewardsPaused == false);
+    //     require(GetUnclaimed(msg.sender) > 0);
         
-        uint256 Unclaimed = GetUnclaimed(msg.sender);
-        require((ERC20(PAW).balanceOf(address(this)) - Unclaimed) >= TotalDeposits, "The contract does not have enough PAW to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with PAW in time
-        Update(msg.sender);
+    //     uint256 Unclaimed = GetUnclaimed(msg.sender);
+    //     require((ERC20(PAW).balanceOf(address(this)) - Unclaimed) >= TotalDeposits, "The contract does not have enough PAW to pay profits at the moment"); //This exists as protection in the case that the contract has not been refilled with PAW in time
+    //     Update(msg.sender);
 
-        Deposits[msg.sender] = Deposits[msg.sender] + Unclaimed;
-        TotalDeposits = TotalDeposits + Unclaimed;
+    //     Deposits[msg.sender] = Deposits[msg.sender] + Unclaimed;
+    //     TotalDeposits = TotalDeposits + Unclaimed;
         
-        emit ReInvested(Deposits[msg.sender], msg.sender);
-        return(success);
-    }
+    //     emit ReInvested(Deposits[msg.sender], msg.sender);
+    //     return(success);
+    // }
 
 
     function Claim() public returns(bool success){
