@@ -23,8 +23,9 @@ contract FlexibleStaking{
     event ReInvested(uint256 NewBalance, address user);
 
 
-    constructor(address _PAW, address _Pair, uint256 APY){ // APY is 0.1% to 1, so 1% is 10, 10% is 100, etc...
+    constructor(address _PAW, address _wPAW, address _Pair, uint256 APY){ // APY is 0.1% to 1, so 1% is 10, 10% is 100, etc...
         PAW = _PAW;
+        
         PairContract = _Pair;
         RewardMultiplier = APY * 792744;
         Operator = msg.sender;
