@@ -89,7 +89,7 @@ contract FlexibleStaking{
         require(msg.sender == Operator);
 
         APY = NewAPY;
-        RewardMultiplier = NewAPY * 792744;
+        RewardMultiplier = NewAPY * 31688;
 
         return(success);
     }
