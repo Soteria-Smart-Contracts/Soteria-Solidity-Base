@@ -75,7 +75,7 @@ contract FlexibleStaking{
 
         Update(msg.sender);
 
-        ERC20(PAW).transfer(msg.sender, Unclaimed);
+        ERC20(wPAW).transfer(msg.sender, Unclaimed);
         
         emit Claimed(Unclaimed, msg.sender);
         return(success);
