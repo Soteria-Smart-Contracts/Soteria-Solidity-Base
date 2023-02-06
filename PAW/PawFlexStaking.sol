@@ -5,6 +5,7 @@ pragma solidity ^0.8.17;
 contract FlexibleStaking{
     //Variable and other Declarations
     address public PAW;
+    address public wPAW;
     uint256 public TotalDeposits;
     uint256 public RewardMultiplier;
     address public Operator;
