@@ -28,7 +28,7 @@ contract FlexibleStaking{
         PAW = _PAW;
         wPAW = _wPAW;
         APY = _APY;
-        RewardMultiplier = _APY * 792744;
+        RewardMultiplier = _APY * 31688;
         Operator = msg.sender;
     }
 
@@ -103,7 +103,7 @@ contract FlexibleStaking{
         require(msg.sender == Operator);
 
         APY = NewAPY;
-        RewardMultiplier = NewAPY * 792744;
+        RewardMultiplier = NewAPY * 31688;
 
         return(success);
     }
