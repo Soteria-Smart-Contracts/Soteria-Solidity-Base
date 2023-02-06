@@ -7,6 +7,7 @@ contract FlexibleStaking{
     address public PAW;
     address public wPAW;
     uint256 public TotalDeposits;
+    uint256 public APY;
     uint256 public RewardMultiplier;
     address public Operator;
     bool public RewardsPaused = false;
@@ -26,6 +27,7 @@ contract FlexibleStaking{
     constructor(address _PAW, address _wPAW, uint256 APY){ // APY is 0.1% to 1, so 1% is 10, 10% is 100, etc...
         PAW = _PAW;
         wPAW = _wPAW;
+        APY 
         RewardMultiplier = APY * 792744;
         Operator = msg.sender;
     }
