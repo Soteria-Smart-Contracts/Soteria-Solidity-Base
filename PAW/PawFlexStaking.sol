@@ -55,7 +55,7 @@ contract FlexibleStaking{
     function Withdraw(uint256 amount) public returns(bool success){
         require(Deposits[msg.sender] >= amount);
         
-        if((ERC20(wPAW).balanceOf(address(this)) - (GetUnclaimed(msg.sender))) && RewardsPaused == false){
+        if((ERC20(wPAW).balanceOf(address(this)) >= (GetUnclaimed(msg.sender))) && RewardsPaused == false){
             Claim();
         }
 
