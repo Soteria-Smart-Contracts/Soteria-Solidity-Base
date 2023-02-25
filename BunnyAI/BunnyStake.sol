@@ -5,8 +5,8 @@ contract BunnyDualStake{
     address public Operator;
     ERC20 public BUNAI; //Bunny AI Token
     ERC721 public BNFT; //Bunny AI NFT
-    uint256 public BaseAPR;
-    uint256 public SecondsAPR;
+    uint256 public BaseAPR; //The base APR yearly in %
+    uint256 public SecondsAPR; //The base 
     uint256 public NFTBoostMultiplier; 
 
     struct Lock{
