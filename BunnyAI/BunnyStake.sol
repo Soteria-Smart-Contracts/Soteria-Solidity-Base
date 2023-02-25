@@ -13,7 +13,7 @@ contract BunnyDualStake{
         uint256 BUNAI_Payout;
         uint256[] BNFTs_Boosting;
     }
-    
+
     //Public Functions
     //Lock BUNAI w/o NFT
     
@@ -23,7 +23,13 @@ contract BunnyDualStake{
 
     //Claim BUNAILock
 
-    //
+    //Owner Only Functions
+
+
+
+
+
+    
 }
 
 interface ERC721{
