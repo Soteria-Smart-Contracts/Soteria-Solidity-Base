@@ -5,6 +5,7 @@ contract BunnyDualStake{
     address public Operator;
     ERC20 public BUNAI; //Bunny AI Token
     ERC721 public BNFT; //Bunny AI NFT
+    uint256 public 
 
     struct Lock{
         uint256 LockStart; //Unix Time
