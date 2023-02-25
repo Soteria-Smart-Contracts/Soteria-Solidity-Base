@@ -25,11 +25,12 @@ contract BunnyDualStake{
 
     //Owner Only Functions
 
+    //ChangeBaseAPY
 
 
 
 
-    
+
 }
 
 interface ERC721{
