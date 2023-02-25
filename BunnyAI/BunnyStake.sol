@@ -7,6 +7,7 @@ contract BunnyDualStake{
     ERC721 public BNFT; //Bunny AI NFT
     uint256 public BaseAPR;
     uint256 public SecondsAPR;
+    uint256 public NFTBoostMultiplier; 
 
     struct Lock{
         uint256 LockStart; //Unix Time
