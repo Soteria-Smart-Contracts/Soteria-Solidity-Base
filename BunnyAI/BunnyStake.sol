@@ -29,7 +29,7 @@ contract BunnyDualStake{
     }
 
     //Add to NFT with existing BUNAI lock
-    function AddNFTtoLock()
+    function AddNFTtoLock(uint256[] calldata NFTs) public returns
 
     //Claim BUNAILock
 
