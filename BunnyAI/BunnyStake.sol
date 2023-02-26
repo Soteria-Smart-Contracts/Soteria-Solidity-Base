@@ -15,6 +15,7 @@ contract BunnyDualStake{
         uint256 BUNAI_Locked;
         uint256 BUNAI_Payout;
         uint256[] BNFTs_Boosting;
+        mapping(uint)
     }
 
     //Public Functions
