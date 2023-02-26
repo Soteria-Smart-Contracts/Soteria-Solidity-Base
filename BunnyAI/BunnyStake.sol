@@ -34,7 +34,9 @@ contract BunnyDualStake{
     }
 
     //Claim BUNAILock
-    function ClaimLock(uint256 UserLockID)
+    function ClaimLock(uint256 UserLockID) public returns(bool success){
+
+    }
 
     //Owner Only Functions
 
