@@ -17,6 +17,8 @@ contract BunnyDualStake{
         uint256[] BNFTs_Boosting;
     }
 
+    //Make events, constructor, etc...
+
     //Public Functions
     //Lock BUNAI w/o NFT
     function LockBUNAI(uint256 BUNAI_Amount) public returns(bool success){
