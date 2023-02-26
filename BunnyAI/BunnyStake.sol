@@ -19,7 +19,7 @@ contract BunnyDualStake{
 
     //Public Functions
     //Lock BUNAI w/o NFT
-    function LockWithNFTs(uint256 BUNAI_Amount) public returns(bool success){
+    function LockBUNAI(uint256 BUNAI_Amount) public returns(bool success){
 
     }
     
