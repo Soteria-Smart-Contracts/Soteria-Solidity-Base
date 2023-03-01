@@ -118,7 +118,14 @@ contract BunnyDualStake{
             ERC721(BNFT).transferFrom(Owner, address(this), IDs[index]);
             index++;
         }
-
+        return(success);
+    }
+    function TransferOutNFTs(uint256[] calldata IDs, address Owner) internal returns(bool success){
+        uint256 index;
+        while(index < IDs.length){
+            ERC721(BNFT).transferFrom(Owner, address(this), IDs[index]);
+            index++;
+        }
         return(success);
     }
 
