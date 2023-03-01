@@ -112,6 +112,7 @@ contract BunnyDualStake{
         UserLocks[msg.sender][UserLockID].BUNAI_Payout = 0;
 
         TransferOutNFTs(NFTsToTransfer, msg.sender);
+        ERC20(BUNAI)
 
 
     }
