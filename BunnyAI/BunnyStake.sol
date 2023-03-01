@@ -100,6 +100,7 @@ contract BunnyDualStake{
 
     //Claim BUNAILock
     function ClaimLock(uint256 UserLockID) public returns(bool success){
+        require(condition);
 
     }
 
