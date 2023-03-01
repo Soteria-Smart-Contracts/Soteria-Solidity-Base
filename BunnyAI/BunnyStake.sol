@@ -125,6 +125,7 @@ contract BunnyDualStake{
 
     //TODO: ChangePayoutMultipliers (Make sure to set minimum so it doesent fucking explode)
     function SetNewPayoutMultiplier(LockOptions OptionToChange, uint256 NewPercentage) public {
+        require(msg.sender == Operator);
         LockPayouts[OptionToChange] = NewPercentage;
     }
     //TODO: ChangeNFTBoostMultiplier
