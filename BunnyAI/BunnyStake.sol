@@ -108,6 +108,8 @@ contract BunnyDualStake{
         return(success);
     }
 
+    function UpdateBoos
+
 
     //View and calculation functions
     function GetBUNAIAvailable() public view returns(uint256 Available){
