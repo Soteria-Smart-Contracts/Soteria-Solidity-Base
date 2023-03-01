@@ -124,7 +124,7 @@ contract BunnyDualStake{
     //Owner Only Functions
 
     //TODO: ChangePayoutMultipliers (Make sure to set minimum so it doesent fucking explode)
-    function SetNewPayoutMultiplier(LockOptions T)
+    function SetNewPayoutMultiplier(LockOptions OptionToChange, uint256)
     //TODO: ChangeNFTBoostMultiplier
     //TODO: SetNewOperator
 
