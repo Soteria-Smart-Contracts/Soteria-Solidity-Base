@@ -81,7 +81,7 @@ contract BunnyDualStake{
         require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
         UpdateBoostList(UserLockID, NFTs);
-        uint256 BoostedPayoutMultiplier =  UserLocks[msg.sender][UserLockID] + (NFTBoostMultiplier * NFTs.length);
+        uint256 BoostedPayoutMultiplier =  UserLocks[msg.sender][UserLockID]. + (NFTBoostMultiplier * NFTs.length);
 
         return(success);
     }
