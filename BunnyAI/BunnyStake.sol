@@ -19,7 +19,7 @@ contract BunnyDualStake{
     }
 
     mapping(address => mapping(uint256 => Lock)) public UserLocks;
-    mapping(address => )
+    mapping(address => uint256) internal LatestUserLock;
 
     //Make events, constructor, etc...
 
@@ -30,7 +30,7 @@ contract BunnyDualStake{
         require(BUNAI.transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract')
 
 
-        UserLocks[msg.sender][]
+        UserLocks[msg.sender][L]
 
         return(success);
     }
