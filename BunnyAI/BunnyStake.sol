@@ -69,7 +69,7 @@ contract BunnyDualStake{
 
 
     //View and calculation functions
-    function 
+    function GetBUNAIAvailable()
 
 
 
