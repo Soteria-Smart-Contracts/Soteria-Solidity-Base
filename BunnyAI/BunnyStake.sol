@@ -111,7 +111,7 @@ contract BunnyDualStake{
     function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) internal returns(bool success){
         uint256 index;
         while(index < NFTs.length){
-            ERC721(BNFT).transferFrom(Owner, address(this), IDs[index]);
+            UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(); 
             index++;
         }
 
