@@ -58,7 +58,7 @@ contract BunnyDualStake{
         UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, LockPayouts[Type], BUNAI_Amount, Payout, EmptyArray);
 
         UserLockList[msg.sender].push(LatestUserLock[msg.sender]);
-        ListIndex
+        ListIndex[msg.sender][LatestUserLock[msg.sender]]
 
         return(success);
     }
