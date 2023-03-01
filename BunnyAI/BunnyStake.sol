@@ -88,7 +88,10 @@ contract BunnyDualStake{
 
     function TransferInNFTs(uint256[] IDs, address Owner) internal returns(success){
         uint256 index;
-        while(index < IDs.leng)
+        while(index < IDs.length){
+            
+            index++
+        }
 
         return(success);
     }
