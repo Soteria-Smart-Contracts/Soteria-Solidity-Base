@@ -51,7 +51,7 @@ contract BunnyDualStake{
         uint256 EndTime = (block.timestamp + LockLenghts[Type]);
         uint256 Payout = ((amount * LockPayouts[Type]) / 10000) + amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
-        UserLocks[msg.sender][LatestUserLock++] = Lock(block.timestamp, EndTime, LockPayouts[Type], )
+        UserLocks[msg.sender][LatestUserLock++] = Lock(block.timestamp, EndTime, LockPayouts[Type], BUNAI_Amount, )
 
         return(success);
     }
