@@ -18,7 +18,10 @@ contract BunnyDualStake{
         uint256[] BNFTs_Boosting;
     }
 
-    enum LockLenghts
+    enum LockOptions{
+        OneMonth,
+        
+    }
 
     mapping(address => mapping(uint256 => Lock)) public UserLocks;
     mapping(address => uint256) internal LatestUserLock;
