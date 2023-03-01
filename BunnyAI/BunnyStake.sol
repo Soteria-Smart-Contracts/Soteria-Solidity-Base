@@ -24,8 +24,8 @@ contract BunnyDualStake{
 
     enum LockOptions{
         TenDays,
-        THir,
-        ThreeMonths
+        ThirtyDays,
+        NinetyDays
     }
 
     mapping(address => mapping(uint256 => Lock)) public UserLocks;
