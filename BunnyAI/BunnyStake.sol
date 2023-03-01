@@ -108,6 +108,7 @@ contract BunnyDualStake{
 
 
         UserLocks[msg.sender][UserLockID].Claimed = true;
+        
 
     }
 
