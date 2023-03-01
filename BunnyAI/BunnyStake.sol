@@ -75,7 +75,7 @@ contract BunnyDualStake{
 
     //Add to NFT with existing BUNAI lock
     function AddNFTtoLock(uint256 UserLockID, uint256[] calldata NFTs) public returns(bool success){
-        require()
+        require(UserLocks[msg.sender][LatestUserLock++])
         require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
     }
