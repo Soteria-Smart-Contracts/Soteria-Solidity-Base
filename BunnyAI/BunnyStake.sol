@@ -111,7 +111,7 @@ contract BunnyDualStake{
         UserLocks[msg.sender][UserLockID].Claimed = true;
         UserLocks[msg.sender][UserLockID].BUNAI_Payout = 0;
 
-        TransferOutNFTs(UserLocks[msg.sender][UserLockID].BNFTs_Boosting, msg.sender);
+        TransferOutNFTs(NFTsToTransfer, msg.sender);
 
 
     }
@@ -141,7 +141,7 @@ contract BunnyDualStake{
         return(success);
     }
 
-    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) internal returns(bool success){
+    function UpdateBoostList(uint256 UserLockID, uint256[] memory NFTs) internal returns(bool success){
         uint256 index;
         while(index < NFTs.length){
             UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(NFTs[index]); 
