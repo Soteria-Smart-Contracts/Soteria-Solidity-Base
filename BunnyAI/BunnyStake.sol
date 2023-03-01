@@ -78,8 +78,10 @@ contract BunnyDualStake{
         UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, BoostedPayoutMultiplier, BUNAI_Amount, Payout, NFTs);
         BUNAItobeWithdrawn += Payout;
 
-        return(success);
+        UserLockList[msg.sender].push(LatestUserLock[msg.sender]);
+        ListIndex[msg.sender][LatestUserLock[msg.sender]] = (UserLockList[msg.sender].length - 1);
 
+        return(success);
     }
 
     //Add to NFT with existing BUNAI lock
