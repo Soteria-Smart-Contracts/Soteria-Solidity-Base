@@ -102,7 +102,7 @@ contract BunnyDualStake{
     //Claim BUNAILock
     function ClaimLock(uint256 UserLockID) public returns(bool success){
         require(UserLocks[msg.sender][UserLockID].LockEnd <= block.timestamp, 'This lock is still active and it is too early to claim it');
-        require();
+        require(UserLocks[msg.sender][UserLockID].Claimed == false);
 
         
 
