@@ -86,7 +86,7 @@ contract BunnyDualStake{
 
     //TODO: ChangePayoutMultipliers (Make sure to set minimum so it doesent fucking explode)
     //TODO: SetNewOperator
-    //TODO
+    //TODO: 
 
     //Internal Functions
 
