@@ -131,7 +131,7 @@ contract BunnyDualStake{
         require(msg.sender == Operator);
         NFTBoostMultiplier = NewMultiplier;
     }
-    //TODO: SetNewOperator
+
     function SetNewOperator(address NewOperator) public {
         require(msg.sender == Operator);
         Operator = NewOperator;
