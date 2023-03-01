@@ -132,7 +132,7 @@ contract BunnyDualStake{
         }
         return(success);
     }
-    function TransferOutNFTs(uint256[] calldata IDs, address Owner) internal returns(bool success){
+    function TransferOutNFTs(uint256[] memory IDs, address Owner) internal returns(bool success){
         uint256 index;
         while(index < IDs.length){
             ERC721(BNFT).transferFrom(address(this), Owner, IDs[index]);
@@ -141,7 +141,7 @@ contract BunnyDualStake{
         return(success);
     }
 
-    function UpdateBoostList(uint256 UserLockID, uint256[] memory NFTs) internal returns(bool success){
+    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) internal returns(bool success){
         uint256 index;
         while(index < NFTs.length){
             UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(NFTs[index]); 
