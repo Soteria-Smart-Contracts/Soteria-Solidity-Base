@@ -108,7 +108,7 @@ contract BunnyDualStake{
         return(success);
     }
 
-    function UpdateBoos
+    function UpdateBoostList()
 
 
     //View and calculation functions
