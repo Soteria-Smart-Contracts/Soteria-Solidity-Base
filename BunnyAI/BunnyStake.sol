@@ -132,7 +132,9 @@ contract BunnyDualStake{
         NFTBoostMultiplier = NewMultiplier;
     }
     //TODO: SetNewOperator
-    function SetNewOperator()
+    function SetNewOperator(address NewOperator) public {
+        
+    }
 
     //Internal Functions
 
