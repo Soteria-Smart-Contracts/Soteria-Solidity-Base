@@ -4,8 +4,8 @@ pragma solidity ^0.8.17;
 contract BunnyDualStake{
     //Parameters
     address public Operator;
-    ERC20 public BUNAI; //Bunny AI Token
-    ERC721 public BNFT; //Bunny AI NFT
+    address public BUNAI; //Bunny AI Token
+    address public BNFT; //Bunny AI NFT
     uint256 public NFTBoostMultiplier; //APR Booster in Basis Points
     uint256 public MinimumStake; //The minimum amount of BUNAI needed to create a stake
 
