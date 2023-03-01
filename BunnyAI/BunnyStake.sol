@@ -18,7 +18,7 @@ contract BunnyDualStake{
         uint256[] BNFTs_Boosting;
     }
 
-    mapping(address => mapping(uint256 => Lock)) UserLocks;
+    mapping(address => mapping(uint256 => Lock)) public UserLocks;
 
     //Make events, constructor, etc...
 
