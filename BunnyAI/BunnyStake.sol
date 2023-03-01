@@ -84,7 +84,9 @@ contract BunnyDualStake{
 
     //ChangeBaseAPY (Make sure to set minimum so it doesent fucking explode)
 
+    //Internal Functions
 
+    function 
 
 
     //View and calculation functions
