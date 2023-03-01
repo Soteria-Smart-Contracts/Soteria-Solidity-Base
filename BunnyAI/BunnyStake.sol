@@ -86,7 +86,7 @@ contract BunnyDualStake{
 
     //Internal Functions
 
-    function TransferInNFTs(uint256[] IDs)
+    function TransferInNFTs(uint256[] IDs, address Owner)
 
 
     //View and calculation functions
