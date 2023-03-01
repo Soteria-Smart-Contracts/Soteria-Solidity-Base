@@ -81,7 +81,7 @@ contract BunnyDualStake{
 
         require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
-        UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(1); //FIXME: does this even work?
+        UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(1); 
 
         return(success);
     }
