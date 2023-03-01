@@ -105,7 +105,7 @@ contract BunnyDualStake{
         require(UserLocks[msg.sender][UserLockID].Claimed == false);
 
 
-        UserLocks[msg.sender][UserLockID].LockEnd
+        UserLocks[msg.sender][UserLockID].Claimed = true;
 
     }
 
