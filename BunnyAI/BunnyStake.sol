@@ -133,7 +133,8 @@ contract BunnyDualStake{
     }
     //TODO: SetNewOperator
     function SetNewOperator(address NewOperator) public {
-        
+        require(msg.sender == Operator);
+        Operator = NewOperator;
     }
 
     //Internal Functions
