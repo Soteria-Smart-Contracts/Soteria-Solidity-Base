@@ -36,7 +36,7 @@ contract BunnyDualStake{
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(BUNAI.transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
-        uint256 EndTime = (block.timestamp + LockLenghts[]
+        uint256 EndTime = (block.timestamp + LockLenghts[Length]);
         UserLocks[msg.sender][LatestUserLock++] = Lock()
 
         return(success);
