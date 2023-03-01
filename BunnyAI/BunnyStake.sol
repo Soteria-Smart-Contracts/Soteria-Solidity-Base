@@ -30,7 +30,8 @@ contract BunnyDualStake{
 
     //Make events, constructor, etc...
     constructor(){
-        LockLenghts[0] = 
+        LockLenghts[0] = 1209600;
+        LockLenghts[0] = 1209600;
     }
 
     //Public Functions
