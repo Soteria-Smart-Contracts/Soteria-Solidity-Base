@@ -30,7 +30,7 @@ contract BunnyDualStake{
         require(BUNAI.transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
 
-        UserLocks[msg.sender][LatestUserLock++]
+        UserLocks[msg.sender][LatestUserLock++] = Lock()
 
         return(success);
     }
