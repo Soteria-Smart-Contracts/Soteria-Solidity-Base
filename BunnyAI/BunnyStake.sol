@@ -110,6 +110,7 @@ contract BunnyDualStake{
         uint256[] memory NFTsToTransfer = UserLocks[msg.sender][UserLockID].BNFTs_Boosting;
         UserLocks[msg.sender][UserLockID].Claimed = true;
         UserLocks[msg.sender][UserLockID].BUNAI_Payout = 0;
+        UserLocks[msg.sender][UserLockID].BNFTs_Boosting = EmptyArray;
 
         TransferOutNFTs(NFTsToTransfer, msg.sender);
         ERC20(BUNAI).transfer(msg.sender, Payout);
