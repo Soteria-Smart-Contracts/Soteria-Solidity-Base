@@ -18,7 +18,7 @@ contract BunnyDualStake{
         uint256[] BNFTs_Boosting;
     }
 
-    mapping(address => )
+    mapping(address => mapping)
 
     //Make events, constructor, etc...
 
