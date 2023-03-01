@@ -84,7 +84,7 @@ contract BunnyDualStake{
 
     //Owner Only Functions
 
-    //ChangeBaseAPY (Make sure to set minimum so it doesent fucking explode)
+    //TODO: ChangePayouts (Make sure to set minimum so it doesent fucking explode)
 
     //Internal Functions
 
