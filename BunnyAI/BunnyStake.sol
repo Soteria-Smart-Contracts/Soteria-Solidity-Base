@@ -10,7 +10,7 @@ contract BunnyDualStake{
     uint256 public MinimumStake; //The minimum amount of BUNAI needed to create a stake
 
     //Informational and Updated variables
-    uint256 public BUNAItobeWithdrawn;
+    uint256 public BUNAItobeWithdrawn; //Can be used as total locked
     uint256[] internal EmptyArray;
 
     struct Lock{
