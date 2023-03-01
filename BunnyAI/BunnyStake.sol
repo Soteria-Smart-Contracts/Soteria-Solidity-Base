@@ -31,13 +31,14 @@ contract BunnyDualStake{
     mapping(address => mapping(uint256 => Lock)) public UserLocks;
     mapping(address => uint256) internal LatestUserLock;
     mapping(LockOptions => uint256) internal LockLengths;
-    mapping(LockOptions => uint256) internal LockPayout;
+    mapping(LockOptions => uint256) internal LockPayouts;
 
     //Make events, constructor, etc...
     constructor(){
         LockLenghts[0] = 1209600;
         LockLenghts[1] = 2630000;
         LockLenghts[2] = 7890000;
+        LockP
     }
 
     //Public Functions
@@ -47,7 +48,7 @@ contract BunnyDualStake{
         require(BUNAI.transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
         uint256 EndTime = (block.timestamp + LockLenghts[Type]);
-        uint256 Payout = ((amount * LockPayout[Type]) / 10000) + amount;
+        uint256 Payout = ((amount * LockPayouts[Type]) / 10000) + amount;
         UserLocks[msg.sender][LatestUserLock++] = Lock()
 
         return(success);
