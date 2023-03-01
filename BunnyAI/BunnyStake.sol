@@ -32,7 +32,7 @@ contract BunnyDualStake{
     constructor(){
         LockLenghts[0] = 1209600;
         LockLenghts[1] = 2630000;
-        LockLenghts[1] = 2630000;
+        LockLenghts[2] = 2630000;
     }
 
     //Public Functions
