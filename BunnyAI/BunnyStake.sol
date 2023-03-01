@@ -84,6 +84,7 @@ contract BunnyDualStake{
         uint256 BoostedPayoutMultiplier =  UserLocks[msg.sender][UserLockID].TotalMultiplier + (NFTBoostMultiplier * NFTs.length);
         uint256 NewPayout = ((UserLocks[msg.sender][UserLockID].BUNAI_Locked * BoostedPayoutMultiplier) / 10000) + UserLocks[msg.sender][UserLockID].BUNAI_Locked;
         UserLocks[msg.sender][UserLockID].BUNAI_Payout = NewPayout;
+        UserLocks[msg.sender][UserLockID].TotalMultiplier = NewPayout;
 
         return(success);
     }
