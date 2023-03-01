@@ -100,7 +100,7 @@ contract BunnyDualStake{
 
     //Claim BUNAILock
     function ClaimLock(uint256 UserLockID) public returns(bool success){
-        require((UserLocks[msg.sender][UserLockID].EndTime <= block.timestamp);
+        require(UserLocks[msg.sender][UserLockID].EndTime <= block.timestamp);
 
     }
 
