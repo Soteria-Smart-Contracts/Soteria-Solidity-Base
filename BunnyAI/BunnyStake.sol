@@ -70,7 +70,7 @@ contract BunnyDualStake{
 
     //View and calculation functions
     function GetBUNAIAvailable() public view returns(uint256 Available){
-        
+        return(BUNAI.bala)
     }
 
 
