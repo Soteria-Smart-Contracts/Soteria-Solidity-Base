@@ -47,7 +47,7 @@ contract BunnyDualStake{
         require(BUNAI.transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
         uint256 EndTime = (block.timestamp + LockLenghts[Type]);
-        uint256 Payout = (Amount * (LockLenghts[Type] * SecondsAPR))
+        uint256 Payout = ((amount * LockTypeMultiplier[Type]) / 10000) + amount;
         UserLocks[msg.sender][LatestUserLock++] = Lock()
 
         return(success);
