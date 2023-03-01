@@ -41,7 +41,7 @@ contract BunnyDualStake{
         LockLengths[LockOptions(2)] = 7776000; // 90 days
         LockPayouts[LockOptions(0)] = 137;
         LockPayouts[LockOptions(1)] = 821;
-        LockPayouts[LockOptions(2)] = 22500;
+        LockPayouts[LockOptions(2)] = 5547;
     }
 
     //Public Functions
