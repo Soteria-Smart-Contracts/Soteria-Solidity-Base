@@ -115,7 +115,7 @@ contract BunnyDualStake{
         TransferOutNFTs(NFTsToTransfer, msg.sender);
         ERC20(BUNAI).transfer(msg.sender, Payout);
 
-        UserLockList[msg.sender][ListIndex[msg.sender][UserLockID]] = UserLockList[msg.sender][UserLockList[msg.sender].length]
+        UserLockList[msg.sender][ListIndex[msg.sender][UserLockID]] = UserLockList[msg.sender][(UserLockList[msg.sender].length)]
 
         return(success);
     }
