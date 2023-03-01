@@ -2,6 +2,7 @@
 pragma solidity ^0.8.17;
 
 contract BunnyDualStake{
+    //Parameters
     address public Operator;
     ERC20 public BUNAI; //Bunny AI Token
     ERC721 public BNFT; //Bunny AI NFT
@@ -9,6 +10,8 @@ contract BunnyDualStake{
     uint256 public SecondsAPR; //The base APR per second in BUNAI
     uint256 public NFTBoostMultiplier; //APR Booster in Basis Points
     uint256 public MinimumStake; //The minimum amount of BUNAI needed to create a stake
+
+
 
     struct Lock{
         uint256 LockStart; //Unix Time
