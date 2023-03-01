@@ -26,7 +26,7 @@ contract BunnyDualStake{
 
     mapping(address => mapping(uint256 => Lock)) public UserLocks;
     mapping(address => uint256) internal LatestUserLock;
-    mapping()
+    mapping(LockOptions)
 
     //Make events, constructor, etc...
 
