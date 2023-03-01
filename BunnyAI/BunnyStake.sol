@@ -60,7 +60,7 @@ contract BunnyDualStake{
     function LockBUNAIWithNFTs(uint256 BUNAI_Amount, uint256[] calldata NFTs) public returns(bool success){
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
-        require(TransferInNFTs(NFTs, msg.sender), '');
+        require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
         uint256 EndTime = (block.timestamp + LockLenghts[Type]);
         uint256 Payout = ((amount * LockPayouts[Type]) / 10000) + amount;
