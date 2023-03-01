@@ -80,9 +80,6 @@ contract BunnyDualStake{
         require((UserLocks[msg.sender][UserLockID].BNFTs_Boosting.length + NFTs.length) <= 10, 'Cannot boost with more than 10 NFTs per lock');
         require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
-        UpdateBoostList(UserLockID, NFTs);
-        
-
         return(success);
     }
 
