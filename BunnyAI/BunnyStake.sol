@@ -35,7 +35,7 @@ contract BunnyDualStake{
     //Make events, constructor, etc...
     constructor(){
         LockLenghts[0] = 864000; //TODO: 10 days
-        LockLenghts[1] = 2630000; //TODO: 30 days
+        LockLenghts[1] = 2592000; //TODO: 30 days
         LockLenghts[2] = 7890000; //TODO: 90 days
         LockPayouts[0] = 5000;
         LockPayouts[1] = 10000;
