@@ -10,7 +10,8 @@ contract BunnyDualStake{
     uint256 public MinimumStake; //The minimum amount of BUNAI needed to create a stake
 
     //Informational and Updated variables
-    uint256 BUNAItobeWithdrawn;
+    uint256 public BUNAItobeWithdrawn;
+    uint256[] internal EmptyArray;
 
     struct Lock{
         uint256 LockStart; //Unix Time
@@ -35,12 +36,12 @@ contract BunnyDualStake{
 
     //Make events, constructor, etc...
     constructor(){
-        LockLenghts[0] = 864000; //TODO: 10 days
-        LockLenghts[1] = 2592000; //TODO: 30 days
-        LockLenghts[2] = 7776000; //TODO: 90 days
-        LockPayouts[0] = 5000;
-        LockPayouts[1] = 10000;
-        LockPayouts[2] = 22500;
+        LockLengths[LockOptions(0)] = 864000; //TODO: 10 days
+        LockLengths[LockOptions(1)] = 2592000; //TODO: 30 days
+        LockLengths[LockOptions(2)] = 7776000; //TODO: 90 days
+        LockPayouts[LockOptions(0)] = 5000;
+        LockPayouts[LockOptions(1)] = 10000;
+        LockPayouts[LockOptions(2)] = 22500;
     }
 
     //Public Functions
@@ -49,26 +50,26 @@ contract BunnyDualStake{
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
-        uint256 EndTime = (block.timestamp + LockLenghts[Type]);
-        uint256 Payout = ((amount * LockPayouts[Type]) / 10000) + amount;
+        uint256 EndTime = (block.timestamp + LockLengths[Type]);
+        uint256 Payout = ((BUNAI_Amount * LockPayouts[Type]) / 10000) + BUNAI_Amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
-        UserLocks[msg.sender][LatestUserLock++] = Lock(block.timestamp, EndTime, LockPayouts[Type], BUNAI_Amount, Payout, uint256[]);
+        UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, LockPayouts[Type], BUNAI_Amount, Payout, EmptyArray);
 
         return(success);
     }
     
     //Lock BUNAI w/ NFT
-    function LockBUNAIWithNFTs(uint256 BUNAI_Amount, uint256[] calldata NFTs) public returns(bool success){
+    function LockBUNAIWithNFTs(uint256 BUNAI_Amount, LockOptions Type, uint256[] calldata NFTs) public returns(bool success){
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
-        require(NFTs.length <= 10, 'Maximum number of boosting NFTs is 10')
+        require(NFTs.length <= 10, 'Maximum number of boosting NFTs is 10');
         require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
-        uint256 EndTime = (block.timestamp + LockLenghts[Type]);
+        uint256 EndTime = (block.timestamp + LockLengths[Type]);
         uint256 BoostedPayoutMultiplier = LockPayouts[Type] + (NFTBoostMultiplier * NFTs.length);
-        uint256 Payout = ((amount * BoostedPayoutMultiplier) / 10000) + amount;
+        uint256 Payout = ((BUNAI_Amount * BoostedPayoutMultiplier) / 10000) + BUNAI_Amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
-        UserLocks[msg.sender][LatestUserLock++] = Lock(block.timestamp, EndTime, BoostedPayoutMultiplier, BUNAI_Amount, Payout, NFTs);
+        UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, BoostedPayoutMultiplier, BUNAI_Amount, Payout, NFTs);
 
         return(success);
 
@@ -76,11 +77,13 @@ contract BunnyDualStake{
 
     //Add to NFT with existing BUNAI lock
     function AddNFTtoLock(uint256 UserLockID, uint256[] calldata NFTs) public returns(bool success){
-        require((UserLocks[msg.sender][UserLockID].BNFTs_Boosting.length + NFTs.length) <= 10, 'Cannot boost with more than 10 NFTs per lock')
+        require((UserLocks[msg.sender][UserLockID].BNFTs_Boosting.length + NFTs.length) <= 10, 'Cannot boost with more than 10 NFTs per lock');
+
         require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
-        UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(NFTs); //FIXME: does this even work?
+        UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(1); //FIXME: does this even work?
 
+        return(success);
     }
 
     //Claim BUNAILock
@@ -96,11 +99,11 @@ contract BunnyDualStake{
 
     //Internal Functions
 
-    function TransferInNFTs(uint256[] IDs, address Owner) internal returns(success){
+    function TransferInNFTs(uint256[] calldata IDs, address Owner) internal returns(bool success){
         uint256 index;
         while(index < IDs.length){
-            ERC721(BNFT).transferFrom(Owner, address(this), IDs[index])
-            index++
+            ERC721(BNFT).transferFrom(Owner, address(this), IDs[index]);
+            index++;
         }
 
         return(success);
@@ -109,7 +112,7 @@ contract BunnyDualStake{
 
     //View and calculation functions
     function GetBUNAIAvailable() public view returns(uint256 Available){
-        return(BUNAI.balanceOf(address(this)) - BUNAItobeWithdrawn)
+        return(ERC20(BUNAI).balanceOf(address(this)) - BUNAItobeWithdrawn);
     }
 
 
