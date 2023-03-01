@@ -29,7 +29,9 @@ contract BunnyDualStake{
     mapping(LockOptions => uint256) internal LockLengths;
 
     //Make events, constructor, etc...
-    constructor()
+    constructor(){
+        LockLenghts[0]
+    }
 
     //Public Functions
     //Lock BUNAI w/o NFT
