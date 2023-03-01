@@ -11,7 +11,8 @@ contract BunnyDualStake{
     uint256 public NFTBoostMultiplier; //APR Booster in Basis Points
     uint256 public MinimumStake; //The minimum amount of BUNAI needed to create a stake
 
-    //Informational and Updated
+    //Informational and Updated variables
+    uint256 BUNAItob
 
     struct Lock{
         uint256 LockStart; //Unix Time
