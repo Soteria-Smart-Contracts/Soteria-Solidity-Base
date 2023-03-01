@@ -54,9 +54,9 @@ contract BunnyDualStake{
 
         uint256 EndTime = (block.timestamp + LockLengths[Type]);
         uint256 Payout = ((BUNAI_Amount * LockPayouts[Type]) / 10000) + BUNAI_Amount;
-        BUNAItobeWithdrawn += Payout;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
         UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, LockPayouts[Type], BUNAI_Amount, Payout, EmptyArray);
+        BUNAItobeWithdrawn += Payout;
 
         UserLockList[msg.sender].push(LatestUserLock[msg.sender]);
         ListIndex[msg.sender][LatestUserLock[msg.sender]] = (UserLockList[msg.sender].length - 1);
@@ -76,6 +76,7 @@ contract BunnyDualStake{
         uint256 Payout = ((BUNAI_Amount * BoostedPayoutMultiplier) / 10000) + BUNAI_Amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
         UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, BoostedPayoutMultiplier, BUNAI_Amount, Payout, NFTs);
+        BUNAItobeWithdrawn += Payout;
 
         return(success);
 
