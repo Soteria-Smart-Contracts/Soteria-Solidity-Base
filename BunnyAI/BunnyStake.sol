@@ -26,6 +26,7 @@ contract BunnyDualStake{
     //Lock BUNAI w/o NFT
     function LockBUNAI(uint256 BUNAI_Amount) public returns(bool success){
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
+        require(condition);
 
         return(success);
     }
