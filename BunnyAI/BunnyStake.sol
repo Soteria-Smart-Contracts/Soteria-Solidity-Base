@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 pragma solidity ^0.8.17;
 
-contract BunnyDualStake{
+contract BunnyDualStake {
     //Parameters
     address public Operator;
     address public BUNAI; //Bunny AI Token
@@ -13,7 +13,7 @@ contract BunnyDualStake{
     uint256 public BUNAItobeWithdrawn;
     uint256[] internal EmptyArray;
 
-    struct Lock{
+    struct Lock {
         uint256 LockStart; //Unix Time
         uint256 LockEnd; //Unix Time
         uint256 TotalMultiplier;
@@ -22,7 +22,7 @@ contract BunnyDualStake{
         uint256[] BNFTs_Boosting;
     }
 
-    enum LockOptions{
+    enum LockOptions {
         TwoWeeks,
         OneMonth,
         ThreeMonths
@@ -35,7 +35,7 @@ contract BunnyDualStake{
     mapping(LockOptions => uint256) internal LockPayouts;
 
     //Make events, constructor, etc...
-    constructor(){
+    constructor() {
         LockLengths[LockOptions(0)] = 864000; //TODO: 10 days
         LockLengths[LockOptions(1)] = 2592000; //TODO: 30 days
         LockLengths[LockOptions(2)] = 7776000; //TODO: 90 days
@@ -46,49 +46,101 @@ contract BunnyDualStake{
 
     //Public Functions
     //Lock BUNAI w/o NFT
-    function LockBUNAI(uint256 BUNAI_Amount, LockOptions Type) public returns(bool success){
-        require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
-        require(ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
+    function LockBUNAI(uint256 BUNAI_Amount, LockOptions Type)
+        public
+        returns (bool success)
+    {
+        require(
+            BUNAI_Amount >= MinimumStake,
+            "You must stake atleast the minimum stake Amount"
+        );
+        require(
+            ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount),
+            "Unable to transfer BUNAI to contract"
+        );
 
         uint256 EndTime = (block.timestamp + LockLengths[Type]);
-        uint256 Payout = ((BUNAI_Amount * LockPayouts[Type]) / 10000) + BUNAI_Amount;
-        require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
-        UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, LockPayouts[Type], BUNAI_Amount, Payout, EmptyArray);
+        uint256 Payout = ((BUNAI_Amount * LockPayouts[Type]) / 10000) +
+            BUNAI_Amount;
+        require(
+            GetBUNAIAvailable() >= (Payout - BUNAI_Amount),
+            "The contract does not have enough BUNAI to pay out rewards for this lock"
+        );
+        UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(
+            block.timestamp,
+            EndTime,
+            LockPayouts[Type],
+            BUNAI_Amount,
+            Payout,
+            EmptyArray
+        );
 
-        return(success);
+        return (success);
     }
-    
+
     //Lock BUNAI w/ NFT
-    function LockBUNAIWithNFTs(uint256 BUNAI_Amount, LockOptions Type, uint256[] calldata NFTs) public returns(bool success){
-        require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
-        require(ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
-        require(NFTs.length <= 10, 'Maximum number of boosting NFTs is 10');
-        require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
+    function LockBUNAIWithNFTs(
+        uint256 BUNAI_Amount,
+        LockOptions Type,
+        uint256[] calldata NFTs
+    ) public returns (bool success) {
+        require(
+            BUNAI_Amount >= MinimumStake,
+            "You must stake atleast the minimum stake Amount"
+        );
+        require(
+            ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount),
+            "Unable to transfer BUNAI to contract"
+        );
+        require(NFTs.length <= 10, "Maximum number of boosting NFTs is 10");
+        require(
+            TransferInNFTs(NFTs, msg.sender),
+            "Unable to transfer NFTs to contract"
+        );
 
         uint256 EndTime = (block.timestamp + LockLengths[Type]);
-        uint256 BoostedPayoutMultiplier = LockPayouts[Type] + (NFTBoostMultiplier * NFTs.length);
-        uint256 Payout = ((BUNAI_Amount * BoostedPayoutMultiplier) / 10000) + BUNAI_Amount;
-        require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
-        UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, BoostedPayoutMultiplier, BUNAI_Amount, Payout, NFTs);
+        uint256 BoostedPayoutMultiplier = LockPayouts[Type] +
+            (NFTBoostMultiplier * NFTs.length);
+        uint256 Payout = ((BUNAI_Amount * BoostedPayoutMultiplier) / 10000) +
+            BUNAI_Amount;
+        require(
+            GetBUNAIAvailable() >= (Payout - BUNAI_Amount),
+            "The contract does not have enough BUNAI to pay out rewards for this lock"
+        );
+        UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(
+            block.timestamp,
+            EndTime,
+            BoostedPayoutMultiplier,
+            BUNAI_Amount,
+            Payout,
+            NFTs
+        );
 
-        return(success);
-
+        return (success);
     }
 
     //Add to NFT with existing BUNAI lock
-    function AddNFTtoLock(uint256 UserLockID, uint256[] calldata NFTs) public returns(bool success){
-        require((UserLocks[msg.sender][UserLockID].BNFTs_Boosting.length + NFTs.length) <= 10, 'Cannot boost with more than 10 NFTs per lock');
-        require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
+    function AddNFTtoLock(uint256 UserLockID, uint256[] calldata NFTs)
+        public
+        returns (bool success)
+    {
+        require(
+            (UserLocks[msg.sender][UserLockID].BNFTs_Boosting.length +
+                NFTs.length) <= 10,
+            "Cannot boost with more than 10 NFTs per lock"
+        );
+        require(
+            TransferInNFTs(NFTs, msg.sender),
+            "Unable to transfer NFTs to contract"
+        );
 
         UpdateBoostList(UserLockID, NFTs);
 
-        return(success);
+        return (success);
     }
 
     //Claim BUNAILock
-    function ClaimLock(uint256 UserLockID) public returns(bool success){
-
-    }
+    function ClaimLock(uint256 UserLockID) public returns (bool success) {}
 
     //Owner Only Functions
 
@@ -98,56 +150,101 @@ contract BunnyDualStake{
 
     //Internal Functions
 
-    function TransferInNFTs(uint256[] calldata IDs, address Owner) internal returns(bool success){
+    function TransferInNFTs(uint256[] calldata IDs, address Owner)
+        internal
+        returns (bool success)
+    {
         uint256 index;
-        while(index < IDs.length){
+        while (index < IDs.length) {
             ERC721(BNFT).transferFrom(Owner, address(this), IDs[index]);
             index++;
         }
 
-        return(success);
+        return (success);
     }
 
-    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) internal returns(bool success){
+    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs)
+        internal
+        returns (bool success)
+    {
         uint256 index;
-        while(index < NFTs.length){
-            UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(NFTs[index]); 
+        while (index < NFTs.length) {
+            UserLocks[msg.sender][UserLockID].BNFTs_Boosting.push(NFTs[index]);
             index++;
         }
 
-        return(success);
+        return (success);
     }
-
 
     //View and calculation functions
-    function GetBUNAIAvailable() public view returns(uint256 Available){
-        return(ERC20(BUNAI).balanceOf(address(this)) - BUNAItobeWithdrawn);
+    function GetBUNAIAvailable() public view returns (uint256 Available) {
+        return (ERC20(BUNAI).balanceOf(address(this)) - BUNAItobeWithdrawn);
     }
-
-
-
-
 }
 
-interface ERC721{
+interface ERC721 {
     function balanceOf(address owner) external view returns (uint256 balance);
+
     function ownerOf(uint256 tokenId) external view returns (address owner);
-    function walletOfOwner(address owner) external view returns (uint256[] memory);
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes calldata data) external;
-    function safeTransferFrom(address from, address to, uint256 tokenId) external;
-    function transferFrom(address from, address to, uint256 tokenId) external;
+
+    function walletOfOwner(address owner)
+        external
+        view
+        returns (uint256[] memory);
+
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes calldata data
+    ) external;
+
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) external;
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) external;
+
     function approve(address to, uint256 tokenId) external;
+
     function setApprovalForAll(address operator, bool approved) external;
-    function getApproved(uint256 tokenId) external view returns (address operator);
-    function isApprovedForAll(address owner, address operator) external view returns (bool);
+
+    function getApproved(uint256 tokenId)
+        external
+        view
+        returns (address operator);
+
+    function isApprovedForAll(address owner, address operator)
+        external
+        view
+        returns (bool);
 }
 
 interface ERC20 {
-  function balanceOf(address owner) external view returns (uint256);
-  function allowance(address owner, address spender) external view returns (uint256);
-  function approve(address spender, uint value) external returns (bool);
-  function Mint(address _MintTo, uint256 _MintAmount) external;
-  function transfer(address to, uint value) external returns (bool);
-  function transferFrom(address from, address to, uint256 value) external returns (bool); 
-  function totalSupply() external view returns (uint);
-} 
+    function balanceOf(address owner) external view returns (uint256);
+
+    function allowance(address owner, address spender)
+        external
+        view
+        returns (uint256);
+
+    function approve(address spender, uint256 value) external returns (bool);
+
+    function Mint(address _MintTo, uint256 _MintAmount) external;
+
+    function transfer(address to, uint256 value) external returns (bool);
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 value
+    ) external returns (bool);
+
+    function totalSupply() external view returns (uint256);
+}
