@@ -173,7 +173,7 @@ contract BunnyDualStake{
     }
 
     function AllUserLocks(address User) public view returns(uint256[] Locks){
-        return
+        return()
     }
 
 
