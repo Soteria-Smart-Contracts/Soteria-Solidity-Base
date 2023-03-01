@@ -31,7 +31,7 @@ contract BunnyDualStake{
 
     //Public Functions
     //Lock BUNAI w/o NFT
-    function LockBUNAI(uint256 BUNAI_Amount, ) public returns(bool success){
+    function LockBUNAI(uint256 BUNAI_Amount, LockOptions Length) public returns(bool success){
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(BUNAI.transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
