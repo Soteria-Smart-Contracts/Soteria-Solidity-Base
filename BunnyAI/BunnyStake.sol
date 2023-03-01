@@ -16,6 +16,7 @@ contract BunnyDualStake{
     struct Lock{
         uint256 LockStart; //Unix Time
         uint256 LockEnd; //Unix Time
+        bool Claimed;
         uint256 TotalMultiplier;
         uint256 BUNAI_Locked;
         uint256 BUNAI_Payout;
