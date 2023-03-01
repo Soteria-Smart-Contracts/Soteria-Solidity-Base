@@ -110,7 +110,7 @@ contract BunnyDualStake{
         UserLocks[msg.sender][UserLockID].Claimed = true;
         UserLocks[msg.sender][UserLockID].BUNAI_Payout = 0;
 
-        Tran
+        TransferOutNFTs(IDs, Owner);
 
 
     }
