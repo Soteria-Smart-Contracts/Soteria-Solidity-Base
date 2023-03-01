@@ -172,7 +172,7 @@ contract BunnyDualStake{
         return(ERC20(BUNAI).balanceOf(address(this)) - BUNAItobeWithdrawn);
     }
 
-    function AllUserLocks(address) public view returns(uint256[] Locks){
+    function AllUserLocks(address User) public view returns(uint256[] Locks){
         return
     }
 
