@@ -108,10 +108,13 @@ contract BunnyDualStake{
         return(success);
     }
 
-    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) returns(bool success){
+    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) internal returns(bool success){
+        uint256 index;
+        while(index < IDs.length){
+            ERC721(BNFT).transferFrom(Owner, address(this), IDs[index]);
+            index++;
+        }
 
-
-        
         return(success);
     }
 
