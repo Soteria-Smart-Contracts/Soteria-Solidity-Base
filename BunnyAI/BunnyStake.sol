@@ -104,7 +104,8 @@ contract BunnyDualStake{
         require(UserLocks[msg.sender][UserLockID].LockEnd <= block.timestamp, 'This lock is still active and it is too early to claim it');
         require(UserLocks[msg.sender][UserLockID].Claimed == false);
 
-        
+
+        UserLocks[msg.sender][UserLockID].LockEnd
 
     }
 
