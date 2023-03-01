@@ -8,7 +8,7 @@ contract BunnyDualStake{
     uint256 public BaseAPR; //The base APR yearly in %
     uint256 public SecondsAPR; //The base APR per second in BUNAI
     uint256 public NFTBoostMultiplier; //APR Booster in Basis Points
-    uint256 public MinimumStake;
+    uint256 public MinimumStake; //The minimum amount 
 
     struct Lock{
         uint256 LockStart; //Unix Time
