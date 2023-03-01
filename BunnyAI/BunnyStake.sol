@@ -115,7 +115,7 @@ contract BunnyDualStake{
         TransferOutNFTs(NFTsToTransfer, msg.sender);
         ERC20(BUNAI).transfer(msg.sender, Payout);
 
-
+        return(success);
     }
 
     //Owner Only Functions
