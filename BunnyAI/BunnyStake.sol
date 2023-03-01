@@ -108,7 +108,12 @@ contract BunnyDualStake{
         return(success);
     }
 
-    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) returns(bool success)
+    function UpdateBoostList(uint256 UserLockID, uint256[] calldata NFTs) returns(bool success){
+
+
+        
+        return(success);
+    }
 
 
     //View and calculation functions
