@@ -61,8 +61,6 @@ contract BunnyDualStake{
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(BUNAI.transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
-        
-
         uint256 EndTime = (block.timestamp + LockLenghts[Type]);
         uint256 Payout = ((amount * LockPayouts[Type]) / 10000) + amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
@@ -85,6 +83,8 @@ contract BunnyDualStake{
     //Owner Only Functions
 
     //ChangeBaseAPY (Make sure to set minimum so it doesent fucking explode)
+
+
 
 
     //View and calculation functions
