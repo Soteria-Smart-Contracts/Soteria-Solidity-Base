@@ -38,7 +38,7 @@ contract BunnyDualStake{
         LockLenghts[0] = 1209600;
         LockLenghts[1] = 2630000;
         LockLenghts[2] = 7890000;
-        LockP
+        LockPayouts[0] = ;
     }
 
     //Public Functions
