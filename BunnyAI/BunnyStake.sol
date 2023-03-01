@@ -116,7 +116,7 @@ contract BunnyDualStake{
         ERC20(BUNAI).transfer(msg.sender, Payout);
 
         UserLockList[msg.sender][ListIndex[msg.sender][UserLockID]] = UserLockList[msg.sender][(UserLockList[msg.sender].length - 1)];
-        UserLockList[msg.sender].
+        UserLockList[msg.sender].pop();
 
         return(success);
     }
