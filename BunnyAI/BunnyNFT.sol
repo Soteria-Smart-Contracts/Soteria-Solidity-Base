@@ -13,7 +13,6 @@ contract BUNAInft is ERC721Enumerable, Ownable {
   uint256 public cost = 0; 
   uint256 public maxSupply = 500; 
   uint256 public maxMintAmount = 25; 
-  uint256 public ReservedMints = 50;
   bool public paused = false;
 
   //Minting Protocol based on Fisher-Yates Shuffle using mapping instead of array
@@ -33,9 +32,6 @@ contract BUNAInft is ERC721Enumerable, Ownable {
   // public
   function mint(uint256 _mintQuantity) public payable {
     uint256 supply = totalSupply();
-    if(supply > (maxSupply - ReservedMints)){
-        require(msg.sender == owner());
-    }
     require(!paused);
     require(_mintQuantity > 0);
     require(_mintQuantity <= maxMintAmount);
@@ -43,10 +39,6 @@ contract BUNAInft is ERC721Enumerable, Ownable {
 
     if (msg.sender != owner()) {
       require(msg.value >= cost * _mintQuantity);
-    }
-    else{
-        require(ReservedMints >= _mintQuantity);
-        ReservedMints = (ReservedMints - _mintQuantity);
     }
 
     for (uint256 i = 1; i <= _mintQuantity; i++) {
@@ -166,5 +158,4 @@ contract BUNAInft is ERC721Enumerable, Ownable {
       }
     }
   }
-  
 }
