@@ -54,7 +54,7 @@ contract BunnyDualStake{
         require(ERC20(BUNAI).transferFrom(msg.sender, address(this), BUNAI_Amount), 'Unable to transfer BUNAI to contract');
 
         uint256 EndTime = (block.timestamp + LockLengths[Type]);
-        uint256 Payout = ((BUNAI_Amount * LockPayouts[Type]) / 10000) + BUNAI_Amount;
+        uint256 Payout = ((BUNAI_Amount * LockPayouts[Type]) / 1000000) + BUNAI_Amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
         UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, false, LockPayouts[Type], BUNAI_Amount, Payout, EmptyArray);
         LatestUserLock[msg.sender]++;
@@ -75,7 +75,7 @@ contract BunnyDualStake{
 
         uint256 EndTime = (block.timestamp + LockLengths[Type]);
         uint256 BoostedPayoutMultiplier = LockPayouts[Type] + (NFTBoostMultiplier * NFTs.length);
-        uint256 Payout = ((BUNAI_Amount * BoostedPayoutMultiplier) / 10000) + BUNAI_Amount;
+        uint256 Payout = ((BUNAI_Amount * BoostedPayoutMultiplier) / 1000000) + BUNAI_Amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
         UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, false, BoostedPayoutMultiplier, BUNAI_Amount, Payout, NFTs);
         LatestUserLock[msg.sender]++;
@@ -94,7 +94,7 @@ contract BunnyDualStake{
 
         UpdateBoostList(UserLockID, NFTs);
         uint256 BoostedPayoutMultiplier =  UserLocks[msg.sender][UserLockID].TotalMultiplier + (NFTBoostMultiplier * NFTs.length);
-        uint256 NewPayout = ((UserLocks[msg.sender][UserLockID].BUNAI_Locked * BoostedPayoutMultiplier) / 10000) + UserLocks[msg.sender][UserLockID].BUNAI_Locked;
+        uint256 NewPayout = ((UserLocks[msg.sender][UserLockID].BUNAI_Locked * BoostedPayoutMultiplier) / 1000000) + UserLocks[msg.sender][UserLockID].BUNAI_Locked;
         UserLocks[msg.sender][UserLockID].BUNAI_Payout = NewPayout;
         UserLocks[msg.sender][UserLockID].TotalMultiplier = BoostedPayoutMultiplier;
 
