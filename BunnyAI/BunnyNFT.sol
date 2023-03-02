@@ -10,16 +10,16 @@ contract BUNAInft is ERC721Enumerable, Ownable {
 
   string baseURI;
   string public baseExtension = ".json";
-  uint256 public cost = 50000000000000000; 
+  uint256 public cost = 0; 
   uint256 public maxSupply = 500; 
-  uint256 public maxMintAmount = 3; 
+  uint256 public maxMintAmount = 25; 
   uint256 public ReservedMints = 50;
   bool public paused = false;
 
   //Minting Protocol based on Fisher-Yates Shuffle using mapping instead of array
   mapping(uint256 => uint256) public UnMinted;
   uint256 public MaxUnMinted = 500; //If this we're an array, this would be the equivalent of UnMinted.length
-  
+
 
   constructor() ERC721("Hopper", "HOP") {
     setBaseURI("ipfs://REPLACE/");
