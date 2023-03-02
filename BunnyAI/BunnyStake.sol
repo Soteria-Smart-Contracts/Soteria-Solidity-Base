@@ -74,7 +74,7 @@ contract BunnyDualStake{
         require(TransferInNFTs(NFTs, msg.sender), 'Unable to transfer NFTs to contract');
 
         uint256 EndTime = (block.timestamp + LockLengths[Type]);
-        uint256 Reward = (BUNAI_Amount * LockPayouts[Type]) / 10000) + (NFTBoostMultiplier * NFTs.length);
+        uint256 Reward = ((BUNAI_Amount * LockPayouts[Type]) / 10000)) + (NFTBoostMultiplier * NFTs.length);
         uint256 Payout = ((((BUNAI_Amount * LockPayouts[Type]) / 10000) * TotalBoostMultiplier) / 10000) + BUNAI_Amount;
         require(GetBUNAIAvailable() >= (Payout - BUNAI_Amount), 'The contract does not have enough BUNAI to pay out rewards for this lock');
         UserLocks[msg.sender][LatestUserLock[msg.sender]++] = Lock(block.timestamp, EndTime, false, BoostedPayoutMultiplier, BUNAI_Amount, Payout, NFTs);
