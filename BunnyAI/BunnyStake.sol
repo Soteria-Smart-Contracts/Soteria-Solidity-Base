@@ -24,10 +24,10 @@ contract BunnyDualStake{
         uint256[] BNFTs_Boosting;
     }
 
-    enum LockOptions{
-        TenDays,
-        ThirtyDays,
-        NinetyDays
+    enum LockOptions{  
+        TenDays, //0
+        ThirtyDays, //1
+        NinetyDays //2
     }
 
     mapping(address => mapping(uint256 => Lock)) public UserLocks;
@@ -137,7 +137,31 @@ contract BunnyDualStake{
         BUNAItobeWithdrawn -= Payout;
         ERC20(BUNAI).transfer(msg.sender, Payout);
 
-        UserLockList[msg.sender][ListIndex[msg.sender][UserLockID]] = UserLockList[msg.sender][(UserLockList[msg.sender].length - 1)];
+        if(UserLockList[msg.sender][UserLockList[msg.sender].length - 1] != UserLockID){
+            UserLockList[msg.sender][ListIndex[msg.sender][UserLockID]] = UserLockList[msg.sender][(UserLockList[msg.sender].length - 1)];
+        }
+        UserLockList[msg.sender].pop();
+
+        return(success);
+    }
+
+    function EarlyClaimLock(uint256 UserLockID) public returns(bool success){
+        require(UserLocks[msg.sender][UserLockID].LockEnd > block.timestamp && UserLocks[msg.sender][UserLockID].LockEnd != 0, 'This lock can be claimed regularly, withought taking a penalty and receiving rewards');
+        require(UserLocks[msg.sender][UserLockID].Claimed == false);
+
+        uint256 Payout = (UserLocks[msg.sender][UserLockID].BUNAI_Locked * 95) / 100;
+        uint256[] memory NFTsToTransfer = UserLocks[msg.sender][UserLockID].BNFTs_Boosting;
+        UserLocks[msg.sender][UserLockID].Claimed = true;
+        UserLocks[msg.sender][UserLockID].BUNAI_Payout = 0;
+        UserLocks[msg.sender][UserLockID].BNFTs_Boosting = EmptyArray;
+
+        TransferOutNFTs(NFTsToTransfer, msg.sender);
+        BUNAItobeWithdrawn -= Payout;
+        ERC20(BUNAI).transfer(msg.sender, Payout);
+
+        if(UserLockList[msg.sender][UserLockList[msg.sender].length - 1] != UserLockID){
+            UserLockList[msg.sender][ListIndex[msg.sender][UserLockID]] = UserLockList[msg.sender][(UserLockList[msg.sender].length - 1)];
+        }
         UserLockList[msg.sender].pop();
 
         return(success);
