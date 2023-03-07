@@ -43,9 +43,9 @@ contract BunnyDualStake{
         BUNAI = _BUNAI;
         BNFT = _BNFT;
         Operator = msg.sender;
-        LockLengths[LockOptions(0)] = 864000; // 10 days 864000
-        LockLengths[LockOptions(1)] = 2592000; // 30 days 2592000
-        LockLengths[LockOptions(2)] = 7776000; // 90 days 7776000
+        LockLengths[LockOptions(0)] = 864000; // 10 days
+        LockLengths[LockOptions(1)] = 2592000; // 30 days 
+        LockLengths[LockOptions(2)] = 7776000; // 90 days 
         LockPayouts[LockOptions(0)] = 13700;
         LockPayouts[LockOptions(1)] = 82100;
         LockPayouts[LockOptions(2)] = 554700;
