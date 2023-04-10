@@ -22,7 +22,7 @@ contract HopperNFT is ERC721Enumerable, Ownable {
 
 
   constructor() ERC721("Hopper", "HOP") {
-    setBaseURI("ipfs://QmW4BadEP9w4gfuLASuvhnejuwqbvcNuwqWR5ZZSbTRP1N/");
+    setBaseURI("ipfs://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/");
   }
 
   // internal
