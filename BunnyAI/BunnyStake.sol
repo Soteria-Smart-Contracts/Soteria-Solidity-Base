@@ -154,6 +154,8 @@ contract BunnyDualStake{
         require(UserLocks[msg.sender][UserLockID].LockEnd > block.timestamp && UserLocks[msg.sender][UserLockID].LockEnd != 0, 'This lock can be claimed regularly, withought taking a penalty and receiving rewards');
         require(UserLocks[msg.sender][UserLockID].Claimed == false);
 
+        BUNAItobeWithdrawn -= UserLocks[msg.sender][UserLockID].BUNAI_Payout;
+
         uint256 Payout = (UserLocks[msg.sender][UserLockID].BUNAI_Locked * 95) / 100;
         uint256[] memory NFTsToTransfer = UserLocks[msg.sender][UserLockID].BNFTs_Boosting;
         UserLocks[msg.sender][UserLockID].Claimed = true;
@@ -161,7 +163,6 @@ contract BunnyDualStake{
         UserLocks[msg.sender][UserLockID].BNFTs_Boosting = EmptyArray;
 
         TransferOutNFTs(NFTsToTransfer, msg.sender);
-        BUNAItobeWithdrawn -= Payout;
         ERC20(BUNAI).transfer(msg.sender, Payout);
 
         if(UserLockList[msg.sender][UserLockList[msg.sender].length - 1] != UserLockID){
