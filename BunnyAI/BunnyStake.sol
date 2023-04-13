@@ -3,7 +3,7 @@ pragma solidity ^0.8.17;
 
 contract BunnyDualStake{
     //Parameters
-    address public Operator = 0x69420c1aCdDEBa55283362CE9dE2401EAe863c83;
+    address public Operator;
     address public BUNAI; //Bunny AI Token
     address public BNFT; //Bunny AI NFT
     uint256 public NFTBoostMultiplier = 500; //APR Booster in Basis Points
