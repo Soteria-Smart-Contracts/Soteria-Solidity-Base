@@ -83,7 +83,7 @@ contract BunnyDualStake{
     
     //Lock BUNAI w/ NFT
     function LockBUNAIWithNFTs(uint256 BUNAI_Amount, LockOptions Type, uint256[] calldata NFTs) public returns(bool success){
-        require(BNFT_set);
+        require(BNFT_set, '');
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(NFTs.length <= 10 && NFTs.length > 0, 'Maximum number of boosting NFTs is 10 and minimum is 1');
         TransferInNFTs(NFTs, msg.sender);
