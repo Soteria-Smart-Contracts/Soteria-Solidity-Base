@@ -6,6 +6,7 @@ contract BunnyDualStake{
     address public Operator;
     address public BUNAI; //Bunny AI Token
     address public BNFT; //Bunny AI NFT
+    bool public BNFT_set = false;
     uint256 public NFTBoostMultiplier = 500; //APR Booster in Basis Points
     uint256 public MinimumStake = 100000000000000000000; //The minimum amount of BUNAI needed to create a stake
 
@@ -39,9 +40,8 @@ contract BunnyDualStake{
     mapping(LockOptions => uint256) internal LockPayouts;
 
     //Make events, constructor, etc...
-    constructor(address _BUNAI, address _BNFT){
+    constructor(address _BUNAI){
         BUNAI = _BUNAI;
-        BNFT = _BNFT;
         Operator = msg.sender;
         LockLengths[LockOptions(0)] = 864000; // 10 days
         LockLengths[LockOptions(1)] = 2592000; // 30 days 
@@ -54,8 +54,10 @@ contract BunnyDualStake{
     event BUNAILocked(uint256 amount, LockOptions Type, address User, uint256 ID);
     event NFTBoost(uint256[] NFTs, address User, uint256 ID);
     event LockClaimed(uint256 TotalPayout, address User, uint256 ID);
+    event LockClaimedEarly(uint256 TotalPayout, address User, uint256 ID);
     event NewOperatorSet(address NewOperator);
     event NewNFTBoostMultiplierSet(uint256 NewMultiplier);
+    event BNFTset(address BNFT);
     event TypePayoutChanged(uint256 NewMultiplier, LockOptions Type);
 
 
@@ -81,6 +83,7 @@ contract BunnyDualStake{
     
     //Lock BUNAI w/ NFT
     function LockBUNAIWithNFTs(uint256 BUNAI_Amount, LockOptions Type, uint256[] calldata NFTs) public returns(bool success){
+        require(BNFT_set);
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(NFTs.length <= 10 && NFTs.length > 0, 'Maximum number of boosting NFTs is 10 and minimum is 1');
         TransferInNFTs(NFTs, msg.sender);
@@ -104,6 +107,7 @@ contract BunnyDualStake{
 
     //Add to NFT with existing BUNAI lock
     function AddNFTtoLock(uint256 UserLockID, uint256[] calldata NFTs) public returns(bool success){
+        require(BNFT_set);
         require((UserLocks[msg.sender][UserLockID].BNFTs_Boosting.length + NFTs.length) <= 10, 'Cannot boost with more than 10 NFTs per lock');
         require(UserLocks[msg.sender][UserLockID].LockEnd > block.timestamp, 'Cannot boost completed lock');
         TransferInNFTs(NFTs, msg.sender);
@@ -142,6 +146,7 @@ contract BunnyDualStake{
         }
         UserLockList[msg.sender].pop();
 
+        emit LockClaimed(Payout, msg.sender, UserLockID);
         return(success);
     }
 
@@ -164,6 +169,7 @@ contract BunnyDualStake{
         }
         UserLockList[msg.sender].pop();
 
+        emit LockClaimedEarly(Payout, msg.sender, UserLockID);
         return(success);
     }
 
@@ -178,6 +184,16 @@ contract BunnyDualStake{
         require(msg.sender == Operator);
         NFTBoostMultiplier = NewMultiplier;
         emit NewNFTBoostMultiplierSet(NewMultiplier);
+    }
+
+    function SetBNFTcontract(address BNFTtoSet) public {
+        require(msg.sender == Operator);
+        require(!BNFT_set);
+
+        BNFT_set = true;
+
+        BNFT = BNFTtoSet;
+        emit BNFTset(BNFT);
     }
 
     function SetNewOperator(address NewOperator) public {
