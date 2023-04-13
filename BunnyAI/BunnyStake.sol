@@ -83,7 +83,7 @@ contract BunnyDualStake{
     
     //Lock BUNAI w/ NFT
     function LockBUNAIWithNFTs(uint256 BUNAI_Amount, LockOptions Type, uint256[] calldata NFTs) public returns(bool success){
-        require(BNFT_set, '');
+        require(BNFT_set, 'NFT staking is not yet enabled');
         require(BUNAI_Amount >= MinimumStake, 'You must stake atleast the minimum stake Amount');
         require(NFTs.length <= 10 && NFTs.length > 0, 'Maximum number of boosting NFTs is 10 and minimum is 1');
         TransferInNFTs(NFTs, msg.sender);
@@ -107,7 +107,7 @@ contract BunnyDualStake{
 
     //Add to NFT with existing BUNAI lock
     function AddNFTtoLock(uint256 UserLockID, uint256[] calldata NFTs) public returns(bool success){
-        require(BNFT_set);
+        require(BNFT_set, 'NFT staking is not yet enabled');
         require((UserLocks[msg.sender][UserLockID].BNFTs_Boosting.length + NFTs.length) <= 10, 'Cannot boost with more than 10 NFTs per lock');
         require(UserLocks[msg.sender][UserLockID].LockEnd > block.timestamp, 'Cannot boost completed lock');
         TransferInNFTs(NFTs, msg.sender);
