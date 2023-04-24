@@ -156,7 +156,7 @@ contract BunnyDualStake{
 
         BUNAItobeWithdrawn -= UserLocks[msg.sender][UserLockID].BUNAI_Payout;
 
-        uint256 Payout = (UserLocks[msg.sender][UserLockID].BUNAI_Locked * 95) / 100;
+        uint256 Payout = (UserLocks[msg.sender][UserLockID].BUNAI_Locked * 90) / 100;
         uint256[] memory NFTsToTransfer = UserLocks[msg.sender][UserLockID].BNFTs_Boosting;
         UserLocks[msg.sender][UserLockID].Claimed = true;
         UserLocks[msg.sender][UserLockID].BUNAI_Payout = 0;
