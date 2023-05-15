@@ -28,6 +28,12 @@ async function loginWithEth(){
     }
 }
 
+async function getID(){
+    let idhex = web3.eth._provider.chainId;
+    netID = parseInt(idhex, 16);
+    return(netID);
+}
+
 // async function CreateETCProp(){
 //     let Amount = BigInt(web3.utils.toWei(document.getElementById('ETCAMM').value));
 //     let Receiver = document.getElementById('ETCrec').value;
