@@ -19,12 +19,6 @@ async function loginWithEth(){
         contract = new window.web3.eth.Contract(ABI, contractAddress, window.web3);
         account = accountarray[0];
         console.log('Logged In')
-        LoginText.innerHTML = "Connected with:" + '<br>' + account.substring(0, 7) + '...';
-        if(CanSign == true){
-            Signer.innerText = "This account is a signer"
-        }else{
-            Signer.innerText = "This account is not a signer"
-        }
         LoggedIn = true;
     } else { 
         alert("No ETHER Wallet available")
