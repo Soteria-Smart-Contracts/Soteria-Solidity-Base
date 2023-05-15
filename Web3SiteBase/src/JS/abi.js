@@ -1,3 +1,3 @@
-window.abi =[
+window.abi = [
 
 ]
