@@ -1,4 +1,4 @@
-pragma solidity 0.8.7;
+pragma solidity 0.8.19;
 
 
 contract EVM_NFT_Collateralized_Lending_Protocol {
