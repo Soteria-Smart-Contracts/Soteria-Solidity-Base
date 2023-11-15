@@ -1,2 +1,1 @@
-import web3 from './web3';
-
+console.log('This example is different!');
