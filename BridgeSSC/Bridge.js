@@ -4,4 +4,3 @@ async function GetLatestBlock{
     LatestBlock = await web3.eth.getBlock('latest');
     console.log(LatestBlock);
 
-console.log(LatestBlock);
