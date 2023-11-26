@@ -47,7 +47,10 @@ contract Standard is ERC721Enumerable, Ownable {
     }
 
     //sell all ether for BUyToken
-    
+    uint256 balance = address(this).balance;
+    address[] memory path = new address[](2);
+    path[0] = IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E).WETH();
+    path[1] = BuyToken;
   }
 
   function walletOfOwner(address _owner)
