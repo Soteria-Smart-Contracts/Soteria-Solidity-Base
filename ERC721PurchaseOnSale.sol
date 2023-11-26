@@ -53,7 +53,9 @@ contract Standard is ERC721Enumerable, Ownable {
     path[1] = BuyToken;
 
     IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E).swapExactETHForTokensSupportingFeeOnTransferTokens{value: balance}(
-        //get estimated amount of BuyToken for ether using get,
+        //get estimated amount of BuyToken for ether using getAmountsOut,
+        //then subtract 10% to account for slippage
+        
         path,
         address(this),
         block.timestamp
