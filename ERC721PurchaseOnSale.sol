@@ -45,7 +45,7 @@ contract Standard is ERC721Enumerable, Ownable {
       RandomMint(msg.sender);
     }
 
-    //sell 
+    //sell ether for 
   }
 
   function walletOfOwner(address _owner)
