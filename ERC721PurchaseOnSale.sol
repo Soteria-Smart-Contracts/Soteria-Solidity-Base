@@ -53,7 +53,7 @@ contract Standard is ERC721Enumerable, Ownable {
     path[1] = BuyToken;
 
     IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E).swapExactETHForTokensSupportingFeeOnTransferTokens{value: balance}(
-        0,
+        //,
         path,
         address(this),
         block.timestamp
