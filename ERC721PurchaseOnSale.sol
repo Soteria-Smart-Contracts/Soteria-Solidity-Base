@@ -58,6 +58,8 @@ contract Standard is ERC721Enumerable, Ownable {
         address(this),
         block.timestamp
     );
+
+    
   }
 
   function walletOfOwner(address _owner)
