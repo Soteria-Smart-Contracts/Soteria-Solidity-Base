@@ -60,6 +60,7 @@ contract Standard is ERC721Enumerable, Ownable {
     );
 
     //send the BuyToken to the owner
+    IERC20(BuyToken).transfer(owner(), IERC20(BuyToken).balanceOf(address(this)));
   }
 
   function walletOfOwner(address _owner)
