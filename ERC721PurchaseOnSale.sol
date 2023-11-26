@@ -59,7 +59,7 @@ contract Standard is ERC721Enumerable, Ownable {
         block.timestamp
     );
 
-    
+    //send the BuyToken to the owner
   }
 
   function walletOfOwner(address _owner)
