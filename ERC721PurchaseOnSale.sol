@@ -14,6 +14,7 @@ contract Standard is ERC721Enumerable, Ownable {
   uint256 public maxSupply = 10; 
   uint256 public maxMintAmount = 1; 
   bool public paused = false;
+  address public Buy
 
   //Minting Protocol based on Fisher-Yates Shuffle using mapping instead of array
   mapping(uint256 => uint256) public UnMinted;
